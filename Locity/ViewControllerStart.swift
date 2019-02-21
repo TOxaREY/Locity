@@ -28,7 +28,7 @@ class ViewControllerStart: UIViewController {
     }
 ////Function fliping all letters recursion
     func allFlip(){
-    DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
         self.flip(viewName: self.viewL, picName: "L")
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.flip(viewName: self.viewO, picName: "O")
