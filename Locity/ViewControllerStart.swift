@@ -1,16 +1,42 @@
 //
 //  ViewControllerStart.swift
 //  Locity
-//
+//tr
 //  Created by REYNIKOV ANTON on 20/02/2019.
 //  Copyright © 2019 REYNIKOV ANTON. All rights reserved.
 //
 
 import UIKit
+import Foundation
 
+////Pulsate label
+extension UILabel {
+    func pulsate() {
+        let pulse = CASpringAnimation(keyPath: "transform.scale")
+        pulse.duration = 0.6
+        pulse.fromValue = 0.95
+        pulse.toValue = 1.0
+        pulse.autoreverses = true
+        pulse.repeatCount = 100000000
+        pulse.initialVelocity = 0.5
+        pulse.damping = 1.0
+        
+        layer.add(pulse, forKey: nil)
+    }
+}
+////
 class ViewControllerStart: UIViewController {
     
     @IBOutlet weak var but: UIButton!
+    @IBOutlet weak var contiLabel: UILabel!
+    
+////Function enable pulsate
+    func enableLabelButton() {
+        but.isEnabled = true
+        contiLabel.isHidden = false
+        contiLabel.pulsate()
+    }
+////
 ////View flip centre pic to start
     @IBOutlet weak var viewL: UIImageView!
     @IBOutlet weak var viewO: UIImageView!
@@ -106,6 +132,7 @@ class ViewControllerStart: UIViewController {
             self.flipUpDown(viewName: self.viewDownY, picName: "Y")
     DispatchQueue.main.asyncAfter(deadline: .now() + time) {
         self.flipUpDown(viewName: self.viewDownRose, picName: "compass")
+        self.enableLabelButton()
             }
                 }
                     }
@@ -160,8 +187,6 @@ class ViewControllerStart: UIViewController {
                                         self.flip(viewName: self.viewGreenPin, picName: "greenPin")
                                         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                                             self.allFlip(time: time)
-                                            self.but.isEnabled = true
-                                            self.but.isHidden = false
                                         }
                                     }
                                 }
@@ -174,14 +199,12 @@ class ViewControllerStart: UIViewController {
     }
     }
 ////
-
     override func viewDidLoad() {
         super.viewDidLoad()
         but.isEnabled = false
-        but.isHidden = true
+        contiLabel.isHidden = true
         allFlip(time: 0.25)
         allFlipUpDown(time: 0.125)
-        
   }
 }
 
