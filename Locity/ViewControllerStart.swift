@@ -13,16 +13,21 @@ import Foundation
 extension UILabel {
     func pulsate() {
         let pulse = CASpringAnimation(keyPath: "transform.scale")
-        pulse.duration = 0.6
-        pulse.fromValue = 0.95
+        pulse.duration = 1.5
+        pulse.fromValue = 0.75
         pulse.toValue = 1.0
         pulse.autoreverses = true
         pulse.repeatCount = 100000000
-        pulse.initialVelocity = 0.5
+        pulse.initialVelocity = 0
         pulse.damping = 1.0
         
         layer.add(pulse, forKey: nil)
     }
+}
+////
+//// Determination of height device
+public var screenHeight: CGFloat {
+    return UIScreen.main.bounds.height
 }
 ////
 class ViewControllerStart: UIViewController {
@@ -64,6 +69,20 @@ class ViewControllerStart: UIViewController {
 ////
 ////View flip down pic to start
     @IBOutlet weak var viewDownO: UIImageView!
+//// Position viewDownO
+    func constraintViewDownO() {
+        viewDownO.translatesAutoresizingMaskIntoConstraints = false
+        switch screenHeight {
+        case 736: viewDownO.topAnchor.constraint(equalTo: viewDownO.superview!.topAnchor, constant: 53.33).isActive = true
+        case 812: viewDownO.topAnchor.constraint(equalTo: viewDownO.superview!.topAnchor, constant: 71.67).isActive = true
+        case 896: viewDownO.topAnchor.constraint(equalTo: viewDownO.superview!.topAnchor, constant: 81.5).isActive = true
+        case 667: viewDownO.topAnchor.constraint(equalTo: viewDownO.superview!.topAnchor, constant: 47.5).isActive = true
+        case 568: viewDownO.topAnchor.constraint(equalTo: viewDownO.superview!.topAnchor, constant: 38.5).isActive = true
+        case 480: viewDownO.topAnchor.constraint(equalTo: viewDownO.superview!.topAnchor, constant: 16.5).isActive = true
+        default: viewDownO.topAnchor.constraint(equalTo: viewDownO.superview!.topAnchor, constant: 47.5).isActive = true
+        }
+    }
+////
     @IBOutlet weak var viewDownF: UIImageView!
     @IBOutlet weak var viewDown_: UIImageView!
     @IBOutlet weak var viewDownT: UIImageView!
@@ -201,6 +220,8 @@ class ViewControllerStart: UIViewController {
 ////
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(screenHeight)
+        constraintViewDownO()
         but.isEnabled = false
         contiLabel.isHidden = true
         allFlip(time: 0.25)
