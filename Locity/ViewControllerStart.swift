@@ -12,15 +12,13 @@ import Foundation
 ////Pulsate label
 extension UILabel {
     func pulsate() {
-        let pulse = CASpringAnimation(keyPath: "transform.scale")
-        pulse.duration = 1.5
-        pulse.fromValue = 0.75
-        pulse.toValue = 1.0
+        let pulse = CABasicAnimation(keyPath: "transform.scale")
+        pulse.duration = 0.5
+        pulse.fromValue = 0.65
+        pulse.toValue = 1
         pulse.autoreverses = true
-        pulse.repeatCount = 100000000
-        pulse.initialVelocity = 0
-        pulse.damping = 1.0
-        
+        pulse.repeatCount = .greatestFiniteMagnitude
+        pulse.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         layer.add(pulse, forKey: nil)
     }
 }
