@@ -7,25 +7,39 @@
 //
 
 import UIKit
-import SpriteKit
 
-
+extension UIImageView {
+    func pulsate() {
+        let pulse = CABasicAnimation(keyPath: "transform.scale")
+        pulse.duration = 0.5
+        pulse.fromValue = 0.65
+        pulse.toValue = 1
+        pulse.autoreverses = true
+        pulse.repeatCount = .greatestFiniteMagnitude
+        pulse.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        layer.add(pulse, forKey: nil)
+    }
+}
 class ViewController: UIViewController {
-
+    
+    @IBOutlet weak var spinPush: UIImageView!
+    @IBOutlet weak var result: UILabel!
+    @IBOutlet weak var spinButton: UIButton!
+    @IBAction func spinButton(_ sender: Any) {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "spin"), object: nil)
+        result.text = ""
+        spinButton.isEnabled = false
+        spinPush.removeFromSuperview()
+    }
+    @objc func res() {
+        result.text = UserDefaults.standard.string(forKey: "Result")
+        spinButton.isEnabled = true
+    }
     override func viewDidLoad() {
-        let view = SKView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
-        self.view = view
-        let wheel = SKSpriteNode(imageNamed: "wheel.png")
-        let scene = SKScene(size: view.frame.size)
-        scene.physicsWorld.gravity = CGVector.zero
-        wheel.size = CGSize(width: 9 * UIScreen.main.bounds.width / 10, height: 9 * UIScreen.main.bounds.width / 10)
-        wheel.position = CGPoint(x: (scene.frame.maxX - scene.frame.minX) / 2, y: (scene.frame.maxY - scene.frame.minY) / 2)
-        let body = SKPhysicsBody(circleOfRadius: 9 * UIScreen.main.bounds.width / 20)
-        body.angularVelocity = 18
-        body.angularDamping = 0.75
-        wheel.physicsBody = body
-        scene.addChild(wheel)
-        view.presentScene(scene)
+        super.viewDidLoad()
+        spinPush.pulsate()
+        NotificationCenter.default.addObserver(self, selector: #selector(res), name: NSNotification.Name(rawValue: "res"), object: nil)
+        
     }
 }
 

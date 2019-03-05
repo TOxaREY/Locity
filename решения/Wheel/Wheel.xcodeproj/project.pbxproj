@@ -13,6 +13,7 @@
 		F219D4C2222D5C3C00F547D2 /* Wheel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F219D4C0222D5C3C00F547D2 /* Wheel.xcdatamodeld */; };
 		F219D4C4222D5C3D00F547D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F219D4C3222D5C3D00F547D2 /* Assets.xcassets */; };
 		F219D4C7222D5C3D00F547D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F219D4C5222D5C3D00F547D2 /* LaunchScreen.storyboard */; };
+		F239C859222E361100736578 /* Wheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F239C858222E361100736578 /* Wheel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		F219D4C3222D5C3D00F547D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F219D4C6222D5C3D00F547D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F219D4C8222D5C3D00F547D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F239C858222E361100736578 /* Wheel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wheel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				F219D4B9222D5C3C00F547D2 /* AppDelegate.swift */,
 				F219D4BB222D5C3C00F547D2 /* ViewController.swift */,
+				F239C858222E361100736578 /* Wheel.swift */,
 				F219D4BD222D5C3C00F547D2 /* Main.storyboard */,
 				F219D4C3222D5C3D00F547D2 /* Assets.xcassets */,
 				F219D4C5222D5C3D00F547D2 /* LaunchScreen.storyboard */,
@@ -141,6 +144,7 @@
 				F219D4BC222D5C3C00F547D2 /* ViewController.swift in Sources */,
 				F219D4C2222D5C3C00F547D2 /* Wheel.xcdatamodeld in Sources */,
 				F219D4BA222D5C3C00F547D2 /* AppDelegate.swift in Sources */,
+				F239C859222E361100736578 /* Wheel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
