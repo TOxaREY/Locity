@@ -42,7 +42,6 @@ class Wheel: SKView {
     @objc func stopWheel(){
         if (wheel.physicsBody!.isResting) {
             timer.invalidate()
-            print(wheel.zRotation)
             switch wheel.zRotation {
             case ((-segment)..<0): UserDefaults.standard.set("5", forKey: "Result")
                 case ((-2 * segment)..<(-segment)): UserDefaults.standard.set("4", forKey: "Result")

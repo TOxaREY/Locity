@@ -7,19 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F26A1481222FD48B00C585A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F26A147F222FD48B00C585A4 /* Main.storyboard */; };
+		F26A1485222FE20200C585A4 /* FlipUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26A1484222FE20200C585A4 /* FlipUp.swift */; };
+		F26A1487222FE29800C585A4 /* FlipDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26A1486222FE29800C585A4 /* FlipDown.swift */; };
 		F280834A222F08B900AB66BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2808349222F08B900AB66BA /* AppDelegate.swift */; };
 		F280834C222F08B900AB66BA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F280834B222F08B900AB66BA /* ViewController.swift */; };
-		F280834F222F08B900AB66BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F280834D222F08B900AB66BA /* Main.storyboard */; };
 		F2808352222F08B900AB66BA /* Flip.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F2808350222F08B900AB66BA /* Flip.xcdatamodeld */; };
 		F2808354222F08BA00AB66BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2808353222F08BA00AB66BA /* Assets.xcassets */; };
 		F2808357222F08BA00AB66BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2808355222F08BA00AB66BA /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F26A1480222FD48B00C585A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F26A1484222FE20200C585A4 /* FlipUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipUp.swift; sourceTree = "<group>"; };
+		F26A1486222FE29800C585A4 /* FlipDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlipDown.swift; sourceTree = "<group>"; };
 		F2808346222F08B900AB66BA /* Flip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2808349222F08B900AB66BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F280834B222F08B900AB66BA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		F280834E222F08B900AB66BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F2808351222F08B900AB66BA /* Flip.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Flip.xcdatamodel; sourceTree = "<group>"; };
 		F2808353222F08BA00AB66BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F2808356222F08BA00AB66BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -58,7 +62,9 @@
 			children = (
 				F2808349222F08B900AB66BA /* AppDelegate.swift */,
 				F280834B222F08B900AB66BA /* ViewController.swift */,
-				F280834D222F08B900AB66BA /* Main.storyboard */,
+				F26A1484222FE20200C585A4 /* FlipUp.swift */,
+				F26A1486222FE29800C585A4 /* FlipDown.swift */,
+				F26A147F222FD48B00C585A4 /* Main.storyboard */,
 				F2808353222F08BA00AB66BA /* Assets.xcassets */,
 				F2808355222F08BA00AB66BA /* LaunchScreen.storyboard */,
 				F2808358222F08BA00AB66BA /* Info.plist */,
@@ -125,9 +131,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F26A1481222FD48B00C585A4 /* Main.storyboard in Resources */,
 				F2808357222F08BA00AB66BA /* LaunchScreen.storyboard in Resources */,
 				F2808354222F08BA00AB66BA /* Assets.xcassets in Resources */,
-				F280834F222F08B900AB66BA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,18 +145,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				F280834C222F08B900AB66BA /* ViewController.swift in Sources */,
+				F26A1487222FE29800C585A4 /* FlipDown.swift in Sources */,
 				F280834A222F08B900AB66BA /* AppDelegate.swift in Sources */,
 				F2808352222F08B900AB66BA /* Flip.xcdatamodeld in Sources */,
+				F26A1485222FE20200C585A4 /* FlipUp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		F280834D222F08B900AB66BA /* Main.storyboard */ = {
+		F26A147F222FD48B00C585A4 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F280834E222F08B900AB66BA /* Base */,
+				F26A1480222FD48B00C585A4 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

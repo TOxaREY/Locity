@@ -8,23 +8,34 @@
 
 import UIKit
 
+
 class ViewController: UIViewController {
-    @IBOutlet weak var upFlip: UIImageView!
     
-    func flipUpDown(viewName:UIImageView,picName:String) {
-        viewName.image = UIImage(named: picName)
-        UIView.transition(with: viewName, duration: 5.0, options: .transitionCurlUp, animations: nil, completion: nil)
+    @IBOutlet weak var upButton: UIButton!
+    @IBOutlet weak var downButton: UIButton!
+    @IBAction func upButtonPush(_ sender: Any) {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "upFlip"), object: nil)
+    }
+    @IBAction func downButtonPush(_ sender: Any) {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "upFlip"), object: nil)
+    }
+    @objc func enableButton(){
+        upButton.isEnabled = true
+        downButton.isEnabled = true
+        upButton.isHidden = false
+        downButton.isHidden = false
     }
     
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        flipUpDown(viewName: upFlip, picName: "flip")
-        
-        
-        
+        upButton.isEnabled = false
+        downButton.isEnabled = false
+        upButton.isHidden = true
+        downButton.isHidden = true
+        NotificationCenter.default.addObserver(self, selector: #selector(enableButton), name: NSNotification.Name(rawValue: "resting"), object: nil)
     }
-
-
 }
 
