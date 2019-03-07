@@ -21,7 +21,7 @@ class Wheel: SKView {
         scene.physicsWorld.gravity = CGVector.zero
         self.presentScene(scene)
         self.allowsTransparency = true
-        wheel.size = CGSize(width: 9 * UIScreen.main.bounds.width / 10, height: 9 * UIScreen.main.bounds.width / 10)
+        wheel.size = CGSize(width: 9 * (scene.frame.maxX - scene.frame.minX) / 10, height: 9 * (scene.frame.maxX - scene.frame.minX) / 10)
         wheel.position = CGPoint(x: (scene.frame.maxX - scene.frame.minX) / 2, y: (scene.frame.maxY - scene.frame.minY) / 2)
         wheel.zRotation = 0
         NotificationCenter.default.addObserver(self, selector: #selector(addWheel), name: NSNotification.Name(rawValue: "addWheel"), object: nil)
@@ -32,7 +32,7 @@ class Wheel: SKView {
     }
     @objc func spin(){
         scene!.removeAllChildren()
-        let body = SKPhysicsBody(circleOfRadius: 9 * UIScreen.main.bounds.width / 20)
+        let body = SKPhysicsBody(circleOfRadius: 9 * (scene!.frame.maxX - scene!.frame.minX) / 20)
         let random = CGFloat.random(in: 5 ... 50)
         let random2 = CGFloat.random(in: 0.65 ... 0.75)
         body.angularVelocity = -random
