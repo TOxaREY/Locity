@@ -33,7 +33,7 @@ class ViewController: UIViewController {
     }
     @objc func res() {
         result.text = UserDefaults.standard.string(forKey: "Result")
-        spinButton.isEnabled = true
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()

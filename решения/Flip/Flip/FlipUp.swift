@@ -22,6 +22,7 @@ class FlipUp: SKView {
         flip.size = CGSize(width: scene.frame.maxX, height: scene.frame.maxY + 4)
         flip.position = CGPoint(x: (scene.frame.maxX - scene.frame.minX) / 2, y: scene.frame.maxY + (scene.frame.maxY - scene.frame.minY) / 2)
         let phyEdge = SKPhysicsBody(edgeFrom: CGPoint(x: 0, y: -4), to: CGPoint(x: scene.frame.maxX, y: -4))
+        phyEdge.restitution = 0.0
         edge.physicsBody = phyEdge
         scene.addChild(edge)
         let body = SKPhysicsBody(rectangleOf: flip.size)
@@ -37,9 +38,24 @@ class FlipUp: SKView {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "resting"), object: nil)
         }
     }
+    @objc func resting2(){
+        if (flip.physicsBody!.isResting) {
+            timer.invalidate()
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "enableSpinButton"), object: nil)
+        }
+    }
     @objc func upFlip(){
-        print(flip.size)
-        print(flip.position)
-        
+        scene!.removeAllChildren()
+        scene!.physicsWorld.gravity = CGVector.init(dx: 0.0, dy: 1.85)
+        let edge2 = SKNode()
+        let phyEdge = SKPhysicsBody(edgeFrom: CGPoint(x: 0, y: 2 * (scene!.frame.maxY + 4)), to: CGPoint(x: scene!.frame.maxX, y: 2 * (scene!.frame.maxY + 4)))
+        phyEdge.restitution = 0.0
+        edge2.physicsBody = phyEdge
+        scene!.addChild(edge2)
+        let body = SKPhysicsBody(rectangleOf: flip.size)
+        body.restitution = 0.0
+        flip.physicsBody = body
+        scene!.addChild(flip)
+        timer = Timer.scheduledTimer(timeInterval: 0.005, target: self, selector: #selector(self.resting2), userInfo: nil, repeats: true)
     }
 }

@@ -15,6 +15,7 @@
 		F2808352222F08B900AB66BA /* Flip.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F2808350222F08B900AB66BA /* Flip.xcdatamodeld */; };
 		F2808354222F08BA00AB66BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2808353222F08BA00AB66BA /* Assets.xcassets */; };
 		F2808357222F08BA00AB66BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2808355222F08BA00AB66BA /* LaunchScreen.storyboard */; };
+		F2DA1CD32230EAB90099D2FA /* Wheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DA1CD22230EAB90099D2FA /* Wheel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		F2808353222F08BA00AB66BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F2808356222F08BA00AB66BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F2808358222F08BA00AB66BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F2DA1CD22230EAB90099D2FA /* Wheel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wheel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				F280834B222F08B900AB66BA /* ViewController.swift */,
 				F26A1484222FE20200C585A4 /* FlipUp.swift */,
 				F26A1486222FE29800C585A4 /* FlipDown.swift */,
+				F2DA1CD22230EAB90099D2FA /* Wheel.swift */,
 				F26A147F222FD48B00C585A4 /* Main.storyboard */,
 				F2808353222F08BA00AB66BA /* Assets.xcassets */,
 				F2808355222F08BA00AB66BA /* LaunchScreen.storyboard */,
@@ -147,6 +150,7 @@
 				F280834C222F08B900AB66BA /* ViewController.swift in Sources */,
 				F26A1487222FE29800C585A4 /* FlipDown.swift in Sources */,
 				F280834A222F08B900AB66BA /* AppDelegate.swift in Sources */,
+				F2DA1CD32230EAB90099D2FA /* Wheel.swift in Sources */,
 				F2808352222F08B900AB66BA /* Flip.xcdatamodeld in Sources */,
 				F26A1485222FE20200C585A4 /* FlipUp.swift in Sources */,
 			);
@@ -304,7 +308,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = deltaTOxaREY.Flip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -322,7 +326,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = deltaTOxaREY.Flip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
