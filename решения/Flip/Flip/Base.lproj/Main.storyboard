@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Geo.ttf">
+            <string>GeographyBlack</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -18,7 +23,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch" translatesAutoresizingMaskIntoConstraints="NO" id="D1g-OR-wPj">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch_cl" translatesAutoresizingMaskIntoConstraints="NO" id="D1g-OR-wPj">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XiU-JH-wP2" customClass="Wheel" customModule="Flip" customModuleProvider="target">
@@ -47,12 +52,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XJ7-Uj-7rV" customClass="FlipUp" customModule="Flip" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="274"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YIz-in-UfI">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hard" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r8d-SK-XK7">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="274"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="80"/>
-                                                <state key="normal" title="H">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
+                                                <fontDescription key="fontDescription" name="GeographyBlack" family="Geography Black" pointSize="60"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YIz-in-UfI">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="230"/>
                                                 <connections>
                                                     <action selector="upButtonPush:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QfS-hZ-1Ww"/>
                                                 </connections>
@@ -60,15 +67,25 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="r8d-SK-XK7" secondAttribute="trailing" id="85i-zQ-lId"/>
+                                            <constraint firstItem="r8d-SK-XK7" firstAttribute="top" secondItem="XJ7-Uj-7rV" secondAttribute="top" id="8Ir-a1-G0w"/>
                                             <constraint firstAttribute="trailing" secondItem="YIz-in-UfI" secondAttribute="trailing" id="PyL-pU-Wxe"/>
-                                            <constraint firstAttribute="bottom" secondItem="YIz-in-UfI" secondAttribute="bottom" id="hvQ-Kb-PPb"/>
+                                            <constraint firstItem="r8d-SK-XK7" firstAttribute="leading" secondItem="XJ7-Uj-7rV" secondAttribute="leading" id="Qn5-og-Z2b"/>
+                                            <constraint firstAttribute="bottom" secondItem="YIz-in-UfI" secondAttribute="bottom" constant="44" id="hvQ-Kb-PPb"/>
                                             <constraint firstItem="YIz-in-UfI" firstAttribute="leading" secondItem="XJ7-Uj-7rV" secondAttribute="leading" id="mUc-eR-icg"/>
+                                            <constraint firstAttribute="bottom" secondItem="r8d-SK-XK7" secondAttribute="bottom" id="rqU-n2-cwx"/>
                                             <constraint firstItem="YIz-in-UfI" firstAttribute="top" secondItem="XJ7-Uj-7rV" secondAttribute="top" id="uqe-NS-9So"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="afE-i8-NDU" customClass="FlipDown" customModule="Flip" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="274" width="320" height="274"/>
                                         <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Easy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJc-lg-c4K">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="274"/>
+                                                <fontDescription key="fontDescription" name="GeographyBlack" family="Geography Black" pointSize="60"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jTS-mf-Oed">
                                                 <rect key="frame" x="130" y="184" width="60" height="60"/>
                                                 <subviews>
@@ -99,10 +116,11 @@
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="val-sz-nAH">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="274"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="80"/>
-                                                <state key="normal" title="E">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <rect key="frame" x="0.0" y="44" width="320" height="230"/>
+                                                <fontDescription key="fontDescription" name="GeographyBlack" family="Geography Black" pointSize="60"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="downButtonPush:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qqj-t6-Bcy"/>
@@ -111,10 +129,14 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="val-sz-nAH" firstAttribute="top" secondItem="afE-i8-NDU" secondAttribute="top" id="0UL-f6-J56"/>
+                                            <constraint firstItem="val-sz-nAH" firstAttribute="top" secondItem="afE-i8-NDU" secondAttribute="top" constant="44" id="0UL-f6-J56"/>
                                             <constraint firstAttribute="bottom" secondItem="jTS-mf-Oed" secondAttribute="bottom" constant="30" id="1Vx-sD-5kX"/>
                                             <constraint firstItem="val-sz-nAH" firstAttribute="leading" secondItem="afE-i8-NDU" secondAttribute="leading" id="J6E-0S-M9o"/>
+                                            <constraint firstAttribute="trailing" secondItem="TJc-lg-c4K" secondAttribute="trailing" id="LPv-ev-5JK"/>
                                             <constraint firstAttribute="trailing" secondItem="val-sz-nAH" secondAttribute="trailing" id="Smp-Lk-VZ1"/>
+                                            <constraint firstItem="TJc-lg-c4K" firstAttribute="leading" secondItem="afE-i8-NDU" secondAttribute="leading" id="fWt-hT-AS5"/>
+                                            <constraint firstItem="TJc-lg-c4K" firstAttribute="top" secondItem="afE-i8-NDU" secondAttribute="top" id="lqX-jc-1Re"/>
+                                            <constraint firstAttribute="bottom" secondItem="TJc-lg-c4K" secondAttribute="bottom" id="nk6-qu-BTW"/>
                                             <constraint firstAttribute="bottom" secondItem="val-sz-nAH" secondAttribute="bottom" id="raM-c8-NwX"/>
                                             <constraint firstItem="jTS-mf-Oed" firstAttribute="centerX" secondItem="afE-i8-NDU" secondAttribute="centerX" id="s1G-vz-yja"/>
                                         </constraints>
@@ -152,11 +174,12 @@
                     </view>
                     <connections>
                         <outlet property="downButton" destination="val-sz-nAH" id="It1-au-ZIM"/>
+                        <outlet property="downLabel" destination="TJc-lg-c4K" id="bDm-na-xeE"/>
                         <outlet property="result" destination="hmP-mh-D3b" id="Ruv-vt-9Zz"/>
                         <outlet property="spinButton" destination="S9z-8z-406" id="K4U-0O-Oqs"/>
                         <outlet property="spinPush" destination="z0F-dD-N6o" id="VWx-Gh-H0T"/>
                         <outlet property="upButton" destination="YIz-in-UfI" id="dzk-S3-zF5"/>
-                        <outlet property="wheelView" destination="XiU-JH-wP2" id="q7v-Cj-nEl"/>
+                        <outlet property="upLabel" destination="r8d-SK-XK7" id="bNS-93-qtD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -166,6 +189,6 @@
     </scenes>
     <resources>
         <image name="Safari" width="64" height="64"/>
-        <image name="launch" width="1242" height="2208"/>
+        <image name="launch_cl" width="1242" height="2208"/>
     </resources>
 </document>

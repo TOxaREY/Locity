@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F204D8D722413FF40065FA0E /* Geo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F204D8D622413FF40065FA0E /* Geo.ttf */; };
 		F26A1481222FD48B00C585A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F26A147F222FD48B00C585A4 /* Main.storyboard */; };
 		F26A1485222FE20200C585A4 /* FlipUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26A1484222FE20200C585A4 /* FlipUp.swift */; };
 		F26A1487222FE29800C585A4 /* FlipDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26A1486222FE29800C585A4 /* FlipDown.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F204D8D622413FF40065FA0E /* Geo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Geo.ttf; path = "../../../image/исход/Geo.ttf"; sourceTree = "<group>"; };
 		F26A1480222FD48B00C585A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F26A1484222FE20200C585A4 /* FlipUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipUp.swift; sourceTree = "<group>"; };
 		F26A1486222FE29800C585A4 /* FlipDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlipDown.swift; sourceTree = "<group>"; };
@@ -62,11 +64,12 @@
 		F2808348222F08B900AB66BA /* Flip */ = {
 			isa = PBXGroup;
 			children = (
+				F204D8D622413FF40065FA0E /* Geo.ttf */,
 				F2808349222F08B900AB66BA /* AppDelegate.swift */,
-				F280834B222F08B900AB66BA /* ViewController.swift */,
 				F26A1484222FE20200C585A4 /* FlipUp.swift */,
 				F26A1486222FE29800C585A4 /* FlipDown.swift */,
 				F2DA1CD22230EAB90099D2FA /* Wheel.swift */,
+				F280834B222F08B900AB66BA /* ViewController.swift */,
 				F26A147F222FD48B00C585A4 /* Main.storyboard */,
 				F2808353222F08BA00AB66BA /* Assets.xcassets */,
 				F2808355222F08BA00AB66BA /* LaunchScreen.storyboard */,
@@ -136,6 +139,7 @@
 			files = (
 				F26A1481222FD48B00C585A4 /* Main.storyboard in Resources */,
 				F2808357222F08BA00AB66BA /* LaunchScreen.storyboard in Resources */,
+				F204D8D722413FF40065FA0E /* Geo.ttf in Resources */,
 				F2808354222F08BA00AB66BA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
