@@ -13,6 +13,11 @@
 		F20900F52243529D0042F482 /* letter_data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F20900F32243529D0042F482 /* letter_data.xcdatamodeld */; };
 		F20900F72243529F0042F482 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F20900F62243529F0042F482 /* Assets.xcassets */; };
 		F20900FA2243529F0042F482 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F20900F82243529F0042F482 /* LaunchScreen.storyboard */; };
+		F209015E224399F70042F482 /* Country+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F209015A224399F70042F482 /* Country+CoreDataClass.swift */; };
+		F209015F224399F70042F482 /* Country+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F209015B224399F70042F482 /* Country+CoreDataProperties.swift */; };
+		F2090160224399F70042F482 /* City+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F209015C224399F70042F482 /* City+CoreDataClass.swift */; };
+		F2090161224399F70042F482 /* City+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F209015D224399F70042F482 /* City+CoreDataProperties.swift */; };
+		F209016322439B300042F482 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F209016222439B300042F482 /* CoreDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +29,11 @@
 		F20900F62243529F0042F482 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F20900F92243529F0042F482 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F20900FB2243529F0042F482 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F209015A224399F70042F482 /* Country+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Country+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F209015B224399F70042F482 /* Country+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Country+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F209015C224399F70042F482 /* City+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "City+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F209015D224399F70042F482 /* City+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "City+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F209016222439B300042F482 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +50,11 @@
 		F20900E02243529D0042F482 = {
 			isa = PBXGroup;
 			children = (
+				F209016222439B300042F482 /* CoreDataManager.swift */,
+				F209015A224399F70042F482 /* Country+CoreDataClass.swift */,
+				F209015B224399F70042F482 /* Country+CoreDataProperties.swift */,
+				F209015C224399F70042F482 /* City+CoreDataClass.swift */,
+				F209015D224399F70042F482 /* City+CoreDataProperties.swift */,
 				F20900EB2243529D0042F482 /* letter&data */,
 				F20900EA2243529D0042F482 /* Products */,
 			);
@@ -138,8 +153,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2090160224399F70042F482 /* City+CoreDataClass.swift in Sources */,
+				F209015F224399F70042F482 /* Country+CoreDataProperties.swift in Sources */,
+				F2090161224399F70042F482 /* City+CoreDataProperties.swift in Sources */,
 				F20900F52243529D0042F482 /* letter_data.xcdatamodeld in Sources */,
 				F20900EF2243529D0042F482 /* ViewController.swift in Sources */,
+				F209015E224399F70042F482 /* Country+CoreDataClass.swift in Sources */,
+				F209016322439B300042F482 /* CoreDataManager.swift in Sources */,
 				F20900ED2243529D0042F482 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
