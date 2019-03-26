@@ -20,26 +20,40 @@ extension UIImageView {
         layer.add(pulse, forKey: nil)
     }
 }
+   var whell = Wheel()
 class ViewController: UIViewController {
     
+
+    @IBOutlet weak var velo: UITextField!
     @IBOutlet weak var spinPush: UIImageView!
     @IBOutlet weak var result: UILabel!
     @IBOutlet weak var spinButton: UIButton!
     @IBAction func spinButton(_ sender: Any) {
+        if velo.text != "" {
+        UserDefaults.standard.set(velo.text, forKey: "velo")
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "spin"), object: nil)
         result.text = ""
         spinButton.isEnabled = false
-        spinPush.removeFromSuperview()
+//        spinPush.removeFromSuperview()
+      }
     }
     @objc func res() {
         result.text = UserDefaults.standard.string(forKey: "Result")
-        
+        spinButton.isEnabled = true
+        spinPush.pulsate()
+    
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         spinPush.pulsate()
         NotificationCenter.default.addObserver(self, selector: #selector(res), name: NSNotification.Name(rawValue: "res"), object: nil)
         
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if (touches.first) != nil {
+            view.endEditing(true)
+        }
+        super.touchesBegan(touches, with: event)
     }
 }
 

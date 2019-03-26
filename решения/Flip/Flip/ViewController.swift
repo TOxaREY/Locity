@@ -41,7 +41,7 @@ class ViewController: UIViewController {
     @IBAction func spinButton(_ sender: Any) {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "spin"), object: nil)
         spinButton.isEnabled = false
-        spinPush.removeFromSuperview()
+//        spinPush.removeFromSuperview()
     }
     @IBOutlet weak var spinPush: UIImageView!
     @IBOutlet weak var upButton: UIButton!
@@ -115,6 +115,10 @@ class ViewController: UIViewController {
     }
     @objc func res() {
         result.text = UserDefaults.standard.string(forKey: "Result")
+        spinPush.pulsate()
+        spinButton.isEnabled = true
+        spinButton.isHidden = false
+        spinPush.isHidden = false
     }
 
 

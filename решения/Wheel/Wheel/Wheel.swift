@@ -12,6 +12,7 @@ import SpriteKit
     let π = CGFloat(Double.pi)
 
 class Wheel: SKView {
+
     let wheel = SKSpriteNode(imageNamed: "wheel.png")
     var timer: Timer!
     let segment = ((360 / 5) * π) / 180
@@ -21,19 +22,22 @@ class Wheel: SKView {
          scene.physicsWorld.gravity = CGVector.zero
          self.presentScene(scene)
          self.allowsTransparency = true
-         wheel.size = CGSize(width: 9 * UIScreen.main.bounds.width / 10, height: 9 * UIScreen.main.bounds.width / 10)
+         wheel.size = CGSize(width: 9 * (scene.frame.maxX - scene.frame.minX) / 10, height: 9 * (scene.frame.maxX - scene.frame.minX) / 10)
          wheel.position = CGPoint(x: (scene.frame.maxX - scene.frame.minX) / 2, y: (scene.frame.maxY - scene.frame.minY) / 2)
          wheel.zRotation = 0
          scene.addChild(wheel)
          NotificationCenter.default.addObserver(self, selector: #selector(spin), name: NSNotification.Name(rawValue: "spin"), object: nil)
     }
      @objc func spin(){
+        
            scene!.removeAllChildren()
-           let body = SKPhysicsBody(circleOfRadius: 9 * UIScreen.main.bounds.width / 20)
-           let random = CGFloat.random(in: 5 ... 50)
-           let random2 = CGFloat.random(in: 0.65 ... 0.75)
-           body.angularVelocity = -random
-           body.angularDamping = random2
+           let body = SKPhysicsBody(circleOfRadius: 9 * (scene!.frame.maxX - scene!.frame.minX) / 20)
+//           let random = CGFloat.random(in: 5 ... 50)
+//           let random2 = CGFloat.random(in: 0.65 ... 0.75)
+//           body.angularVelocity = -random
+//           body.angularDamping = random2
+        body.angularVelocity = CGFloat(-Double(UserDefaults.standard.string(forKey: "velo")!)!)
+        body.angularDamping = 0.7
            wheel.physicsBody = body
            scene!.addChild(wheel)
         
