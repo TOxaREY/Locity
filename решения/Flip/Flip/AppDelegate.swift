@@ -16,9 +16,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        let preferredLanguage = NSLocale.preferredLanguages[0]
+        if preferredLanguage.starts(with: "en") {
+            print("en")
+        } else {
+            if preferredLanguage.starts(with: "ru") {
+                print("ru")
+            } else {
+                if preferredLanguage.starts(with: "fr") {
+                    print("fr")
+                } else {
+                    if preferredLanguage.starts(with: "es") {
+                        print("es")
+                    } else {
+                        if preferredLanguage.starts(with: "pt") {
+                            print("pt")
+                        } else {
+                            if preferredLanguage.starts(with: "de") {
+                                print("de")
+                            } else {
+                                if preferredLanguage.starts(with: "it") {
+                                    print("it")
+                                } else {
+                                    print("def_en")
+                                }}}}}}}
+                                
+
+
         // Override point for customization after application launch.
         return true
     }
+    
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
