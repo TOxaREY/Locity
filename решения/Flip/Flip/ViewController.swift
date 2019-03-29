@@ -125,6 +125,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(language)
         disableButtonStart()
         NotificationCenter.default.addObserver(self, selector: #selector(enableButton), name: NSNotification.Name(rawValue: "resting"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(enableSpinButton), name: NSNotification.Name(rawValue: "enableSpinButton"), object: nil)

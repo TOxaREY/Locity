@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 
+var language = "def_en"
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -18,27 +19,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let preferredLanguage = NSLocale.preferredLanguages[0]
         if preferredLanguage.starts(with: "en") {
-            print("en")
+            language = "en"
         } else {
             if preferredLanguage.starts(with: "ru") {
-                print("ru")
+                language = "ru"
             } else {
                 if preferredLanguage.starts(with: "fr") {
-                    print("fr")
+                    language = "fr"
                 } else {
                     if preferredLanguage.starts(with: "es") {
-                        print("es")
+                        language = "es"
                     } else {
                         if preferredLanguage.starts(with: "pt") {
-                            print("pt")
+                            language = "pt"
                         } else {
                             if preferredLanguage.starts(with: "de") {
-                                print("de")
+                                language = "de"
                             } else {
                                 if preferredLanguage.starts(with: "it") {
-                                    print("it")
+                                    language = "it"
                                 } else {
-                                    print("def_en")
+                                    language = "def_en"
                                 }}}}}}}
                                 
 

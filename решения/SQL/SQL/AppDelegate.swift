@@ -7,15 +7,40 @@
 //
 
 import UIKit
-import SQLite
 
+var language = "def_en"
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
-
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+
+        let preferredLanguage = NSLocale.preferredLanguages[0]
+        if preferredLanguage.starts(with: "en") {
+            language = "en"
+        } else {
+            if preferredLanguage.starts(with: "ru") {
+                language = "ru"
+            } else {
+                if preferredLanguage.starts(with: "fr") {
+                    language = "fr"
+                } else {
+                    if preferredLanguage.starts(with: "es") {
+                        language = "es"
+                    } else {
+                        if preferredLanguage.starts(with: "pt") {
+                            language = "pt"
+                        } else {
+                            if preferredLanguage.starts(with: "de") {
+                                language = "de"
+                            } else {
+                                if preferredLanguage.starts(with: "it") {
+                                    language = "it"
+                                } else {
+                                    language = "def_en"
+                                }}}}}}}
+        
         // Override point for customization after application launch.
         return true
     }
