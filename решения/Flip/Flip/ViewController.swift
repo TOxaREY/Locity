@@ -108,14 +108,14 @@ class ViewController: UIViewController {
 //    }
 
     @objc func enableSpinButton(){
-        spinPush.pulsate()
+//        spinPush.pulsate()
         spinButton.isEnabled = true
         spinButton.isHidden = false
         spinPush.isHidden = false
     }
     @objc func res() {
         result.text = UserDefaults.standard.string(forKey: "Result")
-        spinPush.pulsate()
+//        spinPush.pulsate()
         spinButton.isEnabled = true
         spinButton.isHidden = false
         spinPush.isHidden = false

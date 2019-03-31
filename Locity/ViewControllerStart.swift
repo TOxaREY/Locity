@@ -23,11 +23,6 @@ extension UILabel {
     }
 }
 ////
-//// Determination of height device
-public var screenHeight: CGFloat {
-    return UIScreen.main.bounds.height
-}
-////
 class ViewControllerStart: UIViewController {
     
     @IBOutlet weak var but: UIButton!
@@ -67,20 +62,6 @@ class ViewControllerStart: UIViewController {
 ////
 ////View flip down pic to start
     @IBOutlet weak var viewDownO: UIImageView!
-//// Position viewDownO
-    func constraintViewDownO() {
-        viewDownO.translatesAutoresizingMaskIntoConstraints = false
-        switch screenHeight {
-        case 736: viewDownO.topAnchor.constraint(equalTo: viewDownO.superview!.topAnchor, constant: 53.33).isActive = true
-        case 812: viewDownO.topAnchor.constraint(equalTo: viewDownO.superview!.topAnchor, constant: 71.67).isActive = true
-        case 896: viewDownO.topAnchor.constraint(equalTo: viewDownO.superview!.topAnchor, constant: 81.5).isActive = true
-        case 667: viewDownO.topAnchor.constraint(equalTo: viewDownO.superview!.topAnchor, constant: 47.5).isActive = true
-        case 568: viewDownO.topAnchor.constraint(equalTo: viewDownO.superview!.topAnchor, constant: 38.5).isActive = true
-        case 480: viewDownO.topAnchor.constraint(equalTo: viewDownO.superview!.topAnchor, constant: 16.5).isActive = true
-        default: viewDownO.topAnchor.constraint(equalTo: viewDownO.superview!.topAnchor, constant: 47.5).isActive = true
-        }
-    }
-////
     @IBOutlet weak var viewDownF: UIImageView!
     @IBOutlet weak var viewDown_: UIImageView!
     @IBOutlet weak var viewDownT: UIImageView!
@@ -218,8 +199,6 @@ class ViewControllerStart: UIViewController {
 ////
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(screenHeight)
-        constraintViewDownO()
         but.isEnabled = false
         contiLabel.isHidden = true
         allFlip(time: 0.25)

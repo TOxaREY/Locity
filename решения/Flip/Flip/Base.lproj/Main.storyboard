@@ -88,36 +88,39 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jTS-mf-Oed">
-                                                <rect key="frame" x="130" y="184" width="60" height="60"/>
+                                                <rect key="frame" x="95" y="159" width="130" height="100"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S9z-8z-406">
-                                                        <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="130" height="100"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <connections>
                                                             <action selector="spinButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aO7-pu-wEX"/>
                                                         </connections>
                                                     </button>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Safari" translatesAutoresizingMaskIntoConstraints="NO" id="z0F-dD-N6o">
-                                                        <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z0F-dD-N6o">
+                                                        <rect key="frame" x="0.0" y="0.0" width="130" height="100"/>
+                                                        <color key="backgroundColor" red="0.70196078429999997" green="0.0" blue="0.047058823530000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="height" constant="100" id="9Cu-QS-8Eg"/>
                                                     <constraint firstAttribute="trailing" secondItem="S9z-8z-406" secondAttribute="trailing" id="9xL-Dp-STb"/>
                                                     <constraint firstAttribute="trailing" secondItem="z0F-dD-N6o" secondAttribute="trailing" id="Bh0-6d-PWK"/>
                                                     <constraint firstItem="z0F-dD-N6o" firstAttribute="leading" secondItem="jTS-mf-Oed" secondAttribute="leading" id="ImP-FL-SHB"/>
                                                     <constraint firstItem="z0F-dD-N6o" firstAttribute="top" secondItem="jTS-mf-Oed" secondAttribute="top" id="PRN-Xc-2Tx"/>
                                                     <constraint firstAttribute="bottom" secondItem="S9z-8z-406" secondAttribute="bottom" id="UAE-Sa-54U"/>
-                                                    <constraint firstAttribute="height" constant="60" id="d4K-4e-4lf"/>
                                                     <constraint firstItem="S9z-8z-406" firstAttribute="leading" secondItem="jTS-mf-Oed" secondAttribute="leading" id="dZD-qR-PFN"/>
                                                     <constraint firstItem="S9z-8z-406" firstAttribute="top" secondItem="jTS-mf-Oed" secondAttribute="top" id="fMX-bT-eSN"/>
+                                                    <constraint firstAttribute="width" secondItem="jTS-mf-Oed" secondAttribute="height" multiplier="13:10" id="iDJ-v8-zG4"/>
                                                     <constraint firstAttribute="bottom" secondItem="z0F-dD-N6o" secondAttribute="bottom" id="phj-S4-m0I"/>
-                                                    <constraint firstAttribute="width" constant="60" id="x9p-kL-6Fn"/>
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="val-sz-nAH">
                                                 <rect key="frame" x="0.0" y="44" width="320" height="230"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="320" id="pzA-sn-wDQ"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" name="GeographyBlack" family="Geography Black" pointSize="60"/>
                                                 <state key="normal">
                                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -131,9 +134,9 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="val-sz-nAH" firstAttribute="top" secondItem="afE-i8-NDU" secondAttribute="top" constant="44" id="0UL-f6-J56"/>
-                                            <constraint firstAttribute="bottom" secondItem="jTS-mf-Oed" secondAttribute="bottom" constant="30" id="1Vx-sD-5kX"/>
                                             <constraint firstItem="val-sz-nAH" firstAttribute="leading" secondItem="afE-i8-NDU" secondAttribute="leading" id="J6E-0S-M9o"/>
                                             <constraint firstAttribute="trailing" secondItem="TJc-lg-c4K" secondAttribute="trailing" id="LPv-ev-5JK"/>
+                                            <constraint firstItem="jTS-mf-Oed" firstAttribute="centerY" secondItem="afE-i8-NDU" secondAttribute="centerY" constant="72" id="Pkt-1d-a4P"/>
                                             <constraint firstAttribute="trailing" secondItem="val-sz-nAH" secondAttribute="trailing" id="Smp-Lk-VZ1"/>
                                             <constraint firstItem="TJc-lg-c4K" firstAttribute="leading" secondItem="afE-i8-NDU" secondAttribute="leading" id="fWt-hT-AS5"/>
                                             <constraint firstItem="TJc-lg-c4K" firstAttribute="top" secondItem="afE-i8-NDU" secondAttribute="top" id="lqX-jc-1Re"/>
@@ -189,7 +192,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Safari" width="64" height="64"/>
         <image name="launch_cl" width="1242" height="2208"/>
     </resources>
 </document>

@@ -29,6 +29,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var label: UILabel!
     @IBAction func button(_ sender: Any) {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "down"), object: nil)
         i = 0
         rand = 0
         printi(dictionary: dic)
@@ -85,6 +86,7 @@ class ViewController: UIViewController {
                             citySelect["y"] = item[self.base.y]
                         }
                         print(citySelect)
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "up"), object: nil)
                     } catch {
                         print(error)
                     }
