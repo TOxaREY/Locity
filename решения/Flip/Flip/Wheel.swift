@@ -22,6 +22,7 @@ class Wheel: SKView {
         self.presentScene(scene)
         self.allowsTransparency = true
         wheel.size = CGSize(width: 9 * (scene.frame.maxX - scene.frame.minX) / 10, height: 9 * (scene.frame.maxX - scene.frame.minX) / 10)
+        UserDefaults.standard.set(wheel.size.height, forKey: "wheelSize")
         wheel.position = CGPoint(x: (scene.frame.maxX - scene.frame.minX) / 2, y: (scene.frame.maxY - scene.frame.minY) / 2)
         wheel.zRotation = 0
         NotificationCenter.default.addObserver(self, selector: #selector(addWheel), name: NSNotification.Name(rawValue: "addWheel"), object: nil)
@@ -55,12 +56,12 @@ class Wheel: SKView {
         if (wheel.physicsBody!.isResting) {
             timer.invalidate()
             switch wheel.zRotation {
-            case ((-segment)..<0): UserDefaults.standard.set("Америка 5", forKey: "Result")
-            case ((-2 * segment)..<(-segment)): UserDefaults.standard.set("Европа 4", forKey: "Result")
-            case (-π..<(-2 * segment)): UserDefaults.standard.set("Африка 3", forKey: "Result")
-            case ((2 * segment)..<π): UserDefaults.standard.set("Африка 3", forKey: "Result")
-            case (segment..<(2 * segment)): UserDefaults.standard.set("Азия 2", forKey: "Result")
-            case (0..<segment): UserDefaults.standard.set("Океания 1", forKey: "Result")
+            case ((-segment)..<0): UserDefaults.standard.set("America", forKey: "Result")
+            case ((-2 * segment)..<(-segment)): UserDefaults.standard.set("Europe", forKey: "Result")
+            case (-π..<(-2 * segment)): UserDefaults.standard.set("Africa", forKey: "Result")
+            case ((2 * segment)..<π): UserDefaults.standard.set("Africa", forKey: "Result")
+            case (segment..<(2 * segment)): UserDefaults.standard.set("Asia", forKey: "Result")
+            case (0..<segment): UserDefaults.standard.set("Oceania", forKey: "Result")
             default: UserDefaults.standard.set("X", forKey: "Result")
             }
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "res"), object: nil)
