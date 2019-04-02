@@ -37,8 +37,8 @@ class Wheel: SKView {
         let body = SKPhysicsBody(circleOfRadius: 9 * (scene!.frame.maxX - scene!.frame.minX) / 20)
         func randomFunc(){
         let random = CGFloat.random(in: 4.43 ... 60.72)
-            UserDefaults.standard.set(String(Double(random)), forKey: "Result")
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "res"), object: nil)
+//            UserDefaults.standard.set(String(Double(random)), forKey: "Result")
+//            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "res"), object: nil)
         if (random >= 7.94 && random <= 8.83) || (random >= 16.73 && random <= 17.62) || (random >= 21.13 && random <= 22.02) || (random >= 25.53 && random <= 26.42) || (random >= 34.33 && random <= 35.22) || (random >= 43.12 && random <= 44.01) || (random >= 51.92 && random <= 52.81) || (random >= 56.32 && random <= 57.21) {
             randomFunc()
         } else {
@@ -65,7 +65,6 @@ class Wheel: SKView {
             default: UserDefaults.standard.set("X", forKey: "Result")
             }
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "res"), object: nil)
-            wheel.zRotation = 0
         }
     }
 }
