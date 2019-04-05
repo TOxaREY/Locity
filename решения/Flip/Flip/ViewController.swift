@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SpriteKit
 
 
 extension CGFloat {
@@ -25,6 +26,9 @@ extension CGFloat {
             return (self / 320) * UIScreen.main.bounds.width
         }
     }
+}
+public var screenHeight: CGFloat {
+    return UIScreen.main.bounds.height
 }
 
 extension UILabel {
@@ -60,7 +64,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var fingerIGE: UIImageView!
     @IBOutlet weak var isoView: UIView!
     @IBOutlet weak var resultView: UIView!
-    @IBOutlet weak var anchorView: Anchor!
     @IBOutlet weak var result: UILabel!
     @IBOutlet weak var spinButton: UIButton!
     @IBAction func spinButton(_ sender: Any) {
@@ -86,6 +89,8 @@ class ViewController: UIViewController {
     }
     
     
+    @IBOutlet weak var flipUpView: FlipUp!
+    @IBOutlet weak var anchorView: UIView!
     @IBOutlet weak var spinPush: UIImageView!
     @IBOutlet weak var upButton: UIButton!
     @IBOutlet weak var upLabel: UILabel!
@@ -162,28 +167,38 @@ class ViewController: UIViewController {
     }
 
 
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let ert:CGFloat = 60
-        let ert2:CGFloat = 40
-        upLabel.font = upLabel.font.withSize(ert.dp)
-        downLabel.font = downLabel.font.withSize(ert.dp)
-        isoLabel.font = isoLabel.font.withSize(ert2.dp2)
         let wS = CGFloat(UserDefaults.standard.float(forKey: "wheelSize") / 2)
-        let wS2 = CGFloat(UserDefaults.standard.float(forKey: "wheelSize") * 0.03412478336)
-        self.isoView.translatesAutoresizingMaskIntoConstraints = false
-        self.isoView.topAnchor.constraint(equalTo: self.isoView.superview!.topAnchor, constant: wS).isActive = true
+        var wS2 = CGFloat()
+        switch screenHeight {
+        case 896,812:
+            wS2 = CGFloat(UserDefaults.standard.float(forKey: "wheelSize") * 0.08 + 7)
+        default:
+            wS2 = CGFloat(UserDefaults.standard.float(forKey: "wheelSize") * 0.08)
+        }
+        let wS3 = CGFloat(wS2 + (flipUpView.frame.height - wS) / 2)
         self.resultView.translatesAutoresizingMaskIntoConstraints = false
+        self.isoView.translatesAutoresizingMaskIntoConstraints = false
         self.resultView.bottomAnchor.constraint(equalTo: self.resultView.superview!.bottomAnchor, constant: -wS).isActive = true
+        self.isoView.topAnchor.constraint(equalTo: self.isoView.superview!.topAnchor, constant: wS).isActive = true
         self.anchorView.translatesAutoresizingMaskIntoConstraints = false
         self.anchorView.bottomAnchor.constraint(equalTo: self.anchorView.superview!.bottomAnchor, constant: wS2).isActive = true
-        disableButtonStart()
-        NotificationCenter.default.addObserver(self, selector: #selector(enableButton), name: NSNotification.Name(rawValue: "resting"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(enableSpinButton), name: NSNotification.Name(rawValue: "enableSpinButton"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(res), name: NSNotification.Name(rawValue: "res"), object: nil)
+        self.anchorView.heightAnchor.constraint(equalToConstant: wS3).isActive = true
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+        let ert:CGFloat = 60
+        let ert2:CGFloat = 40
+            self.upLabel.font = self.upLabel.font.withSize(ert.dp)
+            self.downLabel.font = self.downLabel.font.withSize(ert.dp)
+            self.isoLabel.font = self.isoLabel.font.withSize(ert2.dp2)
+        }
+        
+            self.disableButtonStart()
+            NotificationCenter.default.addObserver(self, selector: #selector(self.enableButton), name: NSNotification.Name(rawValue: "resting"), object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(self.enableSpinButton), name: NSNotification.Name(rawValue: "enableSpinButton"), object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(self.res), name: NSNotification.Name(rawValue: "res"), object: nil)
     }
+
 }
 

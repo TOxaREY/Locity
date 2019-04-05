@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 
 ////Pulsate label
-extension UILabel {
+extension UIView {
     func pulsate() {
         let pulse = CABasicAnimation(keyPath: "transform.scale")
         pulse.duration = 0.5
@@ -26,13 +26,13 @@ extension UILabel {
 class ViewControllerStart: UIViewController {
     
     @IBOutlet weak var but: UIButton!
-    @IBOutlet weak var contiLabel: UILabel!
+//    @IBOutlet weak var contiLabel: UILabel!
     
 ////Function enable pulsate
     func enableLabelButton() {
         but.isEnabled = true
-        contiLabel.isHidden = false
-        contiLabel.pulsate()
+//        contiLabel.isHidden = false
+//        contiLabel.pulsate()
     }
 ////
 ////View flip centre pic to start
@@ -200,7 +200,7 @@ class ViewControllerStart: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         but.isEnabled = false
-        contiLabel.isHidden = true
+//        contiLabel.isHidden = true
         allFlip(time: 0.25)
         allFlipUpDown(time: 0.125)
   }
