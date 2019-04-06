@@ -63,12 +63,12 @@ class Wheel: SKView {
         if (wheel.physicsBody!.isResting) {
             timer.invalidate()
             switch wheel.zRotation {
-            case ((-segment)..<0): UserDefaults.standard.set("5", forKey: "Result")
-            case ((-2 * segment)..<(-segment)): UserDefaults.standard.set("4", forKey: "Result")
-            case (-π..<(-2 * segment)): UserDefaults.standard.set("3", forKey: "Result")
-            case ((2 * segment)..<π): UserDefaults.standard.set("3", forKey: "Result")
-            case (segment..<(2 * segment)): UserDefaults.standard.set("2", forKey: "Result")
-            case (0..<segment): UserDefaults.standard.set("1", forKey: "Result")
+            case ((-segment)..<0): UserDefaults.standard.set("Qwertyf", forKey: "Result")
+            case ((-2 * segment)..<(-segment)): UserDefaults.standard.set("Яблоко", forKey: "Result")
+            case (-π..<(-2 * segment)): UserDefaults.standard.set("ßçëâêèéñ", forKey: "Result")
+            case ((2 * segment)..<π): UserDefaults.standard.set("ßçëâêèéñ", forKey: "Result")
+            case (segment..<(2 * segment)): UserDefaults.standard.set("Фьукшсф", forKey: "Result")
+            case (0..<segment): UserDefaults.standard.set("Oceania", forKey: "Result")
             default: UserDefaults.standard.set("X", forKey: "Result")
             }
 

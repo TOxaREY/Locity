@@ -109,6 +109,7 @@ class ViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.8) {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "upFlip"), object: nil)
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addWheel"), object: nil)
+            self.spinPush.isHidden = false
             self.upLabel.isHidden = true
       }
      }
@@ -125,6 +126,7 @@ class ViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.8) {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "upFlip"), object: nil)
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addWheel"), object: nil)
+            self.spinPush.isHidden = false
             self.downLabel.isHidden = true
       }
      }
@@ -154,7 +156,7 @@ class ViewController: UIViewController {
     @objc func enableSpinButton(){
         spinButton.isEnabled = true
         spinButton.isHidden = false
-        spinPush.isHidden = false
+//        spinPush.isHidden = false
     }
 //    var one = 0
 //    var two = 0
@@ -219,7 +221,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 //        sec.text = String(counter)
-
+print(spinButton)
         let wS = CGFloat(UserDefaults.standard.float(forKey: "wheelSize") / 2)
         var wS2 = CGFloat()
         switch screenHeight {
