@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F2032C3822592BEC001C4FD8 /* ArrowStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2032C3722592BEC001C4FD8 /* ArrowStart.swift */; };
 		F204D8D9224142B40065FA0E /* Geo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F204D8D8224142B40065FA0E /* Geo.ttf */; };
 		F264063E221D92EE00AC753D /* ViewControllerStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = F264063D221D92EE00AC753D /* ViewControllerStart.swift */; };
 		F27CEDEE221705D30006D532 /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27CEDED221705D30006D532 /* ViewController2.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F2032C3722592BEC001C4FD8 /* ArrowStart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowStart.swift; sourceTree = "<group>"; };
 		F204D8D8224142B40065FA0E /* Geo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Geo.ttf; path = "image/исход/Geo.ttf"; sourceTree = SOURCE_ROOT; };
 		F264063D221D92EE00AC753D /* ViewControllerStart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerStart.swift; sourceTree = "<group>"; };
 		F27CEDED221705D30006D532 /* ViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 				F2C837D92215F9D600C252AB /* AppDelegate.swift */,
 				F204D8D8224142B40065FA0E /* Geo.ttf */,
 				F264063D221D92EE00AC753D /* ViewControllerStart.swift */,
+				F2032C3722592BEC001C4FD8 /* ArrowStart.swift */,
 				F2C837DB2215F9D600C252AB /* ViewController.swift */,
 				F27CEDED221705D30006D532 /* ViewController2.swift */,
 				F27CEDEF221705E70006D532 /* ViewController3.swift */,
@@ -153,6 +156,7 @@
 			files = (
 				F27CEDF0221705E70006D532 /* ViewController3.swift in Sources */,
 				F2C837DC2215F9D600C252AB /* ViewController.swift in Sources */,
+				F2032C3822592BEC001C4FD8 /* ArrowStart.swift in Sources */,
 				F27CEDEE221705D30006D532 /* ViewController2.swift in Sources */,
 				F2C837E22215F9D600C252AB /* Locity.xcdatamodeld in Sources */,
 				F2C837DA2215F9D600C252AB /* AppDelegate.swift in Sources */,

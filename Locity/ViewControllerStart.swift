@@ -9,32 +9,11 @@
 import UIKit
 import Foundation
 
-////Pulsate label
-extension UIView {
-    func pulsate() {
-        let pulse = CABasicAnimation(keyPath: "transform.scale")
-        pulse.duration = 0.5
-        pulse.fromValue = 0.65
-        pulse.toValue = 1
-        pulse.autoreverses = true
-        pulse.repeatCount = .greatestFiniteMagnitude
-        pulse.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        layer.add(pulse, forKey: nil)
-    }
-}
-////
+
 class ViewControllerStart: UIViewController {
     
     @IBOutlet weak var but: UIButton!
-//    @IBOutlet weak var contiLabel: UILabel!
     
-////Function enable pulsate
-    func enableLabelButton() {
-        but.isEnabled = true
-//        contiLabel.isHidden = false
-//        contiLabel.pulsate()
-    }
-////
 ////View flip centre pic to start
     @IBOutlet weak var viewL: UIImageView!
     @IBOutlet weak var viewO: UIImageView!
@@ -130,7 +109,7 @@ class ViewControllerStart: UIViewController {
             self.flipUpDown(viewName: self.viewDownY, picName: "Y")
     DispatchQueue.main.asyncAfter(deadline: .now() + time) {
         self.flipUpDown(viewName: self.viewDownRose, picName: "compass")
-        self.enableLabelButton()
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "moveArrowStart"), object: nil)
             }
                 }
                     }
@@ -139,9 +118,9 @@ class ViewControllerStart: UIViewController {
                                 }
                                     }
                                         }
+                                            }
                                                 }
                                                     }
-                                                        }
                                                         }
                                                     }
                                                 }
@@ -195,14 +174,20 @@ class ViewControllerStart: UIViewController {
             }
         }
     }
+}
+////
+////Enable button countinue
+    @objc func enableButton(){
+        self.but.isEnabled = true
     }
 ////
+
     override func viewDidLoad() {
         super.viewDidLoad()
         but.isEnabled = false
-//        contiLabel.isHidden = true
         allFlip(time: 0.25)
         allFlipUpDown(time: 0.125)
+        NotificationCenter.default.addObserver(self, selector: #selector(enableButton), name: NSNotification.Name(rawValue: "enableButton"), object: nil)
   }
 }
 
