@@ -109,7 +109,9 @@ class ViewControllerStart: UIViewController {
             self.flipUpDown(viewName: self.viewDownY, picName: "Y")
     DispatchQueue.main.asyncAfter(deadline: .now() + time) {
         self.flipUpDown(viewName: self.viewDownRose, picName: "compass")
+DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "moveArrowStart"), object: nil)
+        }
             }
                 }
                     }

@@ -10,23 +10,21 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var www: UIView!
+ 
     @IBOutlet weak var label: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        var bounds = label.bounds
+        label.font = label.font.withSize(40)
+        bounds.size = label.intrinsicContentSize
+        label.bounds = bounds
+        label.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        UIView.animate(withDuration: 3.0) {
+            self.label.transform = .identity
+        }
 
 
     }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        label.center.x = www.center.x // Place it in the center x of the view.
-        label.center.x -= www.bounds.width // Place it on the left of the view with the width = the bounds'width of the view.
-        // animate it from the left to the right
-        UIView.animate(withDuration: 2, delay: 0, options: [.curveEaseOut], animations: {
-            self.label.center.x += self.www.bounds.width
-            self.www.layoutIfNeeded()
-        }, completion: nil)
-}
+
 }
 
