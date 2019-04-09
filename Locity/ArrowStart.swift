@@ -25,8 +25,8 @@ class ArrowStart: SKView {
 
     @objc func moveArrowStart(){
         let moveRight = SKAction.moveBy(x: scene!.frame.width + scene!.frame.height / 2, y: 0, duration: 1.5)
-        let pulseUp = SKAction.scale(to: 0.75, duration: 0.5)
-        let pulseDown = SKAction.scale(to: 1, duration: 0.5)
+        let pulseUp = SKAction.scale(to: 0.75, duration: 1)
+        let pulseDown = SKAction.scale(to: 1, duration: 1)
         let pulse = SKAction.sequence([pulseUp, pulseDown])
         let repeatPulse = SKAction.repeatForever(pulse)
         let seq = SKAction.sequence([moveRight,repeatPulse])

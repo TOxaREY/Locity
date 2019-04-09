@@ -3,17 +3,23 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E4E3F217F9FBFB241C776DF /* Pods_Locity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D41178CB4ACD674072CC7404 /* Pods_Locity.framework */; };
 		F2032C3822592BEC001C4FD8 /* ArrowStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2032C3722592BEC001C4FD8 /* ArrowStart.swift */; };
 		F204D8D9224142B40065FA0E /* Geo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F204D8D8224142B40065FA0E /* Geo.ttf */; };
+		F219028A225B8091001F1AE4 /* Titania.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F2190289225B8091001F1AE4 /* Titania.ttf */; };
+		F219028C225B81B0001F1AE4 /* FlapTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = F219028B225B81B0001F1AE4 /* FlapTop.swift */; };
+		F219028E225B81FC001F1AE4 /* FlapBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = F219028D225B81FC001F1AE4 /* FlapBottom.swift */; };
+		F2190290225B85D2001F1AE4 /* Wheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F219028F225B85D2001F1AE4 /* Wheel.swift */; };
+		F2190292225B8A6E001F1AE4 /* Anchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2190291225B8A6E001F1AE4 /* Anchor.swift */; };
+		F2190294225B8DCB001F1AE4 /* ViewControllerСhoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2190293225B8DCB001F1AE4 /* ViewControllerСhoice.swift */; };
+		F21E5959225CEF0C00C0721B /* world.db in Resources */ = {isa = PBXBuildFile; fileRef = F21E5958225CEF0C00C0721B /* world.db */; };
+		F21E595B225CEFE000C0721B /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21E595A225CEFE000C0721B /* Base.swift */; };
 		F264063E221D92EE00AC753D /* ViewControllerStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = F264063D221D92EE00AC753D /* ViewControllerStart.swift */; };
-		F27CEDEE221705D30006D532 /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27CEDED221705D30006D532 /* ViewController2.swift */; };
-		F27CEDF0221705E70006D532 /* ViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27CEDEF221705E70006D532 /* ViewController3.swift */; };
 		F2C837DA2215F9D600C252AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C837D92215F9D600C252AB /* AppDelegate.swift */; };
-		F2C837DC2215F9D600C252AB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C837DB2215F9D600C252AB /* ViewController.swift */; };
 		F2C837DF2215F9D600C252AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2C837DD2215F9D600C252AB /* Main.storyboard */; };
 		F2C837E22215F9D600C252AB /* Locity.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F2C837E02215F9D600C252AB /* Locity.xcdatamodeld */; };
 		F2C837E72215F9D700C252AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2C837E52215F9D700C252AB /* LaunchScreen.storyboard */; };
@@ -21,19 +27,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D41178CB4ACD674072CC7404 /* Pods_Locity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Locity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB5A5AB80A9B04496A0092C4 /* Pods-Locity.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Locity.release.xcconfig"; path = "Target Support Files/Pods-Locity/Pods-Locity.release.xcconfig"; sourceTree = "<group>"; };
 		F2032C3722592BEC001C4FD8 /* ArrowStart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowStart.swift; sourceTree = "<group>"; };
 		F204D8D8224142B40065FA0E /* Geo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Geo.ttf; path = "image/исход/Geo.ttf"; sourceTree = SOURCE_ROOT; };
+		F2190289225B8091001F1AE4 /* Titania.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Titania.ttf; path = "image/исход/Titania.ttf"; sourceTree = SOURCE_ROOT; };
+		F219028B225B81B0001F1AE4 /* FlapTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlapTop.swift; sourceTree = "<group>"; };
+		F219028D225B81FC001F1AE4 /* FlapBottom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlapBottom.swift; sourceTree = "<group>"; };
+		F219028F225B85D2001F1AE4 /* Wheel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wheel.swift; sourceTree = "<group>"; };
+		F2190291225B8A6E001F1AE4 /* Anchor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anchor.swift; sourceTree = "<group>"; };
+		F2190293225B8DCB001F1AE4 /* ViewControllerСhoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewControllerСhoice.swift"; sourceTree = "<group>"; };
+		F21E5958225CEF0C00C0721B /* world.db */ = {isa = PBXFileReference; lastKnownFileType = file; name = world.db; path = MAPS_BASE/world.db; sourceTree = SOURCE_ROOT; };
+		F21E595A225CEFE000C0721B /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
 		F264063D221D92EE00AC753D /* ViewControllerStart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerStart.swift; sourceTree = "<group>"; };
-		F27CEDED221705D30006D532 /* ViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
-		F27CEDEF221705E70006D532 /* ViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController3.swift; sourceTree = "<group>"; };
 		F2C837D62215F9D600C252AB /* Locity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Locity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2C837D92215F9D600C252AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F2C837DB2215F9D600C252AB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F2C837DE2215F9D600C252AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F2C837E12215F9D600C252AB /* Locity.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Locity.xcdatamodel; sourceTree = "<group>"; };
 		F2C837E62215F9D700C252AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F2C837E82215F9D700C252AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F2E5226622201A7B006938A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F45610F7AE796C113D7A32C6 /* Pods-Locity.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Locity.debug.xcconfig"; path = "Target Support Files/Pods-Locity/Pods-Locity.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,17 +55,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E4E3F217F9FBFB241C776DF /* Pods_Locity.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		104191A86A37C6747BFABCBD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D41178CB4ACD674072CC7404 /* Pods_Locity.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		37C7139CB2D62EEF4ADDCA23 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F45610F7AE796C113D7A32C6 /* Pods-Locity.debug.xcconfig */,
+				DB5A5AB80A9B04496A0092C4 /* Pods-Locity.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		F2C837CD2215F9D600C252AB = {
 			isa = PBXGroup;
 			children = (
 				F2C837D82215F9D600C252AB /* Locity */,
 				F2C837D72215F9D600C252AB /* Products */,
+				37C7139CB2D62EEF4ADDCA23 /* Pods */,
+				104191A86A37C6747BFABCBD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -66,17 +100,22 @@
 		F2C837D82215F9D600C252AB /* Locity */ = {
 			isa = PBXGroup;
 			children = (
-				F2C837D92215F9D600C252AB /* AppDelegate.swift */,
-				F204D8D8224142B40065FA0E /* Geo.ttf */,
-				F264063D221D92EE00AC753D /* ViewControllerStart.swift */,
-				F2032C3722592BEC001C4FD8 /* ArrowStart.swift */,
-				F2C837DB2215F9D600C252AB /* ViewController.swift */,
-				F27CEDED221705D30006D532 /* ViewController2.swift */,
-				F27CEDEF221705E70006D532 /* ViewController3.swift */,
-				F2C837DD2215F9D600C252AB /* Main.storyboard */,
-				F2C837E52215F9D700C252AB /* LaunchScreen.storyboard */,
-				F2E5226622201A7B006938A8 /* Assets.xcassets */,
 				F2C837E82215F9D700C252AB /* Info.plist */,
+				F2190289225B8091001F1AE4 /* Titania.ttf */,
+				F204D8D8224142B40065FA0E /* Geo.ttf */,
+				F2C837D92215F9D600C252AB /* AppDelegate.swift */,
+				F2C837E52215F9D700C252AB /* LaunchScreen.storyboard */,
+				F2032C3722592BEC001C4FD8 /* ArrowStart.swift */,
+				F264063D221D92EE00AC753D /* ViewControllerStart.swift */,
+				F219028F225B85D2001F1AE4 /* Wheel.swift */,
+				F219028B225B81B0001F1AE4 /* FlapTop.swift */,
+				F219028D225B81FC001F1AE4 /* FlapBottom.swift */,
+				F2190291225B8A6E001F1AE4 /* Anchor.swift */,
+				F21E595A225CEFE000C0721B /* Base.swift */,
+				F2190293225B8DCB001F1AE4 /* ViewControllerСhoice.swift */,
+				F2C837DD2215F9D600C252AB /* Main.storyboard */,
+				F2E5226622201A7B006938A8 /* Assets.xcassets */,
+				F21E5958225CEF0C00C0721B /* world.db */,
 				F2C837E02215F9D600C252AB /* Locity.xcdatamodeld */,
 			);
 			path = Locity;
@@ -89,9 +128,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F2C837EB2215F9D700C252AB /* Build configuration list for PBXNativeTarget "Locity" */;
 			buildPhases = (
+				50249807F5F64388B17D192D /* [CP] Check Pods Manifest.lock */,
 				F2C837D22215F9D600C252AB /* Sources */,
 				F2C837D32215F9D600C252AB /* Frameworks */,
 				F2C837D42215F9D600C252AB /* Resources */,
+				B996FD634728D82B82E9B360 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -114,6 +155,7 @@
 				TargetAttributes = {
 					F2C837D52215F9D600C252AB = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -140,27 +182,74 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F21E5959225CEF0C00C0721B /* world.db in Resources */,
 				F2C837E72215F9D700C252AB /* LaunchScreen.storyboard in Resources */,
 				F2E5226722201A7B006938A8 /* Assets.xcassets in Resources */,
 				F204D8D9224142B40065FA0E /* Geo.ttf in Resources */,
 				F2C837DF2215F9D600C252AB /* Main.storyboard in Resources */,
+				F219028A225B8091001F1AE4 /* Titania.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		50249807F5F64388B17D192D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Locity-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B996FD634728D82B82E9B360 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Locity/Pods-Locity-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Locity/Pods-Locity-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Locity/Pods-Locity-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F2C837D22215F9D600C252AB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F27CEDF0221705E70006D532 /* ViewController3.swift in Sources */,
-				F2C837DC2215F9D600C252AB /* ViewController.swift in Sources */,
 				F2032C3822592BEC001C4FD8 /* ArrowStart.swift in Sources */,
-				F27CEDEE221705D30006D532 /* ViewController2.swift in Sources */,
+				F2190290225B85D2001F1AE4 /* Wheel.swift in Sources */,
+				F21E595B225CEFE000C0721B /* Base.swift in Sources */,
+				F2190292225B8A6E001F1AE4 /* Anchor.swift in Sources */,
 				F2C837E22215F9D600C252AB /* Locity.xcdatamodeld in Sources */,
+				F219028C225B81B0001F1AE4 /* FlapTop.swift in Sources */,
 				F2C837DA2215F9D600C252AB /* AppDelegate.swift in Sources */,
 				F264063E221D92EE00AC753D /* ViewControllerStart.swift in Sources */,
+				F219028E225B81FC001F1AE4 /* FlapBottom.swift in Sources */,
+				F2190294225B8DCB001F1AE4 /* ViewControllerСhoice.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +393,7 @@
 		};
 		F2C837EC2215F9D700C252AB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F45610F7AE796C113D7A32C6 /* Pods-Locity.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -315,13 +405,14 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = deltaTOxaREY.Locity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		F2C837ED2215F9D700C252AB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DB5A5AB80A9B04496A0092C4 /* Pods-Locity.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -333,7 +424,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = deltaTOxaREY.Locity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

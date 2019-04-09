@@ -12,7 +12,11 @@ import Foundation
 
 class ViewControllerStart: UIViewController {
     
+    var vcActiv = true
     @IBOutlet weak var but: UIButton!
+    @IBAction func but(_ sender: Any) {
+        vcActiv = false
+    }
     
 ////View flip centre pic to start
     @IBOutlet weak var viewL: UIImageView!
@@ -146,6 +150,7 @@ DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 ////
 ////Function fliping center all letters recursion
     func allFlip(time:Double){
+        if vcActiv{
     DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
         self.flip(viewName: self.viewL, picName: "L")
         DispatchQueue.main.asyncAfter(deadline: .now() + time) {
@@ -176,6 +181,7 @@ DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             }
         }
     }
+  }
 }
 ////
 ////Enable button countinue
