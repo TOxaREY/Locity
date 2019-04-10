@@ -15,7 +15,6 @@ public var screenHeight: CGFloat {
     return UIScreen.main.bounds.height
 }
 ////
-
 ////Dynamic font size
 extension CGFloat {
     var dfz: CGFloat {
@@ -49,6 +48,8 @@ extension UILabel {
     }
 }
 ////
+public var idSelectCountry = Int()
+public var isoViewHeight = CGFloat()
 
 class ViewControllerChoice: UIViewController {
     
@@ -57,8 +58,12 @@ class ViewControllerChoice: UIViewController {
     var isoLabelEnable = true
     var i = 0
     var rand = 0
+    let fontSize:CGFloat = 60
+    let fontSize2:CGFloat = 40
     
     
+
+    @IBOutlet weak var isoViewRemover: IsoViewRemover!
     @IBOutlet weak var resultView: UIView!
     @IBOutlet weak var resultContinentLabel: UILabel!
     @IBOutlet weak var resultCountryLabel: UILabel!
@@ -134,6 +139,7 @@ class ViewControllerChoice: UIViewController {
         isoHead.isHidden = true
         resultCountryLabel.isHidden = true
         resultContinentLabel.isHidden = true
+        isoViewRemover.isHidden = true
     }
     @objc func resultContinent() {
         do {
@@ -167,7 +173,7 @@ class ViewControllerChoice: UIViewController {
             }
         }
         
-        checkSize(fS: 50)
+        checkSize(fS: self.fontSize2.dfz2)
     }
     @objc func resultCountry() {
         resultCountryLabel.isHidden = false
@@ -192,10 +198,17 @@ class ViewControllerChoice: UIViewController {
                 UIView.animate(withDuration: 2.0) {
                     self.resultCountryLabel.transform = .identity
                 }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "removeWheel"), object: nil)
+                    self.isoLabel.isHidden = true
+                    self.isoViewFrame.isHidden = true
+                    self.isoViewRemover.isHidden = false
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addIsoFrameRemover"), object: nil)  
+                }
             }
         }
         
-        checkSize(fS: 40)
+        checkSize(fS: self.fontSize2.dfz2 * 0.8)
     }
     @objc func enableButton(){
         topButton.isEnabled = true
@@ -238,7 +251,6 @@ class ViewControllerChoice: UIViewController {
                 dictionaryCountries[c] = country[base.iso]
                 c += 1
             }
-            print(dictionaryCountries)
         } catch {
             print(error)
         }
@@ -260,48 +272,17 @@ class ViewControllerChoice: UIViewController {
                 if self.i != 20 {
                     self.selectCountries(dic: dic)
                 } else {
-                    var idSelectCountry = Int()
-//                    var cityDicRandom = [Int]()
-//                    var citySelect:Dictionary<String,Any> = [:]
                     do {
                         for idSelect in try self.base.database.prepare(self.base.countriesTable.select(self.base.id, self.base.country).where(self.base.iso == self.dictionaryCountries[random]!)){
                             print("id: \(idSelect[self.base.id]), en: \(idSelect[self.base.country])")
                             UserDefaults.standard.set(idSelect[self.base.country], forKey: "resultCountry")
                             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "resultCountry"), object: nil)
                             idSelectCountry = idSelect[self.base.id]
+                            print(idSelectCountry)
                         }
                     } catch {
                         print(error)
                     }
-//                    do {
-//                        for number in try self.base.database.prepare(self.base.citysTable.select(self.base.id).filter(self.base.id_country == id_country)){
-//                            cityDicRandom.append(number[self.base.id])
-//                        }
-//                    } catch {
-//                        print(error)
-//                    }
-//                    do {
-//                        for item in try self.base.database.prepare(self.base.citysTable.select(self.base.city, self.base.ru, self.base.y).filter(self.base.id == cityDicRandom.randomIndexRemove()!)) {
-//                            citySelect["en"] = item[self.base.city]
-//                            citySelect["ru"] = item[self.base.ru]
-//                            citySelect["y"] = item[self.base.y]
-//                        }
-//                        print(citySelect)
-//                    } catch {
-//                        print(error)
-//                    }
-//                    //Второй вызов взамен его должно быть сообщение об завершение первой попытки и вызов этой части
-//                    do {
-//                        for item in try self.base.database.prepare(self.base.citysTable.select(self.base.city, self.base.ru, self.base.y).filter(self.base.id == cityDicRandom.randomIndexRemove()!)) {
-//                            citySelect["en"] = item[self.base.city]
-//                            citySelect["ru"] = item[self.base.ru]
-//                            citySelect["y"] = item[self.base.y]
-//                        }
-//                        print(citySelect)
-//                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "up"), object: nil)
-//                    } catch {
-//                        print(error)
-//                    }
                 }
             }
         }
@@ -310,7 +291,6 @@ class ViewControllerChoice: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print(language)
         disableButtonLabelStart()
         let halfWheelSize = CGFloat(UserDefaults.standard.float(forKey: "wheelSize") / 2)
         var proportWheelSize = CGFloat()
@@ -336,22 +316,15 @@ class ViewControllerChoice: UIViewController {
         }
 ////Dispatch for loading orientation device
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            let fontSize:CGFloat = 60
-            let fontSize2:CGFloat = 40
-            self.topLabel.font = self.topLabel.font.withSize(fontSize.dfz)
-            self.bottomLabel.font = self.bottomLabel.font.withSize(fontSize.dfz)
-            self.isoLabel.font = self.isoLabel.font.withSize(fontSize2.dfz2)
+            self.topLabel.font = self.topLabel.font.withSize(self.fontSize.dfz)
+            self.bottomLabel.font = self.bottomLabel.font.withSize(self.fontSize.dfz)
+            self.isoLabel.font = self.isoLabel.font.withSize(self.fontSize2.dfz2)
+            isoViewHeight = self.isoView.frame.height
         }
         NotificationCenter.default.addObserver(self, selector: #selector(self.enableButton), name: NSNotification.Name(rawValue: "restingDown"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.enableSpinButton), name: NSNotification.Name(rawValue: "enableSpinButton"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.resultContinent), name: NSNotification.Name(rawValue: "resultContinent"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.resultCountry), name: NSNotification.Name(rawValue: "resultCountry"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.selectCountry), name: NSNotification.Name(rawValue: "upAnchor"), object: nil)
-        
-
-        
-        
-        
-        
     }
 }

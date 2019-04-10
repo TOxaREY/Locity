@@ -18,6 +18,7 @@ class ViewControllerStart: UIViewController {
         vcActiv = false
     }
     
+
 ////View flip centre pic to start
     @IBOutlet weak var viewL: UIImageView!
     @IBOutlet weak var viewO: UIImageView!
@@ -198,6 +199,5 @@ DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
         NotificationCenter.default.addObserver(self, selector: #selector(enableButton), name: NSNotification.Name(rawValue: "enableButton"), object: nil)
   }
 }
-
 
 

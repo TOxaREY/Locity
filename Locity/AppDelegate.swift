@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-var language = "def_en"
+var language = String()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -41,10 +41,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 if preferredLanguage.starts(with: "it") {
                                     language = "it"
                                 } else {
-                                    language = "def_en"
+                                    language = "en"
                                 }}}}}}}
 ////
-        
+        print(language)
         launchScreenTimer()
         
         return true

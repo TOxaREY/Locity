@@ -23,6 +23,7 @@
 		F2C837DF2215F9D600C252AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2C837DD2215F9D600C252AB /* Main.storyboard */; };
 		F2C837E22215F9D600C252AB /* Locity.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F2C837E02215F9D600C252AB /* Locity.xcdatamodeld */; };
 		F2C837E72215F9D700C252AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2C837E52215F9D700C252AB /* LaunchScreen.storyboard */; };
+		F2D98F43225E57EA0077F8C4 /* IsoViewRemover.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D98F42225E57EA0077F8C4 /* IsoViewRemover.swift */; };
 		F2E5226722201A7B006938A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2E5226622201A7B006938A8 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,7 @@
 		F2C837E12215F9D600C252AB /* Locity.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Locity.xcdatamodel; sourceTree = "<group>"; };
 		F2C837E62215F9D700C252AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F2C837E82215F9D700C252AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F2D98F42225E57EA0077F8C4 /* IsoViewRemover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsoViewRemover.swift; sourceTree = "<group>"; };
 		F2E5226622201A7B006938A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F45610F7AE796C113D7A32C6 /* Pods-Locity.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Locity.debug.xcconfig"; path = "Target Support Files/Pods-Locity/Pods-Locity.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -111,6 +113,7 @@
 				F219028B225B81B0001F1AE4 /* FlapTop.swift */,
 				F219028D225B81FC001F1AE4 /* FlapBottom.swift */,
 				F2190291225B8A6E001F1AE4 /* Anchor.swift */,
+				F2D98F42225E57EA0077F8C4 /* IsoViewRemover.swift */,
 				F21E595A225CEFE000C0721B /* Base.swift */,
 				F2190293225B8DCB001F1AE4 /* ViewControllerСhoice.swift */,
 				F2C837DD2215F9D600C252AB /* Main.storyboard */,
@@ -247,6 +250,7 @@
 				F2C837E22215F9D600C252AB /* Locity.xcdatamodeld in Sources */,
 				F219028C225B81B0001F1AE4 /* FlapTop.swift in Sources */,
 				F2C837DA2215F9D600C252AB /* AppDelegate.swift in Sources */,
+				F2D98F43225E57EA0077F8C4 /* IsoViewRemover.swift in Sources */,
 				F264063E221D92EE00AC753D /* ViewControllerStart.swift in Sources */,
 				F219028E225B81FC001F1AE4 /* FlapBottom.swift in Sources */,
 				F2190294225B8DCB001F1AE4 /* ViewControllerСhoice.swift in Sources */,

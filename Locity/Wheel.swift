@@ -27,6 +27,7 @@ class Wheel: SKView {
         wheel.zRotation = 0
         NotificationCenter.default.addObserver(self, selector: #selector(addWheel), name: NSNotification.Name(rawValue: "addWheel"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(spinWheel), name: NSNotification.Name(rawValue: "spinWheel"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(removeWheel), name: NSNotification.Name(rawValue: "removeWheel"), object: nil)
         
     }
 ////Duration for anchor down
@@ -78,6 +79,15 @@ class Wheel: SKView {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "resultContinent"), object: nil)
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "upAnchor"), object: nil)
         }
+    }
+    @objc func removeWheel(){
+        scene!.removeAllChildren()
+        scene!.physicsWorld.gravity = CGVector.init(dx: 0, dy: -2)
+        let body = SKPhysicsBody(circleOfRadius: 9 * (scene!.frame.maxX - scene!.frame.minX) / 20)
+        body.angularVelocity = -1000
+        wheel.physicsBody = body
+        scene!.addChild(wheel)
+        body.applyImpulse(CGVector(dx: 0.0, dy: 1000))
     }
 }
 

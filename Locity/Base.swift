@@ -16,17 +16,16 @@ class Base {
     
     let continentsTable = Table("Continents")
     let id = Expression<Int>("id")
-    let continent = Expression<String>("continent")
-    let ru = Expression<String>("ru")
+    let continent = Expression<String>(language)
     
     let countriesTable = Table("Countries")
-    let country = Expression<String>("country")
+    let country = Expression<String>(language)
     let iso = Expression<String>("iso")
     let map = Expression<String>("map")
     let id_continent = Expression<Int>("id_continent")
     
     let citiesTable = Table("Cities")
-    let city = Expression<String>("city")
+    let city = Expression<String>(language)
     let x = Expression<Double>("x")
     let y = Expression<Double>("y")
     let id_country = Expression<Int>("id_country")
@@ -51,7 +50,7 @@ class Base {
             let dbPath = Bundle.main.path(forResource: "world", ofType: "db")!
             let database = try Connection(dbPath, readonly: true)
             self.database = database
-            print("Connect")
+            print("db_connect")
         } catch {
             print(error)
         }
