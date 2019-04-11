@@ -75,7 +75,6 @@ class Wheel: SKView {
             case (0..<segment): UserDefaults.standard.set(1, forKey: "resultContinent")
             default: break
             }
-            
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "resultContinent"), object: nil)
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "upAnchor"), object: nil)
         }
@@ -84,10 +83,26 @@ class Wheel: SKView {
         scene!.removeAllChildren()
         scene!.physicsWorld.gravity = CGVector.init(dx: 0, dy: -2)
         let body = SKPhysicsBody(circleOfRadius: 9 * (scene!.frame.maxX - scene!.frame.minX) / 20)
-        body.angularVelocity = -1000
+        body.angularVelocity = 100
         wheel.physicsBody = body
         scene!.addChild(wheel)
-        body.applyImpulse(CGVector(dx: 0.0, dy: 1000))
+        var x = CGFloat()
+        switch screenHeight {
+        case 568:
+            x = 700
+        case 667:
+            x = 1000
+        case 736,812:
+            x = 1300
+        case 896:
+            x = 1600
+        default:
+            x = 1000
+        }
+        body.applyImpulse(CGVector(dx: 0.0, dy: x))
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "breakdown"), object: nil)
+        }
     }
 }
 

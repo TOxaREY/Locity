@@ -10,26 +10,43 @@ import Foundation
 import SpriteKit
 
 class IsoViewRemover: SKView {
-    let iso = SKSpriteNode(imageNamed: "iso.png")
+    let isoRem = SKSpriteNode(imageNamed: "isoRem.png")
     override func didMoveToSuperview() {
 ////Dispatch for loading view constraints
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             let scene = SKScene(size: self.frame.size)
             scene.backgroundColor = .clear
-            scene.physicsWorld.gravity = CGVector.zero
             self.presentScene(scene)
             self.allowsTransparency = true
             let hSize = isoViewHeight
-            print(hSize)
-            self.iso.size = CGSize(width: hSize * 1.3, height: hSize)
-            self.iso.position = CGPoint(x: (scene.frame.maxX - scene.frame.minX) / 2, y: hSize / 2)
-            self.iso.zRotation = 0
+            self.isoRem.size = CGSize(width: hSize * 1.3, height: hSize)
+            self.isoRem.position = CGPoint(x: (scene.frame.maxX - scene.frame.minX) / 2, y: hSize / 2)
+            self.isoRem.zRotation = 0
             NotificationCenter.default.addObserver(self, selector: #selector(self.addIsoFrameRemover), name: NSNotification.Name(rawValue: "addIsoFrameRemover"), object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(self.breakdown), name: NSNotification.Name(rawValue: "breakdown"), object: nil)
         }
     }
     
     @objc func addIsoFrameRemover(){
-        scene!.addChild(iso)
+        scene!.addChild(isoRem)
     }
+    @objc func breakdown(){
+        scene!.removeAllChildren()
+        scene!.physicsWorld.gravity = CGVector.init(dx: 0.0, dy: -5)
+        self.isoRem.physicsBody = SKPhysicsBody(rectangleOf: self.isoRem.size)
+        scene!.addChild(isoRem)
+        let pinSize = CGSize(width: 1, height: 1)
+        let pin = SKSpriteNode(color: .clear, size: pinSize)
+        pin.position = CGPoint(x: (scene!.frame.maxX - scene!.frame.minX) / 2  - isoRem.size.width / 2 + 10, y: isoRem.size.height - 10)
+        pin.physicsBody = SKPhysicsBody(rectangleOf: pinSize)
+        pin.physicsBody?.isDynamic = false
+        scene!.addChild(pin)
+        let a = SKPhysicsJointPin.joint(withBodyA: pin.physicsBody! , bodyB: isoRem.physicsBody!, anchor: CGPoint(x: (scene!.frame.maxX - scene!.frame.minX) / 2  - isoRem.size.width / 2 + 10, y: isoRem.size.height - 10))
+        scene!.physicsWorld.add(a)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.scene!.physicsWorld.removeAllJoints()
+        }
+        }
 }
+
 

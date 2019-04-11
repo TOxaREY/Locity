@@ -18,6 +18,7 @@
 		F2190294225B8DCB001F1AE4 /* ViewControllerСhoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2190293225B8DCB001F1AE4 /* ViewControllerСhoice.swift */; };
 		F21E5959225CEF0C00C0721B /* world.db in Resources */ = {isa = PBXBuildFile; fileRef = F21E5958225CEF0C00C0721B /* world.db */; };
 		F21E595B225CEFE000C0721B /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21E595A225CEFE000C0721B /* Base.swift */; };
+		F226D920225FA17300828761 /* ViewControllerMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F226D91F225FA17300828761 /* ViewControllerMap.swift */; };
 		F264063E221D92EE00AC753D /* ViewControllerStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = F264063D221D92EE00AC753D /* ViewControllerStart.swift */; };
 		F2C837DA2215F9D600C252AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C837D92215F9D600C252AB /* AppDelegate.swift */; };
 		F2C837DF2215F9D600C252AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2C837DD2215F9D600C252AB /* Main.storyboard */; };
@@ -40,6 +41,7 @@
 		F2190293225B8DCB001F1AE4 /* ViewControllerСhoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewControllerСhoice.swift"; sourceTree = "<group>"; };
 		F21E5958225CEF0C00C0721B /* world.db */ = {isa = PBXFileReference; lastKnownFileType = file; name = world.db; path = MAPS_BASE/world.db; sourceTree = SOURCE_ROOT; };
 		F21E595A225CEFE000C0721B /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
+		F226D91F225FA17300828761 /* ViewControllerMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerMap.swift; sourceTree = "<group>"; };
 		F264063D221D92EE00AC753D /* ViewControllerStart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerStart.swift; sourceTree = "<group>"; };
 		F2C837D62215F9D600C252AB /* Locity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Locity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2C837D92215F9D600C252AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				F2D98F42225E57EA0077F8C4 /* IsoViewRemover.swift */,
 				F21E595A225CEFE000C0721B /* Base.swift */,
 				F2190293225B8DCB001F1AE4 /* ViewControllerСhoice.swift */,
+				F226D91F225FA17300828761 /* ViewControllerMap.swift */,
 				F2C837DD2215F9D600C252AB /* Main.storyboard */,
 				F2E5226622201A7B006938A8 /* Assets.xcassets */,
 				F21E5958225CEF0C00C0721B /* world.db */,
@@ -254,6 +257,7 @@
 				F264063E221D92EE00AC753D /* ViewControllerStart.swift in Sources */,
 				F219028E225B81FC001F1AE4 /* FlapBottom.swift in Sources */,
 				F2190294225B8DCB001F1AE4 /* ViewControllerСhoice.swift in Sources */,
+				F226D920225FA17300828761 /* ViewControllerMap.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

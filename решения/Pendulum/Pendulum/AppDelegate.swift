@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  remove
+//  Pendulum
 //
-//  Created by REYNIKOV ANTON on 10/04/2019.
+//  Created by REYNIKOV ANTON on 11/04/2019.
 //  Copyright © 2019 REYNIKOV ANTON. All rights reserved.
 //
 

@@ -1,17 +1,19 @@
 //
-//  ViewController.swift
-//  remove
+//  ViewControllerMap.swift
+//  Locity
 //
-//  Created by REYNIKOV ANTON on 10/04/2019.
+//  Created by REYNIKOV ANTON on 11/04/2019.
 //  Copyright © 2019 REYNIKOV ANTON. All rights reserved.
 //
 
 import UIKit
 import SpriteKit
+import SQLite
 
 
-class ViewController: UIViewController {
 
+
+class ViewControllerMap: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,5 +24,5 @@ class ViewController: UIViewController {
     }
 
 
-}
 
+}

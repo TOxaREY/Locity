@@ -13,22 +13,22 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="remove" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Pendulum" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hSB-1F-STW" customClass="IsoViewRemover" customModule="remove" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="294" width="320" height="274"/>
-                                <color key="backgroundColor" red="0.91234034299850464" green="0.8356139063835144" blue="0.48844468593597412" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TqP-Hu-G0a" customClass="Pen" customModule="Pendulum" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="hSB-1F-STW" secondAttribute="bottom" id="2wB-60-m6U"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hSB-1F-STW" secondAttribute="trailing" id="DNf-z6-Ey6"/>
-                            <constraint firstItem="hSB-1F-STW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="RCy-F0-dIG"/>
-                            <constraint firstItem="hSB-1F-STW" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="1:2" id="hx1-zZ-IAI"/>
+                            <constraint firstItem="TqP-Hu-G0a" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="3XK-bm-r8S"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="TqP-Hu-G0a" secondAttribute="trailing" id="DTt-G8-BMp"/>
+                            <constraint firstItem="TqP-Hu-G0a" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bwE-3h-K0S"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="TqP-Hu-G0a" secondAttribute="bottom" id="kpM-Tr-IkD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
