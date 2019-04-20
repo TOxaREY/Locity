@@ -15,6 +15,9 @@ class Wheel: SKView {
     let wheel = SKSpriteNode(imageNamed: "wheel.png")
     var timer: Timer!
     let segment = ((360 / 5) * π) / 180
+    deinit {
+        print("dW")
+    }
     override func didMoveToSuperview() {
         let scene = SKScene(size: self.frame.size)
         scene.backgroundColor = .clear
@@ -28,7 +31,6 @@ class Wheel: SKView {
         NotificationCenter.default.addObserver(self, selector: #selector(addWheel), name: NSNotification.Name(rawValue: "addWheel"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(spinWheel), name: NSNotification.Name(rawValue: "spinWheel"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(removeWheel), name: NSNotification.Name(rawValue: "removeWheel"), object: nil)
-        
     }
 ////Duration for anchor down
     func duration (random:Double) -> (Double) {
@@ -36,10 +38,10 @@ class Wheel: SKView {
         return a
     }
 ////
-
-    
     @objc func addWheel(){
+        scene!.removeAllChildren()
         scene!.addChild(wheel)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "addWheel"), object: nil)
     }
     
     @objc func spinWheel(){
@@ -61,6 +63,7 @@ class Wheel: SKView {
         }
         
         randomFunc()
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "spinWheel"), object: nil)
     }
     
     @objc func stopWheel(){
@@ -77,6 +80,7 @@ class Wheel: SKView {
             }
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "resultContinent"), object: nil)
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "upAnchor"), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "selectCountry"), object: nil)
         }
     }
     @objc func removeWheel(){
@@ -100,9 +104,9 @@ class Wheel: SKView {
             x = 1000
         }
         body.applyImpulse(CGVector(dx: 0.0, dy: x))
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "breakdown"), object: nil)
-        }
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "breakdown2"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "removeWheel"), object: nil)
     }
 }
 

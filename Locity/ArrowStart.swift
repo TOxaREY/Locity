@@ -11,6 +11,9 @@ import SpriteKit
 
 class ArrowStart: SKView {
     let arrowStart = SKSpriteNode(imageNamed: "arrowStart.png")
+    deinit {
+        print("dS")
+    }
     override func didMoveToSuperview() {
             let scene = SKScene(size: self.frame.size)
             scene.backgroundColor = .clear

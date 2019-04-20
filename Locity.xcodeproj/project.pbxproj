@@ -20,6 +20,7 @@
 		F21E595B225CEFE000C0721B /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21E595A225CEFE000C0721B /* Base.swift */; };
 		F226D920225FA17300828761 /* ViewControllerMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F226D91F225FA17300828761 /* ViewControllerMap.swift */; };
 		F264063E221D92EE00AC753D /* ViewControllerStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = F264063D221D92EE00AC753D /* ViewControllerStart.swift */; };
+		F2644DA82260E518001FD8E7 /* Torn.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2644DA72260E518001FD8E7 /* Torn.swift */; };
 		F2C837DA2215F9D600C252AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C837D92215F9D600C252AB /* AppDelegate.swift */; };
 		F2C837DF2215F9D600C252AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2C837DD2215F9D600C252AB /* Main.storyboard */; };
 		F2C837E22215F9D600C252AB /* Locity.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F2C837E02215F9D600C252AB /* Locity.xcdatamodeld */; };
@@ -43,6 +44,7 @@
 		F21E595A225CEFE000C0721B /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
 		F226D91F225FA17300828761 /* ViewControllerMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerMap.swift; sourceTree = "<group>"; };
 		F264063D221D92EE00AC753D /* ViewControllerStart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerStart.swift; sourceTree = "<group>"; };
+		F2644DA72260E518001FD8E7 /* Torn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Torn.swift; sourceTree = "<group>"; };
 		F2C837D62215F9D600C252AB /* Locity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Locity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2C837D92215F9D600C252AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2C837DE2215F9D600C252AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				F2D98F42225E57EA0077F8C4 /* IsoViewRemover.swift */,
 				F21E595A225CEFE000C0721B /* Base.swift */,
 				F2190293225B8DCB001F1AE4 /* ViewControllerСhoice.swift */,
+				F2644DA72260E518001FD8E7 /* Torn.swift */,
 				F226D91F225FA17300828761 /* ViewControllerMap.swift */,
 				F2C837DD2215F9D600C252AB /* Main.storyboard */,
 				F2E5226622201A7B006938A8 /* Assets.xcassets */,
@@ -251,6 +254,7 @@
 				F21E595B225CEFE000C0721B /* Base.swift in Sources */,
 				F2190292225B8A6E001F1AE4 /* Anchor.swift in Sources */,
 				F2C837E22215F9D600C252AB /* Locity.xcdatamodeld in Sources */,
+				F2644DA82260E518001FD8E7 /* Torn.swift in Sources */,
 				F219028C225B81B0001F1AE4 /* FlapTop.swift in Sources */,
 				F2C837DA2215F9D600C252AB /* AppDelegate.swift in Sources */,
 				F2D98F43225E57EA0077F8C4 /* IsoViewRemover.swift in Sources */,

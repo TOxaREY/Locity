@@ -48,8 +48,8 @@ extension UILabel {
     }
 }
 ////
-public var idSelectCountry = Int()
-public var isoViewHeight = CGFloat()
+
+
 
 class ViewControllerChoice: UIViewController {
     
@@ -60,22 +60,25 @@ class ViewControllerChoice: UIViewController {
     var rand = 0
     let fontSize:CGFloat = 60
     let fontSize2:CGFloat = 40
-    
-    
 
+    @IBOutlet weak var wheelView: Wheel!
+    @IBOutlet weak var flapBottomView: FlapBottom!
+    @IBOutlet weak var labelRound: UILabel!
+    @IBOutlet weak var blurView: UIView!
     @IBOutlet weak var isoViewRemover: IsoViewRemover!
     @IBOutlet weak var resultView: UIView!
     @IBOutlet weak var resultContinentLabel: UILabel!
     @IBOutlet weak var resultCountryLabel: UILabel!
-    @IBOutlet weak var anchorView: UIView!
+    @IBOutlet weak var anchorView: Anchor!
     @IBOutlet weak var isoView: UIView!
     @IBOutlet weak var isoViewFrame: UIImageView!
     @IBOutlet weak var isoLabel: UILabel!
     @IBOutlet weak var isoHead: UIImageView!
-    @IBOutlet weak var flapTopView: UIView!
+    @IBOutlet weak var flapTopView: FlapTop!
     @IBOutlet weak var topLabel: UILabel!
     @IBOutlet weak var topButton: UIButton!
     @IBAction func topButton(_ sender: Any) {
+        diff = "H"
         topButton.isSelected = true
         if bottomButton.isSelected == false {
             bottomButton.isEnabled = false
@@ -85,22 +88,16 @@ class ViewControllerChoice: UIViewController {
             topLabel.pulsate1Count()
             bottomLabel.isHidden = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) {
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "upFlap"), object: nil)
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addWheel"), object: nil)
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addAnchor"), object: nil)
-                self.isoViewFrame.isHidden = false
-                self.anchorView.isHidden = false
                 self.topLabel.isHidden = true
-                self.isoLabel.isHidden = false
-                self.isoLabel.textColor = .red
-                self.isoLabel.text = "GO"
-                self.flapTopLabel()
+                self.addStartElement()
+                print("H")
            }
         }
     }
     @IBOutlet weak var bottomLabel: UILabel!
     @IBOutlet weak var bottomButton: UIButton!
     @IBAction func bottomButton(_ sender: Any) {
+        diff = "E"
         bottomButton.isSelected = true
         if topButton.isSelected == false {
             topButton.isEnabled = false
@@ -110,16 +107,9 @@ class ViewControllerChoice: UIViewController {
             bottomLabel.pulsate1Count()
             topLabel.isHidden = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) {
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "upFlap"), object: nil)
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addWheel"), object: nil)
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addAnchor"), object: nil)
-                self.isoViewFrame.isHidden = false
-                self.anchorView.isHidden = false
                 self.bottomLabel.isHidden = true
-                self.isoLabel.isHidden = false
-                self.isoLabel.textColor = .red
-                self.isoLabel.text = "GO"
-                self.flapTopLabel()
+                self.addStartElement()
+                print("E")
             }
         }
     }
@@ -131,6 +121,31 @@ class ViewControllerChoice: UIViewController {
         isoLabelEnable = false
         isoLabel.isHidden = true
         isoHead.isHidden = false
+    }
+    func addStartElement(){
+        print("addStartElement")
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "upFlap"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "downFlap"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addWheel"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addAnchor"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addIsoFrameRemover"), object: nil)
+        self.isoViewFrame.isHidden = false
+        self.anchorView.isHidden = false
+        self.isoLabel.isHidden = false
+        self.isoLabel.textColor = .red
+        self.isoLabel.text = "GO"
+        self.flapTopLabel()
+        self.blurView.isHidden = false
+        self.labelRound.isHidden = false
+        self.labelRound.frame.size = self.labelRound.intrinsicContentSize
+        let effectView = UIVisualEffectView()
+        effectView.frame = self.blurView.bounds
+        effectView.effect = UIBlurEffect(style: .regular)
+        self.blurView.addSubview(effectView)
+        UIView.animate(withDuration: 2, animations: {
+            effectView.effect = nil
+            self.labelRound.alpha = 0
+        })
     }
     func disableButtonLabelStart(){
         topButton.isEnabled = false
@@ -148,6 +163,8 @@ class ViewControllerChoice: UIViewController {
         resultCountryLabel.isHidden = true
         resultContinentLabel.isHidden = true
         isoViewRemover.isHidden = true
+        blurView.isHidden = true
+        labelRound.isHidden = true
     }
     @objc func resultContinent() {
         do {
@@ -182,6 +199,7 @@ class ViewControllerChoice: UIViewController {
         }
         
         checkSize(fS: self.fontSize2.dfz2)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "resultContinent"), object: nil)
     }
     @objc func resultCountry() {
         resultCountryLabel.isHidden = false
@@ -213,15 +231,16 @@ class ViewControllerChoice: UIViewController {
         }
         
         checkSize(fS: self.fontSize2.dfz2 * 0.8)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "resultCountry"), object: nil)
     }
-    @objc func enableButton(){
+    @objc func enableButtonFlap(){
         topButton.isEnabled = true
         bottomButton.isEnabled = true
         topButton.isHidden = false
         bottomButton.isHidden = false
         topLabel.isHidden = false
         bottomLabel.isHidden = false
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addIsoFrameRemover"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "enableButtonFlap"), object: nil)
     }
 
     func flapTopLabel(){
@@ -236,6 +255,7 @@ class ViewControllerChoice: UIViewController {
     @objc func enableSpinButton(){
         spinButton.isEnabled = true
         spinButton.isHidden = false
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "enableSpinButton"), object: nil)
     }
     @objc func selectCountry(){
         isoHead.isHidden = true
@@ -254,6 +274,7 @@ class ViewControllerChoice: UIViewController {
             print(error)
         }
         selectCountries(dic: dictionaryCountries)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "selectCountry"), object: nil)
     }
     func selectCountries(dic:Dictionary<Int, String>) {
         let random = Int.random(in: 1...dic.count)
@@ -273,7 +294,7 @@ class ViewControllerChoice: UIViewController {
                 } else {
                     do {
                         for idSelect in try self.base.database.prepare(self.base.countriesTable.select(self.base.id, self.base.country).where(self.base.iso == self.dictionaryCountries[random]!)){
-                            print("id: \(idSelect[self.base.id]), en: \(idSelect[self.base.country])")
+                            print("id: \(idSelect[self.base.id]), \(language): \(idSelect[self.base.country])")
                             UserDefaults.standard.set(idSelect[self.base.country], forKey: "resultCountry")
                             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "resultCountry"), object: nil)
                             idSelectCountry = idSelect[self.base.id]
@@ -286,30 +307,61 @@ class ViewControllerChoice: UIViewController {
             }
         }
     }
-    @objc func breakdown(){
-        UIView.animate(withDuration: 4.25, animations: {
+    @objc func breakdown2(){
+        UIView.animate(withDuration: 3.75, animations: {
             self.resultContinentLabel.transform = CGAffineTransform(translationX: -(UIScreen.main.bounds.width / 2 + self.resultContinentLabel.frame.width / 2), y: 0)
         }, completion: { done in
             self.resultContinentLabel.transform = .identity
             self.resultContinentLabel.isHidden = true
-            self.performSegue(withIdentifier: "Map", sender: self)
-        })
-        UIView.animate(withDuration: 4.25, animations: {
+            let appDel = UIApplication.shared.delegate as! AppDelegate
+            let sB: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let newVC = sB.instantiateViewController(withIdentifier: "VCM")
+            appDel.window?.rootViewController = newVC
+            appDel.window?.makeKeyAndVisible()
+            })
+        UIView.animate(withDuration: 3.75, animations: {
             self.resultCountryLabel.transform = CGAffineTransform(translationX: UIScreen.main.bounds.width / 2 + self.resultCountryLabel.frame.width / 2, y: 0)
         }, completion: { done in
             self.resultCountryLabel.transform = .identity
             self.resultCountryLabel.isHidden = true
-        })
+       })
         self.isoLabel.isHidden = true
         self.isoViewRemover.isHidden = false
         self.isoViewFrame.isHidden = true
-        
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "breakdown2"), object: nil)
     }
     
+    @objc func enableAddStartElement(){
+        print("enableAddStart")
+        addStartElement()
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "enableAddStartElement"), object: nil)
+    }
+    deinit {
+        print("deinitC")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         disableButtonLabelStart()
+        labelRound.text = "\(round)/5"
+
+////Dispatch for loading orientation device
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.topLabel.font = self.topLabel.font.withSize(self.fontSize.dfz)
+            self.bottomLabel.font = self.bottomLabel.font.withSize(self.fontSize.dfz)
+            self.isoLabel.font = self.isoLabel.font.withSize(self.fontSize2.dfz2)
+            isoViewHeight = self.isoView.frame.height
+        }
+        NotificationCenter.default.addObserver(self, selector: #selector(self.enableButtonFlap), name: NSNotification.Name(rawValue: "enableButtonFlap"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.enableSpinButton), name: NSNotification.Name(rawValue: "enableSpinButton"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.resultContinent), name: NSNotification.Name(rawValue: "resultContinent"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.resultCountry), name: NSNotification.Name(rawValue: "resultCountry"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.selectCountry), name: NSNotification.Name(rawValue: "selectCountry"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.breakdown2), name: NSNotification.Name(rawValue: "breakdown2"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.enableAddStartElement), name: NSNotification.Name(rawValue: "enableAddStartElement"), object: nil)
+    }
+    override func updateViewConstraints() {
+        super.updateViewConstraints()
         let halfWheelSize = CGFloat(UserDefaults.standard.float(forKey: "wheelSize") / 2)
         var proportWheelSize = CGFloat()
         switch screenHeight {
@@ -332,18 +384,10 @@ class ViewControllerChoice: UIViewController {
         default:
             self.spinButton.topAnchor.constraint(equalTo: self.spinButton.superview!.topAnchor, constant: halfWheelSize * 1.23).isActive = true
         }
-////Dispatch for loading orientation device
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.topLabel.font = self.topLabel.font.withSize(self.fontSize.dfz)
-            self.bottomLabel.font = self.bottomLabel.font.withSize(self.fontSize.dfz)
-            self.isoLabel.font = self.isoLabel.font.withSize(self.fontSize2.dfz2)
-            isoViewHeight = self.isoView.frame.height
-        }
-        NotificationCenter.default.addObserver(self, selector: #selector(self.enableButton), name: NSNotification.Name(rawValue: "restingDown"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.enableSpinButton), name: NSNotification.Name(rawValue: "enableSpinButton"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.resultContinent), name: NSNotification.Name(rawValue: "resultContinent"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.resultCountry), name: NSNotification.Name(rawValue: "resultCountry"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.selectCountry), name: NSNotification.Name(rawValue: "upAnchor"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.breakdown), name: NSNotification.Name(rawValue: "breakdown"), object: nil)
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(false)
+        NotificationCenter.default.removeObserver(self)
     }
 }
+

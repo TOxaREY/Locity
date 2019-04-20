@@ -30,21 +30,6 @@ class Base {
     let y = Expression<Double>("y")
     let id_country = Expression<Int>("id_country")
 
-//    let countrysTable = Table("countrys")
-//    let id_contin = Expression<Int>("id_contin")
-//    let iso = Expression<String>("iso")
-//    let contTable = Table("contins")
-//    let id = Expression<Int>("id")
-//    let contin = Expression<String>("contin")
-//    let country = Expression<String>("country")
-//    let citysTable = Table("citys")
-//    let city = Expression<String>("city")
-//    let ru = Expression<String>("ru")
-//    let y = Expression<Double>("y")
-//    let id_country = Expression<Int>("id_country")
-    
-    
-    
     init() {
         do {
             let dbPath = Bundle.main.path(forResource: "world", ofType: "db")!
@@ -54,6 +39,9 @@ class Base {
         } catch {
             print(error)
         }
+    }
+    deinit {
+        print("dBase")
     }
 }
 

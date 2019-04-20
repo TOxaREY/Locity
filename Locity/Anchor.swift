@@ -13,6 +13,9 @@ class Anchor: SKView {
     let anchor = SKSpriteNode(imageNamed: "anchor.png")
     var timer: Timer!
     var indentAnchorDown: CGFloat = 0.0
+    deinit {
+        print("dA")
+    }
     override func didMoveToSuperview() {
 ////Dispatch for loading view constraints
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -42,16 +45,22 @@ class Anchor: SKView {
         }
     }
     @objc func addAnchor(){
+        scene!.removeAllChildren()
         scene!.addChild(self.anchor)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "addAnchor"), object: nil)
     }
     @objc func downAnchor(){
         scene!.removeAllChildren()
         scene!.addChild(anchor)
         anchor.run(SKAction.moveBy(x: 0, y: -(scene!.frame.maxY - scene!.frame.minY) + indentAnchorDown, duration: UserDefaults.standard.double(forKey: "randomWheel")))
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "downAnchor"), object: nil)
     }
     @objc func upAnchor(){
         anchor.run(SKAction.moveBy(x: 0, y: (scene!.frame.maxY - scene!.frame.minY), duration: 2.5))
-        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.scene!.removeAllChildren()
+        }
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "upAnchor"), object: nil)
     }
 }
 

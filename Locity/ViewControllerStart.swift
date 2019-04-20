@@ -12,10 +12,18 @@ import Foundation
 
 class ViewControllerStart: UIViewController {
     
+    @IBOutlet weak var arrowStartView: ArrowStart!
+    
+    
     var vcActiv = true
     @IBOutlet weak var but: UIButton!
     @IBAction func but(_ sender: Any) {
         vcActiv = false
+        let appDel = UIApplication.shared.delegate as! AppDelegate
+        let sB: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newVC = sB.instantiateViewController(withIdentifier: "VCC")
+        appDel.window?.rootViewController = newVC
+        appDel.window?.makeKeyAndVisible()
     }
     
 
@@ -190,7 +198,9 @@ DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
         self.but.isEnabled = true
     }
 ////
-
+    deinit {
+        print("deinitS")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         but.isEnabled = false

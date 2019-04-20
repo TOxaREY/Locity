@@ -11,6 +11,9 @@ import SpriteKit
 
 class IsoViewRemover: SKView {
     let isoRem = SKSpriteNode(imageNamed: "isoRem.png")
+    deinit {
+        print("dI")
+    }
     override func didMoveToSuperview() {
 ////Dispatch for loading view constraints
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
@@ -28,7 +31,9 @@ class IsoViewRemover: SKView {
     }
     
     @objc func addIsoFrameRemover(){
+        scene!.removeAllChildren()
         scene!.addChild(isoRem)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "addIsoFrameRemover"), object: nil)
     }
     @objc func breakdown(){
         scene!.removeAllChildren()
@@ -43,10 +48,14 @@ class IsoViewRemover: SKView {
         scene!.addChild(pin)
         let a = SKPhysicsJointPin.joint(withBodyA: pin.physicsBody! , bodyB: isoRem.physicsBody!, anchor: CGPoint(x: (scene!.frame.maxX - scene!.frame.minX) / 2  - isoRem.size.width / 2 + 10, y: isoRem.size.height - 10))
         scene!.physicsWorld.add(a)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
             self.scene!.physicsWorld.removeAllJoints()
         }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            self.scene!.removeAllChildren()
         }
+    NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "breakdown"), object: nil)
+    }
 }
 
 

@@ -9,7 +9,11 @@
 import UIKit
 import CoreData
 
-var language = String()
+public var language = String()
+public var round = Int()
+public var idSelectCountry = Int()
+public var isoViewHeight = CGFloat()
+public var diff = String()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        round = 1
 ////Check language load
         let preferredLanguage = NSLocale.preferredLanguages[0]
         if preferredLanguage.starts(with: "en") {
