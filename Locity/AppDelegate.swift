@@ -14,6 +14,12 @@ public var round = Int()
 public var idSelectCountry = Int()
 public var isoViewHeight = CGFloat()
 public var diff = String()
+public var deinitSKVWheelVCC = Bool()
+public var deinitSKVFTVCC = Bool()
+public var deinitSKVFBVCC = Bool()
+public var deinitSKVAnchorVCC = Bool()
+public var deinitSKVIsoViewRemoverVCC = Bool()
+public var deinitVCC = Bool()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

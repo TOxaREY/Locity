@@ -51,6 +51,8 @@ extension UILabel {
 
 
 
+
+
 class ViewControllerChoice: UIViewController {
     
     let base = Base()
@@ -60,6 +62,7 @@ class ViewControllerChoice: UIViewController {
     var rand = 0
     let fontSize:CGFloat = 60
     let fontSize2:CGFloat = 40
+    let fontSize3:CGFloat = 150
 
     @IBOutlet weak var wheelView: Wheel!
     @IBOutlet weak var flapBottomView: FlapBottom!
@@ -142,10 +145,12 @@ class ViewControllerChoice: UIViewController {
         effectView.frame = self.blurView.bounds
         effectView.effect = UIBlurEffect(style: .regular)
         self.blurView.addSubview(effectView)
-        UIView.animate(withDuration: 2, animations: {
-            effectView.effect = nil
-            self.labelRound.alpha = 0
-        })
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            UIView.animate(withDuration: 1, animations: {
+                effectView.effect = nil
+                self.labelRound.alpha = 0
+            })
+        }
     }
     func disableButtonLabelStart(){
         topButton.isEnabled = false
@@ -336,12 +341,23 @@ class ViewControllerChoice: UIViewController {
         addStartElement()
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "enableAddStartElement"), object: nil)
     }
-    deinit {
-        print("deinitC")
+    func deinitFalse(){
+        deinitSKVWheelVCC = false
+        deinitSKVFTVCC = false
+        deinitSKVFBVCC = false
+        deinitSKVAnchorVCC = false
+        deinitSKVIsoViewRemoverVCC = false
+        deinitVCC = false
     }
+    deinit {
+        print("deinitVCC")
+        deinitVCC = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        deinitFalse()
         disableButtonLabelStart()
         labelRound.text = "\(round)/5"
 
@@ -349,6 +365,7 @@ class ViewControllerChoice: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.topLabel.font = self.topLabel.font.withSize(self.fontSize.dfz)
             self.bottomLabel.font = self.bottomLabel.font.withSize(self.fontSize.dfz)
+            self.labelRound.font = self.labelRound.font.withSize(self.fontSize3.dfz)
             self.isoLabel.font = self.isoLabel.font.withSize(self.fontSize2.dfz2)
             isoViewHeight = self.isoView.frame.height
         }

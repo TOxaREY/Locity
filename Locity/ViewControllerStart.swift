@@ -196,10 +196,11 @@ DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 ////Enable button countinue
     @objc func enableButton(){
         self.but.isEnabled = true
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "enableButton"), object: nil)
     }
 ////
     deinit {
-        print("deinitS")
+        print("deinitVCS")
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -207,7 +208,12 @@ DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
         allFlip(time: 0.25)
         allFlipUpDown(time: 0.125)
         NotificationCenter.default.addObserver(self, selector: #selector(enableButton), name: NSNotification.Name(rawValue: "enableButton"), object: nil)
-  }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(false)
+        NotificationCenter.default.removeObserver(self)
+    }
 }
 
 

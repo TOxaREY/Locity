@@ -15,7 +15,8 @@ class FlapTop: SKView {
     var flap = SKSpriteNode()
     var timer: Timer!
     deinit {
-        print("dFT")
+        print("deinitSKVFTVCC")
+        deinitSKVFTVCC = true
     }
     override func didMoveToSuperview() {
         let scene = SKScene(size: self.frame.size)

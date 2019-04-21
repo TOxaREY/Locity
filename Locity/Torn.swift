@@ -47,7 +47,7 @@ class Torn: SKView {
     let t35 = SKTexture(imageNamed: "t35.png")
     let t36 = SKTexture(imageNamed: "t36.png")
     deinit {
-        print("dT")
+        print("deinitSKVTornVCM")
     }
     override func didMoveToSuperview() {
         let scene = SKScene(size: self.frame.size)

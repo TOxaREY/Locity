@@ -12,7 +12,8 @@ import SpriteKit
 class IsoViewRemover: SKView {
     let isoRem = SKSpriteNode(imageNamed: "isoRem.png")
     deinit {
-        print("dI")
+        print("deinitSKVIsoViewRemoverVCC")
+        deinitSKVIsoViewRemoverVCC = true
     }
     override func didMoveToSuperview() {
 ////Dispatch for loading view constraints

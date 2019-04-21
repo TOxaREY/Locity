@@ -16,7 +16,8 @@ class Wheel: SKView {
     var timer: Timer!
     let segment = ((360 / 5) * π) / 180
     deinit {
-        print("dW")
+        print("deinitSKVWheelVCC")
+        deinitSKVWheelVCC = true
     }
     override func didMoveToSuperview() {
         let scene = SKScene(size: self.frame.size)

@@ -41,7 +41,7 @@ class Base {
         }
     }
     deinit {
-        print("dBase")
+        print("deinitBase")
     }
 }
 

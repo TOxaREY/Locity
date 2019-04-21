@@ -14,7 +14,8 @@ class FlapBottom: SKView {
     let flapT2 = SKSpriteNode(imageNamed: "flapT2.png")
     var flap = SKSpriteNode()
     deinit {
-        print("dFB")
+        print("deinitSKVFBVCC")
+        deinitSKVFBVCC = true
     }
     override func didMoveToSuperview() {
         let scene = SKScene(size: self.frame.size)

@@ -11,7 +11,7 @@ import SpriteKit
 import SQLite
 
 
-
+var timer: Timer!
 
 class ViewControllerMap: UIViewController {
 
@@ -21,10 +21,17 @@ class ViewControllerMap: UIViewController {
     
     
     @objc func buttonEnable(){
-        button.isHidden = false
-        button.isEnabled = true
-        tornView.isHidden = true
+        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.deinitComplete), userInfo: nil, repeats: true)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "buttonEnable"), object: nil)
+    }
+    @objc func deinitComplete(){
+        if deinitSKVWheelVCC && deinitSKVFTVCC && deinitSKVFBVCC && deinitSKVAnchorVCC && deinitSKVIsoViewRemoverVCC && deinitVCC {
+            timer.invalidate()
+            self.button.isHidden = false
+            self.button.isEnabled = true
+            print("enableButton")
+            self.tornView.isHidden = true
+        }
     }
     
     @IBAction func buttonEnableeee(_ sender: Any) {
@@ -40,14 +47,15 @@ class ViewControllerMap: UIViewController {
     
     
     deinit {
-        print("deinitM")
+        print("deinitVCM")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tornView.isHidden = false
         button.isHidden = true
         button.isEnabled = false
-        NotificationCenter.default.addObserver(self, selector: #selector(buttonEnable), name: NSNotification.Name(rawValue: "buttonEnable"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.buttonEnable), name: NSNotification.Name(rawValue: "buttonEnable"), object: nil)
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(false)

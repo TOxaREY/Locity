@@ -14,7 +14,8 @@ class Anchor: SKView {
     var timer: Timer!
     var indentAnchorDown: CGFloat = 0.0
     deinit {
-        print("dA")
+        print("deinitSKVAnchorVCC")
+        deinitSKVAnchorVCC = true
     }
     override func didMoveToSuperview() {
 ////Dispatch for loading view constraints

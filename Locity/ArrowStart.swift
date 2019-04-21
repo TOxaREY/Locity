@@ -12,7 +12,7 @@ import SpriteKit
 class ArrowStart: SKView {
     let arrowStart = SKSpriteNode(imageNamed: "arrowStart.png")
     deinit {
-        print("dS")
+        print("deinitSKVArrowStartVCS")
     }
     override func didMoveToSuperview() {
             let scene = SKScene(size: self.frame.size)
@@ -23,8 +23,7 @@ class ArrowStart: SKView {
             self.arrowStart.position = CGPoint(x: -scene.frame.height, y: scene.frame.height / 2)
             scene.addChild(arrowStart)
             NotificationCenter.default.addObserver(self, selector: #selector(self.moveArrowStart), name: NSNotification.Name(rawValue: "moveArrowStart"), object: nil)
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "enableButton"), object: nil)
-        }
+    }
 
     @objc func moveArrowStart(){
         let moveRight = SKAction.moveBy(x: scene!.frame.width + scene!.frame.height / 2, y: 0, duration: 1.5)
@@ -36,7 +35,8 @@ class ArrowStart: SKView {
         arrowStart.run(seq)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "enableButton"), object: nil)
+        }
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "moveArrowStart"), object: nil)
     }
-  }
 }
 
