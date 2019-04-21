@@ -62,7 +62,7 @@ class ViewControllerChoice: UIViewController {
     var rand = 0
     let fontSize:CGFloat = 60
     let fontSize2:CGFloat = 40
-    let fontSize3:CGFloat = 150
+    let fontSize3:CGFloat = 100
 
     @IBOutlet weak var wheelView: Wheel!
     @IBOutlet weak var flapBottomView: FlapBottom!
@@ -145,7 +145,7 @@ class ViewControllerChoice: UIViewController {
         effectView.frame = self.blurView.bounds
         effectView.effect = UIBlurEffect(style: .regular)
         self.blurView.addSubview(effectView)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             UIView.animate(withDuration: 1, animations: {
                 effectView.effect = nil
                 self.labelRound.alpha = 0
@@ -316,7 +316,6 @@ class ViewControllerChoice: UIViewController {
         UIView.animate(withDuration: 3.75, animations: {
             self.resultContinentLabel.transform = CGAffineTransform(translationX: -(UIScreen.main.bounds.width / 2 + self.resultContinentLabel.frame.width / 2), y: 0)
         }, completion: { done in
-            self.resultContinentLabel.transform = .identity
             self.resultContinentLabel.isHidden = true
             let appDel = UIApplication.shared.delegate as! AppDelegate
             let sB: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -327,7 +326,6 @@ class ViewControllerChoice: UIViewController {
         UIView.animate(withDuration: 3.75, animations: {
             self.resultCountryLabel.transform = CGAffineTransform(translationX: UIScreen.main.bounds.width / 2 + self.resultCountryLabel.frame.width / 2, y: 0)
         }, completion: { done in
-            self.resultCountryLabel.transform = .identity
             self.resultCountryLabel.isHidden = true
        })
         self.isoLabel.isHidden = true

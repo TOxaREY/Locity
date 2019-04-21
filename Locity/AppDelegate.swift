@@ -56,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 }}}}}}}
 ////
         print(language)
-        launchScreenTimer()
+//        launchScreenTimer()
         
         return true
     }
