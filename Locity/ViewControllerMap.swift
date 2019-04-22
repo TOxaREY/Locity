@@ -10,17 +10,35 @@ import UIKit
 import SpriteKit
 import SQLite
 
-
 var timer: Timer!
 
 class ViewControllerMap: UIViewController {
-
     
-   // @IBOutlet weak var button: UIButton!
+    let fontSize:CGFloat = 35
+    let fontSize2:CGFloat = 25
+    let fontSize3:CGFloat = 20
+    var roundCity = Int()
+    
     @IBOutlet weak var tornView: Torn!
     @IBOutlet weak var countryLabel: UILabel!
+    @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var topSupport: UILabel!
     @IBOutlet weak var bottomSupport: UILabel!
+    @IBOutlet weak var pointsLabel: UILabel!
+    @IBOutlet weak var roundLabel: UILabel!
+    @IBOutlet weak var blurView: UIView!
+    @IBOutlet weak var roundCityLabel: UILabel!
+    @IBAction func homeButton(_ sender: Any) {
+        diff = ""
+        let appDel = UIApplication.shared.delegate as! AppDelegate
+        let sB: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newVC = sB.instantiateViewController(withIdentifier: "VCS")
+        appDel.window?.rootViewController = newVC
+        appDel.window?.makeKeyAndVisible()
+    }
+    @IBOutlet weak var homeButtonOutlet: UIButton!
+    @IBOutlet weak var homeImage: UIImageView!
+    
     
     func labelCheckMaxSizeFunc(fSize:CGFloat,labelName:UILabel,text:String) -> (CGFloat) {
         labelName.text = text
@@ -31,10 +49,9 @@ class ViewControllerMap: UIViewController {
             labelName.font = labelName.font.withSize(CGFloat(fS))
             bounds.size = labelName.intrinsicContentSize
                 if bounds.size.width > labelName.frame.width {
-                    fS -= 1
+                    fS -= 0.5
                     checkSize(fS: fS)
                 } else {
-                    labelName.text = ""
                     minFs = fS
             }
         }
@@ -42,7 +59,8 @@ class ViewControllerMap: UIViewController {
         return minFs
     }
     
-    func labelEffectAndCheckMaxSize(fSize:CGFloat,labelName:UILabel,sSize:CGFloat,nameSupport:UILabel,text:String){
+    func labelEffectAndCheckMaxSize(fSize:CGFloat,labelName:UILabel,sSize:CGFloat,nameSupport:UILabel,text:String,time:Double){
+        //шрифт у основного лейбла и суппорта должен быть одинаковый
         let fS = labelCheckMaxSizeFunc(fSize: fSize, labelName: labelName, text: text)
         let sup = labelCheckMaxSizeFunc(fSize: sSize, labelName: nameSupport, text: text)
         labelName.isHidden = false
@@ -56,47 +74,76 @@ class ViewControllerMap: UIViewController {
         UIView.animate(withDuration: 3.0, animations: {
             labelName.transform = .identity
             }, completion: { done in
-                let transformSc = CGAffineTransform(scaleX: sup / fS, y: sup / fS)
-                let transformTr = CGAffineTransform(translationX: 0, y: 250)
-                UIView.animate(withDuration: 3.0, animations: {
-                    labelName.transform = transformTr.concatenating(transformSc)
-                    }, completion: { done in
-                        print(fS)
-                        print(sup)
-                })
+                let scaleCalcul = sup / fS
+                self.effectMove(labelName: labelName, scaleCalcul: scaleCalcul, nameSupport: nameSupport,time: time)
+        })
+    }
+    
+    func effectMove(labelName:UILabel,scaleCalcul:CGFloat,nameSupport:UILabel,time:Double){
+        var finalCenter = CGPoint.zero
+        let finalScale = scaleCalcul
+        finalCenter.x = nameSupport.center.x
+        finalCenter.y = nameSupport.center.y
+        let containerCenter = labelName.center
+        let deltaX = finalCenter.x - containerCenter.x
+        let deltaY = finalCenter.y - containerCenter.y
+        let scale = CGAffineTransform(scaleX: finalScale, y: finalScale)
+        let translation = CGAffineTransform(translationX: deltaX, y: deltaY)
+        UIView.animate(withDuration: time, animations: {
+            labelName.transform = scale.concatenating(translation)
+            }, completion: { done in
+                if labelName == self.cityLabel {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "inHome"), object: nil)
+                }
         })
     }
 
+    @objc func inHome(){
+        roundLabel.text = "\(round)/5"
+        roundCityLabel.text = "\(roundCity)/3"
+        pointsLabel.text = "999"
+        roundLabel.isHidden = false
+        roundCityLabel.isHidden = false
+        pointsLabel.isHidden = false
+        homeImage.isHidden = false
+        roundCityLabel.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        roundLabel.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        pointsLabel.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        homeImage.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        UIView.animate(withDuration: 1.0) {
+            self.roundCityLabel.transform = .identity
+        }
+        UIView.animate(withDuration: 1.0) {
+            self.roundLabel.transform = .identity
+        }
+        UIView.animate(withDuration: 1.0) {
+            self.pointsLabel.transform = .identity
+        }
+        UIView.animate(withDuration: 1.0) {
+            self.homeImage.transform = .identity
+        }
+        
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "inHome"), object: nil)
+    }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-//    @objc func buttonEnable(){
-//        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.deinitComplete), userInfo: nil, repeats: true)
-//        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "buttonEnable"), object: nil)
-//    }
-//    @objc func deinitComplete(){
-//        if deinitSKVWheelVCC && deinitSKVFTVCC && deinitSKVFBVCC && deinitSKVAnchorVCC && deinitSKVIsoViewRemoverVCC && deinitVCC {
-//            timer.invalidate()
-//            self.button.isHidden = false
-//            self.button.isEnabled = true
-//            print("enableButton")
-//            self.tornView.isHidden = true
-//        }
-//    }
+
+    @objc func enableVCM(){
+        self.labelEffectAndCheckMaxSize(fSize: self.fontSize.dfz2, labelName: self.countryLabel, sSize: self.fontSize2.dfz2, nameSupport: self.bottomSupport, text: "Веgrgrgrgня",time: 3.0)
+        self.labelEffectAndCheckMaxSize(fSize: self.fontSize.dfz2, labelName: self.cityLabel, sSize: self.fontSize2.dfz2, nameSupport: self.topSupport, text: "Будgrgrgrgrggат",time: 3.0)
+        //            self.effectMove(labelName: tempPoints, scaleCalcul: 1, nameSupport: pointsLabel)
+        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.deinitComplete), userInfo: nil, repeats: true)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "enableVCM"), object: nil)
+    }
+    @objc func deinitComplete(){
+        if deinitSKVWheelVCC && deinitSKVFTVCC && deinitSKVFBVCC && deinitSKVAnchorVCC && deinitSKVIsoViewRemoverVCC && deinitVCC && deinitVCS {
+            timer.invalidate()
+            homeButtonOutlet.isHidden = false
+            homeButtonOutlet.isEnabled = true
+            print("enableButton")
+            NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "deinitComplete"), object: nil)
+            
+        }
+    }
 //
 //    @IBAction func buttonEnableeee(_ sender: Any) {
 //        round += 1
@@ -106,37 +153,46 @@ class ViewControllerMap: UIViewController {
 //        appDel.window?.rootViewController = newVC
 //        appDel.window?.makeKeyAndVisible()
 //    }
-//    deinit {
-//        print("deinitVCM")
-//    }
+
+    
+    
+    
+    deinit {
+        print("deinitVCM")
+        deinitVCM = true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        round = 1
+        roundCity = 1
+        idSelectCountry = 1
+        
+        homeButtonOutlet.isHidden = true
+        homeButtonOutlet.isEnabled = false
+        homeImage.image = UIImage(named: "home.png")
+        homeImage.isHidden = true
         tornView.isHidden = false
+        topSupport.isHidden = true
+        bottomSupport.isHidden = true
         countryLabel.isHidden = true
-        labelEffectAndCheckMaxSize(fSize: 40, labelName: countryLabel, sSize: 20, nameSupport: bottomSupport, text: "eewfewegwg")
+        roundLabel.isHidden = true
+        roundCityLabel.isHidden = true
+        pointsLabel.isHidden = true
+        pointsLabel.font = self.pointsLabel.font.withSize(self.fontSize3.dfz2)
+        roundLabel.font = self.roundLabel.font.withSize(self.fontSize2.dfz2)
+        roundCityLabel.font = self.roundCityLabel.font.withSize(self.fontSize2.dfz2)
+        let effectView = UIVisualEffectView()
+        effectView.frame = blurView.bounds
+        effectView.effect = UIBlurEffect(style: .regular)
+        blurView.addSubview(effectView)
+        UIView.animate(withDuration: 6, animations: {
+                effectView.effect = nil
+            })
         
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-  //      button.isHidden = true
- //       button.isEnabled = false
-//        NotificationCenter.default.addObserver(self, selector: #selector(self.buttonEnable), name: NSNotification.Name(rawValue: "buttonEnable"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.inHome), name: NSNotification.Name(rawValue: "inHome"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.enableVCM), name: NSNotification.Name(rawValue: "enableVCM"), object: nil)
     }
 
     override func viewDidDisappear(_ animated: Bool) {

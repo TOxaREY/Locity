@@ -55,7 +55,7 @@ class IsoViewRemover: SKView {
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
             self.scene!.removeAllChildren()
         }
-    NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "breakdown"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "breakdown"), object: nil)
     }
 }
 

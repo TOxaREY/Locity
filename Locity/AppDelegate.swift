@@ -20,12 +20,13 @@ public var deinitSKVFBVCC = Bool()
 public var deinitSKVAnchorVCC = Bool()
 public var deinitSKVIsoViewRemoverVCC = Bool()
 public var deinitVCC = Bool()
+public var deinitVCM = Bool()
+public var deinitVCS = Bool()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         round = 1
@@ -56,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 }}}}}}}
 ////
         print(language)
-//        launchScreenTimer()
+        launchScreenTimer()
         
         return true
     }
@@ -70,7 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     @objc func dismissSplashController(){
         let mainVC = UIStoryboard.init(name: "Main", bundle: nil)
-        let rootVC = mainVC.instantiateViewController(withIdentifier: "initController")
+        let rootVC = mainVC.instantiateViewController(withIdentifier: "VCS")
         self.window?.rootViewController = rootVC
         self.window?.makeKeyAndVisible()
     }

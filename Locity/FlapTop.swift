@@ -57,18 +57,21 @@ class FlapTop: SKView {
         if (flap.physicsBody!.isResting) {
             timer.invalidate()
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "enableButtonFlap"), object: nil)
+            NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "restingDown"), object: nil)
         }
     }
     @objc func restingDown2(){
         if (flap.physicsBody!.isResting) {
             timer.invalidate()
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "enableAddStartElement"), object: nil)
+            NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "restingDown2"), object: nil)
         }
     }
     @objc func restingUp(){
         if (flap.physicsBody!.isResting) {
             timer.invalidate()
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "enableSpinButton"), object: nil)
+            NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "restingUp"), object: nil)
         }
     }
     @objc func upFlap(){
@@ -84,6 +87,7 @@ class FlapTop: SKView {
         flap.physicsBody = body
         scene!.addChild(flap)
         timer = Timer.scheduledTimer(timeInterval: 0.005, target: self, selector: #selector(self.restingUp), userInfo: nil, repeats: true)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "upFlap"), object: nil)
 
     }
 }

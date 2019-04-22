@@ -62,7 +62,6 @@ class Wheel: SKView {
                 timer = Timer.scheduledTimer(timeInterval: 0.005, target: self, selector: #selector(self.stopWheel), userInfo: nil, repeats: true)
             }
         }
-        
         randomFunc()
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "spinWheel"), object: nil)
     }
@@ -82,6 +81,7 @@ class Wheel: SKView {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "resultContinent"), object: nil)
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "upAnchor"), object: nil)
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "selectCountry"), object: nil)
+            NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "stopWheel"), object: nil)
         }
     }
     @objc func removeWheel(){

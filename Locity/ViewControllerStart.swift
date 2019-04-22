@@ -201,6 +201,7 @@ DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 ////
     deinit {
         print("deinitVCS")
+        deinitVCS = true
     }
     override func viewDidLoad() {
         super.viewDidLoad()
