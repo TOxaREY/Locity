@@ -50,12 +50,8 @@ extension UILabel {
 ////
 
 
-
-
-
 class ViewControllerChoice: UIViewController {
     
-    let base = Base()
     var dictionaryCountries:Dictionary<Int,String> = [:]
     var isoLabelEnable = true
     var i = 0
@@ -173,7 +169,7 @@ class ViewControllerChoice: UIViewController {
     }
     @objc func resultContinent() {
         do {
-            for continent in try self.base.database.prepare(self.base.continentsTable.select(base.continent).filter(base.id == UserDefaults.standard.integer(forKey: "resultContinent"))) {
+            for continent in try base.database.prepare(base.continentsTable.select(base.continent).filter(base.id == UserDefaults.standard.integer(forKey: "resultContinent"))) {
                 resultContinentLabel.text = continent[base.continent].uppercased()
             }
         } catch {
@@ -271,7 +267,7 @@ class ViewControllerChoice: UIViewController {
         rand = 0
         do {
             var c = 1
-            for country in try self.base.database.prepare(self.base.countriesTable.select(base.iso).filter(base.id_continent == UserDefaults.standard.integer(forKey: "resultContinent"))) {
+            for country in try base.database.prepare(base.countriesTable.select(base.iso).filter(base.id_continent == UserDefaults.standard.integer(forKey: "resultContinent"))) {
                 dictionaryCountries[c] = country[base.iso]
                 c += 1
             }
@@ -298,11 +294,11 @@ class ViewControllerChoice: UIViewController {
                     self.selectCountries(dic: dic)
                 } else {
                     do {
-                        for idSelect in try self.base.database.prepare(self.base.countriesTable.select(self.base.id, self.base.country).where(self.base.iso == self.dictionaryCountries[random]!)){
-                            print("id: \(idSelect[self.base.id]), \(language): \(idSelect[self.base.country])")
-                            UserDefaults.standard.set(idSelect[self.base.country], forKey: "resultCountry")
+                        for idSelect in try base.database.prepare(base.countriesTable.select(base.id, base.country).where(base.iso == self.dictionaryCountries[random]!)){
+                            print("id: \(idSelect[base.id]), \(language): \(idSelect[base.country])")
+                            UserDefaults.standard.set(idSelect[base.country], forKey: "resultCountry")
                             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "resultCountry"), object: nil)
-                            idSelectCountry = idSelect[self.base.id]
+                            idSelectCountry = idSelect[base.id]
                             print(idSelectCountry)
                         }
                     } catch {

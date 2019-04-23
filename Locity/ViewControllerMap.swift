@@ -10,14 +10,21 @@ import UIKit
 import SpriteKit
 import SQLite
 
-var timer: Timer!
+
 
 class ViewControllerMap: UIViewController {
     
+    var timer: Timer!
     let fontSize:CGFloat = 35
     let fontSize2:CGFloat = 25
     let fontSize3:CGFloat = 20
     var roundCity = Int()
+    
+    var country = ""
+    var city = ""
+    var rand = 0
+    var rand2 = 0
+    var dictionaryCities:Dictionary<Int,String> = [:]
     
     @IBOutlet weak var tornView: Torn!
     @IBOutlet weak var countryLabel: UILabel!
@@ -30,6 +37,7 @@ class ViewControllerMap: UIViewController {
     @IBOutlet weak var roundCityLabel: UILabel!
     @IBAction func homeButton(_ sender: Any) {
         diff = ""
+        round = 1
         let appDel = UIApplication.shared.delegate as! AppDelegate
         let sB: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let newVC = sB.instantiateViewController(withIdentifier: "VCS")
@@ -106,6 +114,10 @@ class ViewControllerMap: UIViewController {
         roundCityLabel.isHidden = false
         pointsLabel.isHidden = false
         homeImage.isHidden = false
+        bottomSupport.isHidden = false
+        topSupport.isHidden = false
+        countryLabel.isHidden = true
+        cityLabel.isHidden = true
         roundCityLabel.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         roundLabel.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         pointsLabel.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
@@ -122,16 +134,15 @@ class ViewControllerMap: UIViewController {
         UIView.animate(withDuration: 1.0) {
             self.homeImage.transform = .identity
         }
-        
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "inHome"), object: nil)
     }
     
 
     @objc func enableVCM(){
-        self.labelEffectAndCheckMaxSize(fSize: self.fontSize.dfz2, labelName: self.countryLabel, sSize: self.fontSize2.dfz2, nameSupport: self.bottomSupport, text: "Веgrgrgrgня",time: 3.0)
-        self.labelEffectAndCheckMaxSize(fSize: self.fontSize.dfz2, labelName: self.cityLabel, sSize: self.fontSize2.dfz2, nameSupport: self.topSupport, text: "Будgrgrgrgrggат",time: 3.0)
-        //            self.effectMove(labelName: tempPoints, scaleCalcul: 1, nameSupport: pointsLabel)
-        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.deinitComplete), userInfo: nil, repeats: true)
+        selectCity(dic: dictionaryCities)
+        self.labelEffectAndCheckMaxSize(fSize: self.fontSize.dfz2, labelName: self.countryLabel, sSize: self.fontSize2.dfz2, nameSupport: self.bottomSupport, text: country,time: 3.0)
+        self.labelEffectAndCheckMaxSize(fSize: self.fontSize.dfz2, labelName: self.cityLabel, sSize: self.fontSize2.dfz2, nameSupport: self.topSupport, text: city,time: 3.0)
+//        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.deinitComplete), userInfo: nil, repeats: true)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "enableVCM"), object: nil)
     }
     @objc func deinitComplete(){
@@ -144,17 +155,24 @@ class ViewControllerMap: UIViewController {
             
         }
     }
-//
-//    @IBAction func buttonEnableeee(_ sender: Any) {
-//        round += 1
-//        let appDel = UIApplication.shared.delegate as! AppDelegate
-//        let sB: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        let newVC = sB.instantiateViewController(withIdentifier: "VCC")
-//        appDel.window?.rootViewController = newVC
-//        appDel.window?.makeKeyAndVisible()
-//    }
-
-    
+    func selectCity(dic:Dictionary<Int, String>) {
+        let random = Int.random(in: 1...dic.count)
+        if rand == random || rand2 == random {
+            selectCity(dic: dic)
+        } else {
+            if rand == 0 {
+            rand = random
+            city = dic[random]!
+            } else {
+                if rand2 == 0 {
+                    rand2 = random
+                    city = dic[random]!
+                } else {
+                    city = dic[random]!
+                }
+            }
+        }
+    }
     
     
     deinit {
@@ -167,7 +185,24 @@ class ViewControllerMap: UIViewController {
         
         round = 1
         roundCity = 1
-        idSelectCountry = 1
+        idSelectCountry = 20
+        
+        do {
+            for idSelect in try base.database.prepare(base.countriesTable.select(base.country).filter(base.id == idSelectCountry)){
+                country = idSelect[base.country]
+            }
+        } catch {
+            print(error)
+        }
+        do {
+            var c = 1
+            for city in try base.database.prepare(base.citiesTable.select(base.city).filter(base.id_country == idSelectCountry)){
+                dictionaryCities[c] = city[base.city]
+                c += 1
+            }
+        } catch {
+            print(error)
+        }
         
         homeButtonOutlet.isHidden = true
         homeButtonOutlet.isEnabled = false

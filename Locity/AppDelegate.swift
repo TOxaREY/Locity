@@ -22,6 +22,7 @@ public var deinitSKVIsoViewRemoverVCC = Bool()
 public var deinitVCC = Bool()
 public var deinitVCM = Bool()
 public var deinitVCS = Bool()
+let base = Base()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -57,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 }}}}}}}
 ////
         print(language)
-        launchScreenTimer()
+//        launchScreenTimer()
         
         return true
     }

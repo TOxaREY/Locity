@@ -22,6 +22,7 @@ class Base {
     let country = Expression<String>(language)
     let iso = Expression<String>("iso")
     let map = Expression<String>("map")
+    let level = Expression<String>("level")
     let id_continent = Expression<Int>("id_continent")
     
     let citiesTable = Table("Cities")
