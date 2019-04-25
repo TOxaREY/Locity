@@ -27,6 +27,7 @@
 		F2C837E72215F9D700C252AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2C837E52215F9D700C252AB /* LaunchScreen.storyboard */; };
 		F2D98F43225E57EA0077F8C4 /* IsoViewRemover.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D98F42225E57EA0077F8C4 /* IsoViewRemover.swift */; };
 		F2E5226722201A7B006938A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2E5226622201A7B006938A8 /* Assets.xcassets */; };
+		F2FA6A2F2271EFCF00774002 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FA6A2E2271EFCF00774002 /* Map.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		F2C837E82215F9D700C252AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F2D98F42225E57EA0077F8C4 /* IsoViewRemover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsoViewRemover.swift; sourceTree = "<group>"; };
 		F2E5226622201A7B006938A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F2FA6A2E2271EFCF00774002 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		F45610F7AE796C113D7A32C6 /* Pods-Locity.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Locity.debug.xcconfig"; path = "Target Support Files/Pods-Locity/Pods-Locity.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,6 +123,7 @@
 				F21E595A225CEFE000C0721B /* Base.swift */,
 				F2190293225B8DCB001F1AE4 /* ViewControllerСhoice.swift */,
 				F2644DA72260E518001FD8E7 /* Torn.swift */,
+				F2FA6A2E2271EFCF00774002 /* Map.swift */,
 				F226D91F225FA17300828761 /* ViewControllerMap.swift */,
 				F2C837DD2215F9D600C252AB /* Main.storyboard */,
 				F2E5226622201A7B006938A8 /* Assets.xcassets */,
@@ -259,6 +262,7 @@
 				F2C837DA2215F9D600C252AB /* AppDelegate.swift in Sources */,
 				F2D98F43225E57EA0077F8C4 /* IsoViewRemover.swift in Sources */,
 				F264063E221D92EE00AC753D /* ViewControllerStart.swift in Sources */,
+				F2FA6A2F2271EFCF00774002 /* Map.swift in Sources */,
 				F219028E225B81FC001F1AE4 /* FlapBottom.swift in Sources */,
 				F2190294225B8DCB001F1AE4 /* ViewControllerСhoice.swift in Sources */,
 				F226D920225FA17300828761 /* ViewControllerMap.swift in Sources */,

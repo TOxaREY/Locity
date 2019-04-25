@@ -350,7 +350,7 @@ class ViewControllerChoice: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         deinitFalse()
         disableButtonLabelStart()
         labelRound.text = "\(round)/5"

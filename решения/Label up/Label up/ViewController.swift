@@ -24,30 +24,39 @@ class ViewController: UIViewController {
     var rand2 = 0
     var select = [1:"1",2:"2",3:"3",4:"4",5:"5",6:"6"]
     
+    @IBOutlet weak var label1: UILabel!
+    @IBOutlet weak var label2: UILabel!
     @IBOutlet weak var label: UILabel!
     @IBAction func button(_ sender: Any) {
-    selectFunc(dic: select)
-
+//    selectFunc(dic: select)
+lab()
     }
-    func selectFunc(dic:Dictionary<Int, String>) {
-        let random = Int.random(in: 1...dic.count)
-        if rand == random || rand2 == random {
-            selectFunc(dic: dic)
-        } else {
-            if rand == 0 {
-                rand = random
-                print(dic[random]!)
-            } else {
-                if rand2 == 0 {
-                    rand2 = random
-                    print(dic[random]!)
-                } else {
-                    print(dic[random]!)
-                }
-            }
-        }
+//    func selectFunc(dic:Dictionary<Int, String>) {
+//        let random = Int.random(in: 1...dic.count)
+//        if rand == random || rand2 == random {
+//            selectFunc(dic: dic)
+//        } else {
+//            if rand == 0 {
+//                rand = random
+//                print(dic[random]!)
+//            } else {
+//                if rand2 == 0 {
+//                    rand2 = random
+//                    print(dic[random]!)
+//                } else {
+//                    print(dic[random]!)
+//                }
+//            }
+//        }
+//    }
+    func lab() {
+    label1.transform = CGAffineTransform(scaleX: 0, y: 1)
+    UIView.animate(withDuration: 3.0, animations: {
+        self.label1.transform = .identity
+    }, completion: { done in
+    print("ddddddd")
+    })
     }
-    
     
     
     

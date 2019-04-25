@@ -21,7 +21,5 @@ class Map: SKView {
         ring.position = CGPoint(x: (scene.frame.maxX - scene.frame.minX) / 1.037594, y: (((scene.frame.maxY - delta) - (scene.frame.minY + delta)) / 1.558798) + delta)
         print(delta)
         scene.addChild(ring)
-        
     }
-
 }
