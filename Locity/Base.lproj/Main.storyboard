@@ -690,6 +690,20 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GJg-Kb-kDW">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NFw-Wm-cOc">
+                                        <rect key="frame" x="260" y="0.0" width="60" height="40"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CHb-4n-a1b">
+                                        <rect key="frame" x="260" y="508" width="60" height="40"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="spx-yL-PXI">
                                         <rect key="frame" x="260" y="0.0" width="60" height="40"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -700,8 +714,16 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="CHb-4n-a1b" firstAttribute="width" secondItem="NFw-Wm-cOc" secondAttribute="width" id="1ef-D0-gVZ"/>
                                     <constraint firstAttribute="trailing" secondItem="spx-yL-PXI" secondAttribute="trailing" id="3cE-8W-HiL"/>
                                     <constraint firstItem="spx-yL-PXI" firstAttribute="top" secondItem="GJg-Kb-kDW" secondAttribute="top" id="7nC-hy-OMr"/>
+                                    <constraint firstItem="NFw-Wm-cOc" firstAttribute="height" secondItem="spx-yL-PXI" secondAttribute="height" id="H6g-xe-zGJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="CHb-4n-a1b" secondAttribute="bottom" id="Pq4-aB-ABk"/>
+                                    <constraint firstItem="NFw-Wm-cOc" firstAttribute="width" secondItem="spx-yL-PXI" secondAttribute="width" id="Svf-dc-jdr"/>
+                                    <constraint firstItem="NFw-Wm-cOc" firstAttribute="top" secondItem="GJg-Kb-kDW" secondAttribute="top" id="YfA-AA-kO9"/>
+                                    <constraint firstItem="CHb-4n-a1b" firstAttribute="height" secondItem="NFw-Wm-cOc" secondAttribute="height" id="d3B-cH-aNQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="CHb-4n-a1b" secondAttribute="trailing" id="dwK-pl-cbj"/>
+                                    <constraint firstAttribute="trailing" secondItem="NFw-Wm-cOc" secondAttribute="trailing" id="tgY-66-7oZ"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pHh-cY-9PX">
@@ -819,6 +841,15 @@
                             </view>
                             <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="REj-69-Qx2" customClass="Torn" customModule="Locity" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nC8-TZ-Ulf">
+                                        <rect key="frame" x="139" y="263" width="0.0" height="0.0"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Titania" family="Titania" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PZS-K1-ckX">
@@ -906,9 +937,12 @@
                         <outlet property="countryLabel" destination="xgF-do-F1x" id="1IZ-b5-Vkk"/>
                         <outlet property="homeButtonOutlet" destination="3qM-Cl-ylY" id="79h-Oc-F1P"/>
                         <outlet property="homeImage" destination="j2I-8G-Wlo" id="aPl-lN-Eex"/>
+                        <outlet property="homeImageSupport" destination="CHb-4n-a1b" id="9SU-QJ-TLN"/>
                         <outlet property="mapImage" destination="v61-jg-Mkd" id="9Q5-Kd-8hv"/>
                         <outlet property="mapViewTouch" destination="R0f-pQ-CSM" id="T11-Gs-7al"/>
                         <outlet property="pointsLabel" destination="spx-yL-PXI" id="THl-KX-Wwg"/>
+                        <outlet property="pointsLabelSupport" destination="NFw-Wm-cOc" id="dfe-FT-qmb"/>
+                        <outlet property="pointsTouchLabel" destination="nC8-TZ-Ulf" id="dnz-4W-wOq"/>
                         <outlet property="roundCityLabel" destination="2Gp-HI-t5a" id="3du-a7-hA1"/>
                         <outlet property="roundLabel" destination="MWH-FS-5Zg" id="4vK-q3-Uan"/>
                         <outlet property="topFlapLabel" destination="exJ-Oo-SZc" id="2Wy-dG-sX4"/>

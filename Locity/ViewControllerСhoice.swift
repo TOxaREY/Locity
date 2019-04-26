@@ -34,7 +34,7 @@ extension CGFloat {
     }
 }
 ////
-////Pulsate label
+////Pulsate label & image
 extension UILabel {
     func pulsate1Count() {
         let pulse = CABasicAnimation(keyPath: "transform.scale")
@@ -43,6 +43,18 @@ extension UILabel {
         pulse.toValue = 1
         pulse.autoreverses = true
         pulse.repeatCount = 1
+        pulse.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        layer.add(pulse, forKey: nil)
+    }
+}
+extension UIImageView {
+    func pulsateForever() {
+        let pulse = CABasicAnimation(keyPath: "transform.scale")
+        pulse.duration = 0.5
+        pulse.fromValue = 0.65
+        pulse.toValue = 1
+        pulse.autoreverses = true
+        pulse.repeatCount = .greatestFiniteMagnitude
         pulse.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         layer.add(pulse, forKey: nil)
     }

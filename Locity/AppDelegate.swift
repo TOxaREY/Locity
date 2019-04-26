@@ -22,6 +22,7 @@ public var deinitSKVIsoViewRemoverVCC = Bool()
 public var deinitVCC = Bool()
 public var deinitVCM = Bool()
 public var deinitVCS = Bool()
+public var points = "0"
 let base = Base()
 
 @UIApplicationMain

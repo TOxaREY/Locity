@@ -16,6 +16,12 @@ public var city2X = CGFloat()
 public var city2Y = CGFloat()
 public var city3X = CGFloat()
 public var city3Y = CGFloat()
+public var cityCoorX = CGFloat()
+public var cityCoorY = CGFloat()
+public var city2CoorX = CGFloat()
+public var city2CoorY = CGFloat()
+public var city3CoorX = CGFloat()
+public var city3CoorY = CGFloat()
 
 class ViewControllerMap: UIViewController {
     
@@ -38,7 +44,10 @@ class ViewControllerMap: UIViewController {
     var boundStartCountry = CGRect()
     var coordinatesTouch = CGPoint.zero
     var goTouch = Bool()
+    let ringSize = CGFloat(UserDefaults.standard.double(forKey: "ringSize")) * 1.5
+    var buttonNextRound = Bool()
     
+    @IBOutlet weak var pointsTouchLabel: UILabel!
     @IBOutlet weak var mapViewTouch: Map!
     @IBOutlet weak var mapImage: UIImageView!
     @IBOutlet weak var topFlapLabel: UILabel!
@@ -48,24 +57,38 @@ class ViewControllerMap: UIViewController {
     @IBOutlet weak var topSupport: UILabel!
     @IBOutlet weak var bottomSupport: UILabel!
     @IBOutlet weak var pointsLabel: UILabel!
+    @IBOutlet weak var pointsLabelSupport: UILabel!
     @IBOutlet weak var roundLabel: UILabel!
     @IBOutlet weak var blurView: UIView!
     @IBOutlet weak var roundCityLabel: UILabel!
     @IBAction func homeButton(_ sender: Any) {
-//        diff = ""
-//        round = 1
-        roundCity += 1
-        startVCM()
-        startLabelVCM()
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "resetCitys"), object: nil)
-//        let appDel = UIApplication.shared.delegate as! AppDelegate
-//        let sB: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        let newVC = sB.instantiateViewController(withIdentifier: "VCS")
-//        appDel.window?.rootViewController = newVC
-//        appDel.window?.makeKeyAndVisible()
+        if buttonNextRound && round == 5 {
+            print("list")
+            } else {
+            if buttonNextRound {
+                round += 1
+                print("next")
+                print(points)
+                let appDel = UIApplication.shared.delegate as! AppDelegate
+                let sB: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let newVC = sB.instantiateViewController(withIdentifier: "VCC")
+                appDel.window?.rootViewController = newVC
+                appDel.window?.makeKeyAndVisible()
+            } else {
+                diff = ""
+                round = 1
+                points = "0"
+                let appDel = UIApplication.shared.delegate as! AppDelegate
+                let sB: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let newVC = sB.instantiateViewController(withIdentifier: "VCS")
+                appDel.window?.rootViewController = newVC
+                appDel.window?.makeKeyAndVisible()
+            }
+        }
     }
     @IBOutlet weak var homeButtonOutlet: UIButton!
     @IBOutlet weak var homeImage: UIImageView!
+    @IBOutlet weak var homeImageSupport: UILabel!
     
     
     func labelCheckMaxSizeFunc(fSize:CGFloat,labelName:UILabel,text:String) -> (CGFloat) {
@@ -135,6 +158,61 @@ class ViewControllerMap: UIViewController {
                 }
         })
     }
+    func effectMovePointsLabel(text:String,x:CGFloat,y:CGFloat){
+        let coordinateTouchX = x
+        let coordinateTouchY = blurView.frame.height - (y + roundLabel.frame.height)
+        if coordinateTouchX <= mapViewTouch.frame.width / 2 {
+            pointsTouchLabel.center.x = coordinateTouchX + ringSize * 1.2
+            pointsTouchLabel.center.y = coordinateTouchY - ringSize * 1.2
+        } else {
+            pointsTouchLabel.center.x = coordinateTouchX - ringSize * 1.2
+            pointsTouchLabel.center.y = coordinateTouchY - ringSize * 1.2
+        }
+        pointsTouchLabel.text = text
+        pointsTouchLabel.isHidden = false
+        pointsTouchLabel.backgroundColor = .clear
+        var bounds = pointsTouchLabel.bounds
+        bounds.size = pointsTouchLabel.intrinsicContentSize
+        pointsTouchLabel.bounds = bounds
+        pointsTouchLabel.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        UIView.animate(withDuration: 1, animations: {
+            self.pointsTouchLabel.transform = .identity
+        }, completion: { done in
+        var finalCenter = CGPoint.zero
+            finalCenter.x = self.pointsLabel.center.x
+            finalCenter.y = self.pointsLabel.center.y
+            let containerCenter = self.pointsTouchLabel.center
+        let deltaX = finalCenter.x - containerCenter.x
+        let deltaY = finalCenter.y - containerCenter.y
+            let scale = CGAffineTransform(scaleX: 0.5, y: 0.5)
+        let translation = CGAffineTransform(translationX: deltaX, y: deltaY)
+        UIView.animate(withDuration: 2, animations: {
+            self.pointsTouchLabel.transform = scale.concatenating(translation)
+        }, completion: { done in
+            self.pointsLabelSupport.isHidden = false
+            self.pointsLabel.text = String(Int(self.pointsTouchLabel.text!)! + Int(self.pointsLabel.text!)!)
+            self.pointsTouchLabel.isHidden = true
+            self.pointsTouchLabel.text = ""
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                UIView.transition(with: self.pointsLabel, duration: 2.0, options: .transitionFlipFromLeft, animations: nil, completion: { done in
+                    if self.roundCity != 3 {
+                            self.roundCity += 1
+                            self.startVCM()
+                            self.startLabelVCM()
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "resetCitys"), object: nil)
+                    } else {
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "resetCitys"), object: nil)
+                        self.homeImage.image = UIImage(named: "arrowFinal.png")
+                        self.buttonNextRound = true
+                        self.homeImageSupport.isHidden = false
+                        self.homeImage.pulsateForever()
+                        points = self.pointsLabel.text!
+                    }
+            })
+            }
+          })
+        })
+    }
 
     @objc func transComplete(){
         roundLabel.text = "\(round)/5"
@@ -164,66 +242,24 @@ class ViewControllerMap: UIViewController {
             self.topFlapLabel.transform = .identity
             self.bottomFlapLabel.transform = .identity
         }
+        if diff == "E" {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addCitys"), object: nil)
+        } else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "coorCityHard"), object: nil)
+        }
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "transComplete"), object: nil)
     }
     
-
-    @objc func enableVCM(){
-        startLabelVCM()
-//        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.deinitComplete), userInfo: nil, repeats: true)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "enableVCM"), object: nil)
-    }
-    @objc func deinitComplete(){
-        if deinitSKVWheelVCC && deinitSKVFTVCC && deinitSKVFBVCC && deinitSKVAnchorVCC && deinitSKVIsoViewRemoverVCC && deinitVCC && deinitVCS {
-            timer.invalidate()
-            homeButtonOutlet.isHidden = false
-            homeButtonOutlet.isEnabled = true
-            print("enableButton")
-            NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "deinitComplete"), object: nil)
-            
-        }
-    }
-    func startLabelVCM(){
-        if diff == "H" {
-            self.selectCityHard(dic: self.dictionaryCities)
-        } else {
-            self.selectCityEasy(dic: self.dictionaryCities)
-        }
-            self.labelEffectAndCheckMaxSize(fSize: self.fontSize.dfz2, labelName: self.countryLabel, sSize: self.fontSize2.dfz2, nameSupport: self.bottomSupport, text: self.country,time: 2.0)
-            self.labelEffectAndCheckMaxSize(fSize: self.fontSize.dfz2, labelName: self.cityLabel, sSize: self.fontSize2.dfz2, nameSupport: self.topSupport, text: self.city,time: 2.0)
-    }
-    func coordinate(cityName:String,cityXz:CGFloat,cityYz:CGFloat){
-        switch cityXz {
-        case cityX:
+    func coordinate(cityName:String,cityNumder:String){
+        switch  cityNumder {
+        case "c1":
             do {
                 for city in try base.database.prepare(base.citiesTable.select(base.x).filter(base.city == cityName)){
                     cityX = CGFloat(city[base.x])
                 }
             } catch {
                 print(error)
-            }
-        case city2X:
-            do {
-                for city in try base.database.prepare(base.citiesTable.select(base.x).filter(base.city == cityName)){
-                    city2X = CGFloat(city[base.x])
-                }
-            } catch {
-                print(error)
-            }
-        case city3X:
-            do {
-                for city in try base.database.prepare(base.citiesTable.select(base.x).filter(base.city == cityName)){
-                    city3X = CGFloat(city[base.x])
-                }
-            } catch {
-                print(error)
-            }
-        default:
-            break
-        }
-        switch cityYz {
-        case cityY:
+            };
             do {
                 for city in try base.database.prepare(base.citiesTable.select(base.y).filter(base.city == cityName)){
                     cityY = CGFloat(city[base.y])
@@ -231,7 +267,14 @@ class ViewControllerMap: UIViewController {
             } catch {
                 print(error)
             }
-        case city2Y:
+        case "c2":
+            do {
+                for city in try base.database.prepare(base.citiesTable.select(base.x).filter(base.city == cityName)){
+                    city2X = CGFloat(city[base.x])
+                }
+            } catch {
+                print(error)
+            };
             do {
                 for city in try base.database.prepare(base.citiesTable.select(base.y).filter(base.city == cityName)){
                     city2Y = CGFloat(city[base.y])
@@ -239,7 +282,14 @@ class ViewControllerMap: UIViewController {
             } catch {
                 print(error)
             }
-        case city3Y:
+        case "c3":
+            do {
+                for city in try base.database.prepare(base.citiesTable.select(base.x).filter(base.city == cityName)){
+                    city3X = CGFloat(city[base.x])
+                }
+            } catch {
+                print(error)
+            };
             do {
                 for city in try base.database.prepare(base.citiesTable.select(base.y).filter(base.city == cityName)){
                     city3Y = CGFloat(city[base.y])
@@ -260,15 +310,18 @@ class ViewControllerMap: UIViewController {
                     rand = random
                     city = dic[random]!
                     print("c: \(city)")
+                    coordinate(cityName: city, cityNumder: "c1")
                 } else {
                     if rand2 == 0 {
                         rand2 = random
                         city = dic[random]!
                         print("c: \(city)")
+                        coordinate(cityName: city, cityNumder: "c1")
                     } else {
                         city = dic[random]!
                         rand3 = random
                         print("c: \(city)")
+                        coordinate(cityName: city, cityNumder: "c1")
                     }
             }
         }
@@ -282,20 +335,20 @@ class ViewControllerMap: UIViewController {
                 rand = random
                 city = dic[random]!
                 print("c: \(city)")
-                coordinate(cityName: city, cityXz: cityX, cityYz: cityY)
+                coordinate(cityName: city, cityNumder: "c1")
                 randomFuncCity(dic: dic)
             } else {
                 if rand2 == 0 {
                     rand2 = random
                     city = dic[random]!
                     print("c: \(city)")
-                    coordinate(cityName: city, cityXz: cityX, cityYz: cityY)
+                    coordinate(cityName: city, cityNumder: "c1")
                     randomFuncCity(dic: dic)
                 } else {
                     city = dic[random]!
                     rand3 = random
                     print("c: \(city)")
-                    coordinate(cityName: city, cityXz: cityX, cityYz: cityY)
+                    coordinate(cityName: city, cityNumder: "c1")
                     randomFuncCity(dic: dic)
                 }
             }
@@ -309,15 +362,39 @@ class ViewControllerMap: UIViewController {
             if randSupport == 0 {
                 city2 = dic[random]!
                 print("c2: \(city2)")
-                coordinate(cityName: city2, cityXz: city2X, cityYz: city2Y)
+                coordinate(cityName: city2, cityNumder: "c2")
                 randSupport = random
                 randomFuncCity(dic: dic)
             } else {
                 city3 = dic[random]!
                 print("c3: \(city3)")
-                coordinate(cityName: city3, cityXz: city3X, cityYz: city3Y)
+                coordinate(cityName: city3, cityNumder: "c3")
                 randSupport = 0
             }
+        }
+    }
+    func startLabelVCM(){
+        if diff == "H" {
+            self.selectCityHard(dic: self.dictionaryCities)
+        } else {
+            self.selectCityEasy(dic: self.dictionaryCities)
+        }
+        self.labelEffectAndCheckMaxSize(fSize: self.fontSize.dfz2, labelName: self.countryLabel, sSize: self.fontSize2.dfz2, nameSupport: self.bottomSupport, text: self.country,time: 2.0)
+        self.labelEffectAndCheckMaxSize(fSize: self.fontSize.dfz2, labelName: self.cityLabel, sSize: self.fontSize2.dfz2, nameSupport: self.topSupport, text: self.city,time: 2.0)
+    }
+    @objc func enableVCM(){
+        startLabelVCM()
+        //        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.deinitComplete), userInfo: nil, repeats: true)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "enableVCM"), object: nil)
+    }
+    @objc func deinitComplete(){
+        if deinitSKVWheelVCC && deinitSKVFTVCC && deinitSKVFBVCC && deinitSKVAnchorVCC && deinitSKVIsoViewRemoverVCC && deinitVCC && deinitVCS {
+            timer.invalidate()
+            homeButtonOutlet.isHidden = false
+            homeButtonOutlet.isEnabled = true
+            print("enableButton")
+            NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "deinitComplete"), object: nil)
+            
         }
     }
     func startVCM(){
@@ -330,16 +407,21 @@ class ViewControllerMap: UIViewController {
         topSupport.isHidden = true
         bottomSupport.isHidden = true
         bottomFlapLabel.isHidden = true
+        buttonNextRound = false
         topFlapLabel.isHidden = true
         countryLabel.isHidden = true
         cityLabel.isHidden = true
         roundLabel.isHidden = true
         roundCityLabel.isHidden = true
         pointsLabel.isHidden = true
+        pointsLabelSupport.isHidden = true
+        homeImageSupport.isHidden = true
+        pointsTouchLabel.font = self.pointsTouchLabel.font.withSize(self.fontSize3.dfz2 * 2)
         pointsLabel.font = self.pointsLabel.font.withSize(self.fontSize3.dfz2)
         roundLabel.font = self.roundLabel.font.withSize(self.fontSize2.dfz2)
         roundCityLabel.font = self.roundCityLabel.font.withSize(self.fontSize2.dfz2)
         goTouch = false
+        pointsTouchLabel.isHidden = true
         let effectView = UIVisualEffectView()
         effectView.frame = blurView.bounds
         effectView.effect = UIBlurEffect(style: .regular)
@@ -357,11 +439,11 @@ class ViewControllerMap: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        round = 1
+        //
+        round = 5
         idSelectCountry = 20
-        diff = "E"
-        
+        diff = "H"
+        //
         do {
             for idSelect in try base.database.prepare(base.countriesTable.select(base.country).filter(base.id == idSelectCountry)){
                 country = idSelect[base.country]
@@ -386,10 +468,11 @@ class ViewControllerMap: UIViewController {
             print(error)
         }
         
-        pointsLabel.text = "0"
+        pointsLabel.text = points
         startVCM()
-        
+    
         NotificationCenter.default.addObserver(self, selector: #selector(self.enableVCM), name: NSNotification.Name(rawValue: "enableVCM"), object: nil)
+
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -397,36 +480,42 @@ class ViewControllerMap: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+
         if let touch = touches.first {
+            if diff == "E" {
             if goTouch {
-                let ringSize = CGFloat(UserDefaults.standard.double(forKey: "ringSize")) * 2.5
-                let cityCoorX = CGFloat(UserDefaults.standard.double(forKey: "cityX"))
-                let cityCoorY = CGFloat(UserDefaults.standard.double(forKey: "cityY"))
-                let city2CoorX = CGFloat(UserDefaults.standard.double(forKey: "city2X"))
-                let city2CoorY = CGFloat(UserDefaults.standard.double(forKey: "city2Y"))
-                let city3CoorX = CGFloat(UserDefaults.standard.double(forKey: "city3X"))
-                let city3CoorY = CGFloat(UserDefaults.standard.double(forKey: "city3Y"))
                 coordinatesTouch = touch.location(in: mapViewTouch)
                 coordinatesTouch.y = mapViewTouch.frame.height - self.coordinatesTouch.y
-                if coordinatesTouch.x <= cityCoorX + ringSize && coordinatesTouch.x >= cityCoorX - ringSize &&
-                    coordinatesTouch.y <= cityCoorY + ringSize && coordinatesTouch.y >= cityCoorY - ringSize {
+                if pow(CGFloat(abs(coordinatesTouch.x - cityCoorX)),2) <= pow(CGFloat(ringSize),2) - pow(CGFloat(abs(coordinatesTouch.y - cityCoorY)),2) && pow(CGFloat(abs(coordinatesTouch.y - cityCoorY)),2) <= pow(CGFloat(ringSize),2) - pow(CGFloat(abs(coordinatesTouch.x - cityCoorX)),2) {
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "coordinatesRight"), object: nil)
                     goTouch = false
-                    print("r")
-                }
-                if coordinatesTouch.x <= city2CoorX + ringSize && coordinatesTouch.x >= city2CoorX - ringSize &&
-                    coordinatesTouch.y <= city2CoorY + ringSize && coordinatesTouch.y >= city2CoorY - ringSize {
+                    effectMovePointsLabel(text: "50",x: cityCoorX, y: cityCoorY)
+                } else {
+                if pow(CGFloat(abs(coordinatesTouch.x - city2CoorX)),2) <= pow(CGFloat(ringSize),2) - pow(CGFloat(abs(coordinatesTouch.y - city2CoorY)),2) && pow(CGFloat(abs(coordinatesTouch.y - city2CoorY)),2) <= pow(CGFloat(ringSize),2) - pow(CGFloat(abs(coordinatesTouch.x - city2CoorX)),2) {
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "coordinatesWrong2"), object: nil)
                     goTouch = false
-                    print("w")
-                }
-                if coordinatesTouch.x <= city3CoorX + ringSize && coordinatesTouch.x >= city3CoorX - ringSize &&
-                    coordinatesTouch.y <= city3CoorY + ringSize && coordinatesTouch.y >= city3CoorY - ringSize {
+                    effectMovePointsLabel(text: "0",x: city2CoorX, y: city2CoorY)
+                } else {
+                if pow(CGFloat(abs(coordinatesTouch.x - city3CoorX)),2) <= pow(CGFloat(ringSize),2) - pow(CGFloat(abs(coordinatesTouch.y - city3CoorY)),2) && pow(CGFloat(abs(coordinatesTouch.y - city3CoorY)),2) <= pow(CGFloat(ringSize),2) - pow(CGFloat(abs(coordinatesTouch.x - city3CoorX)),2) {
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "coordinatesWrong3"), object: nil)
                     goTouch = false
-                    print("w2")
+                    effectMovePointsLabel(text: "0",x: city3CoorX, y: city3CoorY)
                 }
+                }
+                }
+//                print(coordinatesTouch)
+            }
+            } else {
+                if goTouch {
+                    print(cityCoorX)
+                    print(cityCoorY)
+                    
+                    
+                    
+                    
+                }
+                
             }
         }
     }
