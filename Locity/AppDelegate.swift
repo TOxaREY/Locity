@@ -9,20 +9,20 @@
 import UIKit
 import CoreData
 
-public var language = String()
-public var round = Int()
-public var idSelectCountry = Int()
-public var isoViewHeight = CGFloat()
-public var diff = String()
-public var deinitSKVWheelVCC = Bool()
-public var deinitSKVFTVCC = Bool()
-public var deinitSKVFBVCC = Bool()
-public var deinitSKVAnchorVCC = Bool()
-public var deinitSKVIsoViewRemoverVCC = Bool()
-public var deinitVCC = Bool()
-public var deinitVCM = Bool()
-public var deinitVCS = Bool()
-public var points = "0"
+var language = String()
+var round = Int()
+var idSelectCountry = Int()
+var isoViewHeight = CGFloat()
+var diff = String()
+var deinitSKVWheelVCC = Bool()
+var deinitSKVFTVCC = Bool()
+var deinitSKVFBVCC = Bool()
+var deinitSKVAnchorVCC = Bool()
+var deinitSKVIsoViewRemoverVCC = Bool()
+var deinitVCC = Bool()
+var deinitVCM = Bool()
+var deinitVCS = Bool()
+var points = "0"
 let base = Base()
 
 @UIApplicationMain
@@ -59,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 }}}}}}}
 ////
         print(language)
-//        launchScreenTimer()
+        launchScreenTimer()
         
         return true
     }

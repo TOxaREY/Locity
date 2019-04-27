@@ -11,7 +11,7 @@ import SpriteKit
 import SQLite
 
 ////Check height
-public var screenHeight: CGFloat {
+var screenHeight: CGFloat {
     return UIScreen.main.bounds.height
 }
 ////

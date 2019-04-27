@@ -10,18 +10,22 @@ import UIKit
 import SpriteKit
 import SQLite
 
-public var cityX = CGFloat()
-public var cityY = CGFloat()
-public var city2X = CGFloat()
-public var city2Y = CGFloat()
-public var city3X = CGFloat()
-public var city3Y = CGFloat()
-public var cityCoorX = CGFloat()
-public var cityCoorY = CGFloat()
-public var city2CoorX = CGFloat()
-public var city2CoorY = CGFloat()
-public var city3CoorX = CGFloat()
-public var city3CoorY = CGFloat()
+var cityX = CGFloat()
+var cityY = CGFloat()
+var city2X = CGFloat()
+var city2Y = CGFloat()
+var city3X = CGFloat()
+var city3Y = CGFloat()
+var cityCoorX = CGFloat()
+var cityCoorY = CGFloat()
+var city2CoorX = CGFloat()
+var city2CoorY = CGFloat()
+var city3CoorX = CGFloat()
+var city3CoorY = CGFloat()
+var ringSize = CGFloat()
+var resultTouchWrong = Bool()
+var radiusToch = CGFloat()
+
 
 class ViewControllerMap: UIViewController {
     
@@ -43,9 +47,11 @@ class ViewControllerMap: UIViewController {
     var boundStartCity = CGRect()
     var boundStartCountry = CGRect()
     var coordinatesTouch = CGPoint.zero
+    var clearCoordinates = CGPoint.zero
     var goTouch = Bool()
-    let ringSize = CGFloat(UserDefaults.standard.double(forKey: "ringSize")) * 1.5
     var buttonNextRound = Bool()
+    var enableButton = Bool()
+    var transCompleteTrue = Bool()
     
     @IBOutlet weak var pointsTouchLabel: UILabel!
     @IBOutlet weak var mapViewTouch: Map!
@@ -62,6 +68,7 @@ class ViewControllerMap: UIViewController {
     @IBOutlet weak var blurView: UIView!
     @IBOutlet weak var roundCityLabel: UILabel!
     @IBAction func homeButton(_ sender: Any) {
+        print("push")
         if buttonNextRound && round == 5 {
             print("list")
             } else {
@@ -215,6 +222,7 @@ class ViewControllerMap: UIViewController {
     }
 
     @objc func transComplete(){
+        transCompleteTrue = true
         roundLabel.text = "\(round)/5"
         roundCityLabel.text = "\(roundCity)/3"
         roundLabel.isHidden = false
@@ -241,6 +249,11 @@ class ViewControllerMap: UIViewController {
             self.homeImage.transform = .identity
             self.topFlapLabel.transform = .identity
             self.bottomFlapLabel.transform = .identity
+        }
+        if enableButton {
+            homeButtonOutlet.isHidden = false
+            homeButtonOutlet.isEnabled = true
+            print("enableButtonComplete")
         }
         if diff == "E" {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addCitys"), object: nil)
@@ -384,24 +397,26 @@ class ViewControllerMap: UIViewController {
     }
     @objc func enableVCM(){
         startLabelVCM()
-        //        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.deinitComplete), userInfo: nil, repeats: true)
+////
+        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.deinitComplete), userInfo: nil, repeats: true)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "enableVCM"), object: nil)
     }
+////
     @objc func deinitComplete(){
-        if deinitSKVWheelVCC && deinitSKVFTVCC && deinitSKVFBVCC && deinitSKVAnchorVCC && deinitSKVIsoViewRemoverVCC && deinitVCC && deinitVCS {
+        if deinitSKVWheelVCC && deinitSKVFTVCC && deinitSKVFBVCC && deinitSKVAnchorVCC && deinitSKVIsoViewRemoverVCC && deinitVCC && deinitVCS && transCompleteTrue {
             timer.invalidate()
             homeButtonOutlet.isHidden = false
             homeButtonOutlet.isEnabled = true
+            enableButton = true
             print("enableButton")
             NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "deinitComplete"), object: nil)
             
         }
     }
     func startVCM(){
-//        homeButtonOutlet.isHidden = true
-//        homeButtonOutlet.isEnabled = false
-        homeButtonOutlet.isHidden = false
-        homeButtonOutlet.isEnabled = true
+        homeButtonOutlet.isHidden = true
+        homeButtonOutlet.isEnabled = false
+        transCompleteTrue = false
         homeImage.image = UIImage(named: "home.png")
         homeImage.isHidden = true
         topSupport.isHidden = true
@@ -440,9 +455,9 @@ class ViewControllerMap: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //
-        round = 5
+//        round = 5
         idSelectCountry = 20
-        diff = "H"
+//        diff = "H"
         //
         do {
             for idSelect in try base.database.prepare(base.countriesTable.select(base.country).filter(base.id == idSelectCountry)){
@@ -490,34 +505,88 @@ class ViewControllerMap: UIViewController {
                 if pow(CGFloat(abs(coordinatesTouch.x - cityCoorX)),2) <= pow(CGFloat(ringSize),2) - pow(CGFloat(abs(coordinatesTouch.y - cityCoorY)),2) && pow(CGFloat(abs(coordinatesTouch.y - cityCoorY)),2) <= pow(CGFloat(ringSize),2) - pow(CGFloat(abs(coordinatesTouch.x - cityCoorX)),2) {
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "coordinatesRight"), object: nil)
                     goTouch = false
-                    effectMovePointsLabel(text: "50",x: cityCoorX, y: cityCoorY)
+                    effectMovePointsLabel(text: "10",x: cityCoorX, y: cityCoorY)
                 } else {
-                if pow(CGFloat(abs(coordinatesTouch.x - city2CoorX)),2) <= pow(CGFloat(ringSize),2) - pow(CGFloat(abs(coordinatesTouch.y - city2CoorY)),2) && pow(CGFloat(abs(coordinatesTouch.y - city2CoorY)),2) <= pow(CGFloat(ringSize),2) - pow(CGFloat(abs(coordinatesTouch.x - city2CoorX)),2) {
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "coordinatesWrong2"), object: nil)
-                    goTouch = false
-                    effectMovePointsLabel(text: "0",x: city2CoorX, y: city2CoorY)
-                } else {
-                if pow(CGFloat(abs(coordinatesTouch.x - city3CoorX)),2) <= pow(CGFloat(ringSize),2) - pow(CGFloat(abs(coordinatesTouch.y - city3CoorY)),2) && pow(CGFloat(abs(coordinatesTouch.y - city3CoorY)),2) <= pow(CGFloat(ringSize),2) - pow(CGFloat(abs(coordinatesTouch.x - city3CoorX)),2) {
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "coordinatesWrong3"), object: nil)
-                    goTouch = false
-                    effectMovePointsLabel(text: "0",x: city3CoorX, y: city3CoorY)
+                    if pow(CGFloat(abs(coordinatesTouch.x - city2CoorX)),2) <= pow(CGFloat(ringSize),2) - pow(CGFloat(abs(coordinatesTouch.y - city2CoorY)),2) && pow(CGFloat(abs(coordinatesTouch.y - city2CoorY)),2) <= pow(CGFloat(ringSize),2) - pow(CGFloat(abs(coordinatesTouch.x - city2CoorX)),2) {
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "coordinatesWrong2"), object: nil)
+                        goTouch = false
+                        effectMovePointsLabel(text: "0",x: city2CoorX, y: city2CoorY)
+                    } else {
+                        if pow(CGFloat(abs(coordinatesTouch.x - city3CoorX)),2) <= pow(CGFloat(ringSize),2) - pow(CGFloat(abs(coordinatesTouch.y - city3CoorY)),2) && pow(CGFloat(abs(coordinatesTouch.y - city3CoorY)),2) <= pow(CGFloat(ringSize),2) - pow(CGFloat(abs(coordinatesTouch.x - city3CoorX)),2) {
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "coordinatesWrong3"), object: nil)
+                            goTouch = false
+                            effectMovePointsLabel(text: "0",x: city3CoorX, y: city3CoorY)
+                        }
+                    }
                 }
                 }
-                }
-//                print(coordinatesTouch)
-            }
             } else {
                 if goTouch {
-                    print(cityCoorX)
-                    print(cityCoorY)
-                    
-                    
-                    
-                    
-                }
-                
+                    clearCoordinates = touch.location(in: blurView)
+                    let halfFrameBlur = blurView.frame.height / 2
+                    let halfFrameMap = mapImage.frame.height / 2
+                    print(mapImage.image!.size)
+                    coordinatesTouch = touch.location(in: mapViewTouch)
+                    coordinatesTouch.y = mapViewTouch.frame.height - self.coordinatesTouch.y
+                    radiusToch = CGFloat(sqrtf(Float((pow(CGFloat(abs(coordinatesTouch.x - cityCoorX)),2)) + pow(CGFloat(abs(coordinatesTouch.y - cityCoorY)),2))))
+                    if clearCoordinates.y >= blurView.frame.height - halfFrameBlur - halfFrameMap && clearCoordinates.y <= halfFrameBlur + halfFrameMap {
+                        if radiusToch >= 4 * ringSize {
+                            resultTouchWrong = true
+                            effectMovePointsLabel(text: "0", x: coordinatesTouch.x, y: coordinatesTouch.y)
+                            } else {
+                            resultTouchWrong = false
+                            if radiusToch <= 0.75 * ringSize {
+                                effectMovePointsLabel(text: "50", x: coordinatesTouch.x, y: coordinatesTouch.y)
+                                } else {
+                                if radiusToch > 0.75 * ringSize && radiusToch <= 1.075 * ringSize {
+                                    effectMovePointsLabel(text: "45", x: coordinatesTouch.x, y: coordinatesTouch.y)
+                                    } else {
+                                    if radiusToch > 1.075 * ringSize && radiusToch <= 1.4 * ringSize {
+                                        effectMovePointsLabel(text: "40", x: coordinatesTouch.x, y: coordinatesTouch.y)
+                                        } else {
+                                        if radiusToch > 1.4 * ringSize && radiusToch <= 1.725 * ringSize {
+                                            effectMovePointsLabel(text: "35", x: coordinatesTouch.x, y: coordinatesTouch.y)
+                                            } else {
+                                            if radiusToch > 1.725 * ringSize && radiusToch <= 2.05 * ringSize {
+                                                effectMovePointsLabel(text: "30", x: coordinatesTouch.x, y: coordinatesTouch.y)
+                                                } else {
+                                                if radiusToch > 2.05 * ringSize && radiusToch <= 2.375 * ringSize {
+                                                    effectMovePointsLabel(text: "25", x: coordinatesTouch.x, y: coordinatesTouch.y)
+                                                    } else {
+                                                    if radiusToch > 2.375 * ringSize && radiusToch <= 2.7 * ringSize {
+                                                        effectMovePointsLabel(text: "20", x: coordinatesTouch.x, y: coordinatesTouch.y)
+                                                        } else {
+                                                        if radiusToch > 2.7 * ringSize && radiusToch <= 3.025 * ringSize {
+                                                            effectMovePointsLabel(text: "15", x: coordinatesTouch.x, y: coordinatesTouch.y)
+                                                            } else {
+                                                            if radiusToch > 3.025 * ringSize && radiusToch <= 3.35 * ringSize {
+                                                                effectMovePointsLabel(text: "10", x: coordinatesTouch.x, y: coordinatesTouch.y)
+                                                                } else {
+                                                                if radiusToch > 3.35 * ringSize && radiusToch <= 3.675 * ringSize {
+                                                                    effectMovePointsLabel(text: "5", x: coordinatesTouch.x, y: coordinatesTouch.y)
+                                                                    } else {
+                                                                    if radiusToch > 3.675 * ringSize && radiusToch < 4.0 * ringSize {
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "drawAndScaleCircle"), object: nil)
+                        goTouch = false
+                 }
             }
         }
-    }
+   }
 }
+}
+
+
+
 

@@ -23,6 +23,9 @@ class Map: SKView {
     let ringWrong = SKSpriteNode(imageNamed: "ringRed.png")
     let ringRight = SKSpriteNode(imageNamed: "ringGreen.png")
     var delta = CGFloat()
+    deinit {
+        print("deinitSKVMapVCM")
+    }
     override func didMoveToSuperview() {
         let scene = SKScene(size: self.frame.size)
         scene.backgroundColor = .clear
@@ -30,13 +33,14 @@ class Map: SKView {
         self.allowsTransparency = true
         delta = ((scene.frame.maxY - scene.frame.minY) - ((scene.frame.maxX - scene.frame.minX) * 1.4621578)) / 2
         let uDRingSize = (scene.frame.maxX - scene.frame.minX) * 0.04
-        UserDefaults.standard.set(uDRingSize, forKey: "ringSize")
+        ringSize = uDRingSize * 1.5
         NotificationCenter.default.addObserver(self, selector: #selector(addCitys), name: NSNotification.Name(rawValue: "addCitys"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(coorCityHard), name: NSNotification.Name(rawValue: "coorCityHard"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(resetCitys), name: NSNotification.Name(rawValue: "resetCitys"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(coordinatesRight), name: NSNotification.Name(rawValue: "coordinatesRight"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(coordinatesWrong2), name: NSNotification.Name(rawValue: "coordinatesWrong2"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(coordinatesWrong3), name: NSNotification.Name(rawValue: "coordinatesWrong3"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(drawAndScaleCircle), name: NSNotification.Name(rawValue: "drawAndScaleCircle"), object: nil)
     }
     @objc func addCitys(){
         ringPosition(name: ring, x: cityX, y: cityY, pulseOn: true, post: true, city:"city")
@@ -45,10 +49,27 @@ class Map: SKView {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "addCity"), object: nil)
     }
     @objc func coorCityHard(){
-        ring.position = CGPoint(x: (scene!.frame.maxX - scene!.frame.minX) / cityX, y: (((scene!.frame.maxY - delta) - (scene!.frame.minY + delta)) / cityY) + delta)
-        cityCoorX = ring.position.x
-        cityCoorY = ring.position.y
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "coorCityHard"), object: nil)
+        ringRight.size = CGSize(width: (scene!.frame.maxX - scene!.frame.minX) * 0.04, height: (scene!.frame.maxX - scene!.frame.minX) * 0.04)
+        ringRight.position = CGPoint(x: (scene!.frame.maxX - scene!.frame.minX) / cityX, y: (((scene!.frame.maxY - delta) - (scene!.frame.minY + delta)) / cityY) + delta)
+        cityCoorX = ringRight.position.x
+        cityCoorY = ringRight.position.y
+    }
+    @objc func drawAndScaleCircle(){
+        let circle = SKShapeNode(circleOfRadius: radiusToch)
+        circle.position = ringRight.position
+        if resultTouchWrong {
+            UIDevice.vibrate()
+            circle.fillColor = UIColor.init(red: 1.0, green: 0.0, blue: 0.0, alpha: 0.1)
+            circle.strokeColor = UIColor.red
+        } else {
+            circle.fillColor = UIColor.init(red: 0.0, green: 1.0, blue: 0.0, alpha: 0.1)
+            circle.strokeColor = UIColor.green
+        }
+        circle.lineWidth = 1
+        scene!.addChild(self.ringRight)
+        scene!.addChild(circle)
+        let scaleCircle = SKAction.scale(to: 0.01, duration: 2.0)
+        circle.run(scaleCircle)
     }
     
     @objc func resetCitys(){

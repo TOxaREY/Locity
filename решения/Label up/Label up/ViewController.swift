@@ -86,6 +86,13 @@ lab()
 }
 }
             
-            
+//func drawCircle(x:CGFloat,y:CGFloat,r:CGFloat){
+//    let circlePath = UIBezierPath(arcCenter: CGPoint(x: x,y: mapViewTouch.frame.height - y), radius: r, startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
+//    let shapeLayer = CAShapeLayer()
+//    shapeLayer.path = circlePath.cgPath
+//    shapeLayer.fillColor = UIColor.clear.cgColor
+//    shapeLayer.strokeColor = UIColor.red.cgColor
+//    shapeLayer.lineWidth = 1.0
+//    mapViewTouch.layer.addSublayer(shapeLayer)
             
 
