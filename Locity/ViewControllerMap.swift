@@ -52,7 +52,20 @@ class ViewControllerMap: UIViewController {
     var buttonNextRound = Bool()
     var enableButton = Bool()
     var transCompleteTrue = Bool()
-    
+    var bottomSupportFontSize = CGFloat()
+    var arrow = String()
+  
+    @IBOutlet weak var catalogImage: UIImageView!
+    @IBAction func catalogButton(_ sender: Any) {
+        catalogButtonOutlet.isEnabled = false
+        self.catalogImage.removeAnimation()
+        self.mapImage.isHidden = true
+        self.mapViewTouch.isHidden = true
+        self.mapCatalogView.isHidden = false
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addMapAndCities"), object: nil)
+    }
+    @IBOutlet weak var catalogButtonOutlet: UIButton!
+    @IBOutlet weak var mapCatalogView: MapCatalogView!
     @IBOutlet weak var pointsTouchLabel: UILabel!
     @IBOutlet weak var mapViewTouch: Map!
     @IBOutlet weak var mapImage: UIImageView!
@@ -68,20 +81,21 @@ class ViewControllerMap: UIViewController {
     @IBOutlet weak var blurView: UIView!
     @IBOutlet weak var roundCityLabel: UILabel!
     @IBAction func homeButton(_ sender: Any) {
-        print("push")
         if buttonNextRound && round == 5 {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "resetMapAndCities"), object: nil)
             print("list")
             } else {
             if buttonNextRound {
                 round += 1
-                print("next")
                 print(points)
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "resetMapAndCities"), object: nil)
                 let appDel = UIApplication.shared.delegate as! AppDelegate
                 let sB: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let newVC = sB.instantiateViewController(withIdentifier: "VCC")
                 appDel.window?.rootViewController = newVC
                 appDel.window?.makeKeyAndVisible()
             } else {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "resetMapAndCities"), object: nil)
                 diff = ""
                 round = 1
                 points = "0"
@@ -110,11 +124,14 @@ class ViewControllerMap: UIViewController {
                 fS -= 0.5
                 checkSize(fS: fS)
             } else {
+                labelName.text = ""
                 minFs = fS
             }
         }
         checkSize(fS: fSize)
-
+        if labelName == bottomSupport {
+            bottomSupportFontSize = minFs
+        }
         return minFs
     }
     
@@ -168,59 +185,123 @@ class ViewControllerMap: UIViewController {
     func effectMovePointsLabel(text:String,x:CGFloat,y:CGFloat){
         let coordinateTouchX = x
         let coordinateTouchY = blurView.frame.height - (y + roundLabel.frame.height)
-        if coordinateTouchX <= mapViewTouch.frame.width / 2 {
-            pointsTouchLabel.center.x = coordinateTouchX + ringSize * 1.2
-            pointsTouchLabel.center.y = coordinateTouchY - ringSize * 1.2
+        if arrow == "U" {
+            if coordinateTouchX <= mapViewTouch.frame.width / 2 {
+                pointsTouchLabel.center.x = coordinateTouchX + ringSize * 1.2
+                pointsTouchLabel.center.y = coordinateTouchY - ringSize * 1.2
+            } else {
+                pointsTouchLabel.center.x = coordinateTouchX - ringSize * 1.2
+                pointsTouchLabel.center.y = coordinateTouchY - ringSize * 1.2
+            }
         } else {
-            pointsTouchLabel.center.x = coordinateTouchX - ringSize * 1.2
-            pointsTouchLabel.center.y = coordinateTouchY - ringSize * 1.2
+            if coordinateTouchY <= blurView.frame.height / 2 {
+                pointsTouchLabel.center.x = coordinateTouchX - ringSize * 1.2
+                pointsTouchLabel.center.y = coordinateTouchY + ringSize * 1.2
+            } else {
+                pointsTouchLabel.center.x = coordinateTouchX - ringSize * 1.2
+                pointsTouchLabel.center.y = coordinateTouchY - ringSize * 1.2
+            }
         }
         pointsTouchLabel.text = text
-        pointsTouchLabel.isHidden = false
         pointsTouchLabel.backgroundColor = .clear
         var bounds = pointsTouchLabel.bounds
         bounds.size = pointsTouchLabel.intrinsicContentSize
         pointsTouchLabel.bounds = bounds
-        pointsTouchLabel.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        var scale2 = CGAffineTransform()
+        var rotation2 = CGAffineTransform()
+        if arrow == "L" {
+            let scale = CGAffineTransform(scaleX: 0.1, y: 0.1)
+            let rotation = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
+            scale2 = CGAffineTransform(scaleX: 1, y: 1)
+            rotation2 = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
+            pointsTouchLabel.transform = scale.concatenating(rotation)
+        } else {
+            pointsTouchLabel.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        }
+        pointsTouchLabel.isHidden = false
         UIView.animate(withDuration: 1, animations: {
-            self.pointsTouchLabel.transform = .identity
+            if self.arrow == "L" {
+                self.pointsTouchLabel.transform = scale2.concatenating(rotation2)
+            } else {
+                self.pointsTouchLabel.transform = .identity
+            }
         }, completion: { done in
+            if self.arrow == "L" {
+                UIView.animate(withDuration: 1, animations: {
+                    self.pointsTouchLabel.transform = .identity
+                }, completion: { done in
+                    self.pointsLabelFunc()
+                })
+            } else {
+                self.pointsLabelFunc()
+            }
+        })
+    }
+    func pointsLabelFunc() {
         var finalCenter = CGPoint.zero
-            finalCenter.x = self.pointsLabel.center.x
-            finalCenter.y = self.pointsLabel.center.y
-            let containerCenter = self.pointsTouchLabel.center
+        finalCenter.x = self.pointsLabel.center.x
+        finalCenter.y = self.pointsLabel.center.y
+        let containerCenter = self.pointsTouchLabel.center
         let deltaX = finalCenter.x - containerCenter.x
         let deltaY = finalCenter.y - containerCenter.y
-            let scale = CGAffineTransform(scaleX: 0.5, y: 0.5)
+        let scale3 = CGAffineTransform(scaleX: 0.5, y: 0.5)
         let translation = CGAffineTransform(translationX: deltaX, y: deltaY)
+        self.pointsLabelSupport.isHidden = false
         UIView.animate(withDuration: 2, animations: {
-            self.pointsTouchLabel.transform = scale.concatenating(translation)
+            self.pointsTouchLabel.transform = scale3.concatenating(translation)
         }, completion: { done in
-            self.pointsLabelSupport.isHidden = false
             self.pointsLabel.text = String(Int(self.pointsTouchLabel.text!)! + Int(self.pointsLabel.text!)!)
             self.pointsTouchLabel.isHidden = true
             self.pointsTouchLabel.text = ""
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                UIView.transition(with: self.pointsLabel, duration: 2.0, options: .transitionFlipFromLeft, animations: nil, completion: { done in
+        })
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            UIView.transition(with: self.pointsLabel, duration: 2.0, options: .transitionFlipFromLeft, animations: nil, completion: { done in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     if self.roundCity != 3 {
-                            self.roundCity += 1
-                            self.startVCM()
-                            self.startLabelVCM()
-                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "resetCitys"), object: nil)
+                        self.roundCity += 1
+                        self.startVCM()
+                        self.startLabelVCM()
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "resetCitys"), object: nil)
                     } else {
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "resetCitys"), object: nil)
-                        self.homeImage.image = UIImage(named: "arrowFinal.png")
-                        self.buttonNextRound = true
+                        self.topSupport.font = self.topSupport.font.withSize(self.bottomSupportFontSize)
                         self.homeImageSupport.isHidden = false
-                        self.homeImage.pulsateForever()
-                        points = self.pointsLabel.text!
+                        UIView.animate(withDuration: 0.5, animations: {
+                            self.bottomSupport.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+                            self.topSupport.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+                            self.pointsLabel.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+                            self.homeImage.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+                        }, completion: { done in
+                            self.bottomSupport.isHidden = true
+                            self.topSupport.isHidden = true
+                            self.pointsLabel.isHidden = true
+                            self.homeImage.isHidden = true
+                            self.topSupport.text = self.bottomSupport.text
+                            self.topSupport.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+                            self.catalogImage.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+                            self.homeImage.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+                            self.homeImage.image = UIImage(named: "arrowFinal.png")
+                            self.topSupport.isHidden = false
+                            self.catalogImage.isHidden = false
+                            self.homeImage.isHidden = false
+                            UIView.animate(withDuration: 0.5, animations: {
+                                self.topSupport.transform = .identity
+                                self.catalogImage.transform = .identity
+                                self.homeImage.transform = .identity
+                            }, completion: { done in
+                                self.catalogButtonOutlet.isEnabled = true
+                                self.catalogButtonOutlet.isHidden = false
+                                self.catalogImage.pulsateForever(dur: 1, val: 0.75)
+                                self.buttonNextRound = true
+                                self.homeImage.pulsateForever(dur: 0.5, val: 0.75)
+                                points = self.pointsLabel.text!
+                            })
+                        })
                     }
+                }
             })
-            }
-          })
-        })
+        }
     }
-
     @objc func transComplete(){
         transCompleteTrue = true
         roundLabel.text = "\(round)/5"
@@ -229,6 +310,8 @@ class ViewControllerMap: UIViewController {
         roundCityLabel.isHidden = false
         pointsLabel.isHidden = false
         homeImage.isHidden = false
+        topSupport.text = cityLabel.text
+        bottomSupport.text = countryLabel.text
         bottomSupport.isHidden = false
         topSupport.isHidden = false
         countryLabel.isHidden = true
@@ -322,18 +405,15 @@ class ViewControllerMap: UIViewController {
                 if rand == 0 {
                     rand = random
                     city = dic[random]!
-                    print("c: \(city)")
                     coordinate(cityName: city, cityNumder: "c1")
                 } else {
                     if rand2 == 0 {
                         rand2 = random
                         city = dic[random]!
-                        print("c: \(city)")
                         coordinate(cityName: city, cityNumder: "c1")
                     } else {
                         city = dic[random]!
                         rand3 = random
-                        print("c: \(city)")
                         coordinate(cityName: city, cityNumder: "c1")
                     }
             }
@@ -347,20 +427,17 @@ class ViewControllerMap: UIViewController {
             if rand == 0 {
                 rand = random
                 city = dic[random]!
-                print("c: \(city)")
                 coordinate(cityName: city, cityNumder: "c1")
                 randomFuncCity(dic: dic)
             } else {
                 if rand2 == 0 {
                     rand2 = random
                     city = dic[random]!
-                    print("c: \(city)")
                     coordinate(cityName: city, cityNumder: "c1")
                     randomFuncCity(dic: dic)
                 } else {
                     city = dic[random]!
                     rand3 = random
-                    print("c: \(city)")
                     coordinate(cityName: city, cityNumder: "c1")
                     randomFuncCity(dic: dic)
                 }
@@ -374,13 +451,11 @@ class ViewControllerMap: UIViewController {
         } else {
             if randSupport == 0 {
                 city2 = dic[random]!
-                print("c2: \(city2)")
                 coordinate(cityName: city2, cityNumder: "c2")
                 randSupport = random
                 randomFuncCity(dic: dic)
             } else {
                 city3 = dic[random]!
-                print("c3: \(city3)")
                 coordinate(cityName: city3, cityNumder: "c3")
                 randSupport = 0
             }
@@ -397,11 +472,9 @@ class ViewControllerMap: UIViewController {
     }
     @objc func enableVCM(){
         startLabelVCM()
-////
         timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.deinitComplete), userInfo: nil, repeats: true)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "enableVCM"), object: nil)
     }
-////
     @objc func deinitComplete(){
         if deinitSKVWheelVCC && deinitSKVFTVCC && deinitSKVFBVCC && deinitSKVAnchorVCC && deinitSKVIsoViewRemoverVCC && deinitVCC && deinitVCS && transCompleteTrue {
             timer.invalidate()
@@ -410,7 +483,6 @@ class ViewControllerMap: UIViewController {
             enableButton = true
             print("enableButton")
             NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "deinitComplete"), object: nil)
-            
         }
     }
     func startVCM(){
@@ -418,7 +490,13 @@ class ViewControllerMap: UIViewController {
         homeButtonOutlet.isEnabled = false
         transCompleteTrue = false
         homeImage.image = UIImage(named: "home.png")
+        homeImage.removeAnimation()
         homeImage.isHidden = true
+        mapCatalogView.isHidden = true
+        catalogButtonOutlet.isHidden = true
+        catalogButtonOutlet.isEnabled = false
+        catalogImage.image = UIImage(named: "catalog.png")
+        catalogImage.isHidden = true
         topSupport.isHidden = true
         bottomSupport.isHidden = true
         bottomFlapLabel.isHidden = true
@@ -455,9 +533,7 @@ class ViewControllerMap: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //
-//        round = 5
         idSelectCountry = 20
-//        diff = "H"
         //
         do {
             for idSelect in try base.database.prepare(base.countriesTable.select(base.country).filter(base.id == idSelectCountry)){
@@ -482,7 +558,14 @@ class ViewControllerMap: UIViewController {
         } catch {
             print(error)
         }
-        
+        do {
+            for arr in try base.database.prepare(base.countriesTable.select(base.arrow).filter(base.id == idSelectCountry)){
+                arrow = arr[base.arrow]
+            }
+        } catch {
+            print(error)
+        }
+        print(arrow)
         pointsLabel.text = points
         startVCM()
     
@@ -524,8 +607,7 @@ class ViewControllerMap: UIViewController {
                 if goTouch {
                     clearCoordinates = touch.location(in: blurView)
                     let halfFrameBlur = blurView.frame.height / 2
-                    let halfFrameMap = mapImage.frame.height / 2
-                    print(mapImage.image!.size)
+                    let halfFrameMap = mapImage.frame.width * 1.4621578 / 2
                     coordinatesTouch = touch.location(in: mapViewTouch)
                     coordinatesTouch.y = mapViewTouch.frame.height - self.coordinatesTouch.y
                     radiusToch = CGFloat(sqrtf(Float((pow(CGFloat(abs(coordinatesTouch.x - cityCoorX)),2)) + pow(CGFloat(abs(coordinatesTouch.y - cityCoorY)),2))))

@@ -9,7 +9,10 @@
 import Foundation
 import SpriteKit
 
-let π = CGFloat(Double.pi)
+
+var wheelSize = CGFloat()
+var randomWheel = Double()
+var resultContinentWheel = Int()
 
 class Wheel: SKView {
     let wheel = SKSpriteNode(imageNamed: "wheel.png")
@@ -26,7 +29,7 @@ class Wheel: SKView {
         self.presentScene(scene)
         self.allowsTransparency = true
         wheel.size = CGSize(width: 9 * (scene.frame.maxX - scene.frame.minX) / 10, height: 9 * (scene.frame.maxX - scene.frame.minX) / 10)
-        UserDefaults.standard.set(wheel.size.height, forKey: "wheelSize")
+        wheelSize = wheel.size.height
         wheel.position = CGPoint(x: (scene.frame.maxX - scene.frame.minX) / 2, y: (scene.frame.maxY - scene.frame.minY) / 2)
         wheel.zRotation = 0
         NotificationCenter.default.addObserver(self, selector: #selector(addWheel), name: NSNotification.Name(rawValue: "addWheel"), object: nil)
@@ -53,7 +56,7 @@ class Wheel: SKView {
             if (random >= 7.94 && random <= 8.83) || (random >= 16.73 && random <= 17.62) || (random >= 21.13 && random <= 22.02) || (random >= 25.53 && random <= 26.42) || (random >= 34.33 && random <= 35.22) || (random >= 43.12 && random <= 44.01) || (random >= 51.92 && random <= 52.81) || (random >= 56.32 && random <= 57.21) {
                 randomFunc()
             } else {
-                UserDefaults.standard.set(duration(random: Double(random)), forKey: "randomWheel")
+                randomWheel = duration(random: Double(random))
                 body.angularVelocity = -random
                 body.angularDamping = 0.7
                 wheel.physicsBody = body
@@ -70,12 +73,12 @@ class Wheel: SKView {
         if (wheel.physicsBody!.isResting) {
             timer.invalidate()
             switch wheel.zRotation {
-            case ((-segment)..<0): UserDefaults.standard.set(5, forKey: "resultContinent")
-            case ((-2 * segment)..<(-segment)): UserDefaults.standard.set(4, forKey: "resultContinent")
-            case (-π..<(-2 * segment)): UserDefaults.standard.set(3, forKey: "resultContinent")
-            case ((2 * segment)..<π): UserDefaults.standard.set(3, forKey: "resultContinent")
-            case (segment..<(2 * segment)): UserDefaults.standard.set(2, forKey: "resultContinent")
-            case (0..<segment): UserDefaults.standard.set(1, forKey: "resultContinent")
+            case ((-segment)..<0): resultContinentWheel = 5
+            case ((-2 * segment)..<(-segment)): resultContinentWheel = 4
+            case (-π..<(-2 * segment)): resultContinentWheel = 3
+            case ((2 * segment)..<π): resultContinentWheel = 3
+            case (segment..<(2 * segment)): resultContinentWheel = 2
+            case (0..<segment): resultContinentWheel = 1
             default: break
             }
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "resultContinent"), object: nil)

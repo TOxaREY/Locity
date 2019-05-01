@@ -25,6 +25,7 @@ var deinitVCS = Bool()
 var points = "0"
 let base = Base()
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -59,7 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 }}}}}}}
 ////
         print(language)
-        launchScreenTimer()
+//        launchScreenTimer()
         
         return true
     }

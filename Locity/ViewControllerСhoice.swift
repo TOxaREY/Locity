@@ -36,11 +36,11 @@ extension CGFloat {
 ////
 ////Pulsate label & image
 extension UILabel {
-    func pulsate1Count() {
+    func pulsate1Count(dur:Double,val:Double) {
         let pulse = CABasicAnimation(keyPath: "transform.scale")
-        pulse.duration = 0.5
-        pulse.fromValue = 0.65
-        pulse.toValue = 1
+        pulse.duration = dur
+        pulse.fromValue = 1
+        pulse.toValue = val
         pulse.autoreverses = true
         pulse.repeatCount = 1
         pulse.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
@@ -48,15 +48,18 @@ extension UILabel {
     }
 }
 extension UIImageView {
-    func pulsateForever() {
+    func pulsateForever(dur:Double,val:Double) {
         let pulse = CABasicAnimation(keyPath: "transform.scale")
-        pulse.duration = 0.5
-        pulse.fromValue = 0.65
-        pulse.toValue = 1
+        pulse.duration = dur
+        pulse.fromValue = 1
+        pulse.toValue = val
         pulse.autoreverses = true
         pulse.repeatCount = .greatestFiniteMagnitude
         pulse.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         layer.add(pulse, forKey: nil)
+    }
+    func removeAnimation() {
+        layer.removeAllAnimations()
     }
 }
 ////
@@ -71,6 +74,7 @@ class ViewControllerChoice: UIViewController {
     let fontSize:CGFloat = 60
     let fontSize2:CGFloat = 40
     let fontSize3:CGFloat = 100
+    var resultCountryName = String()
 
     @IBOutlet weak var wheelView: Wheel!
     @IBOutlet weak var flapBottomView: FlapBottom!
@@ -96,7 +100,7 @@ class ViewControllerChoice: UIViewController {
             bottomButton.isHidden = true
             topButton.isEnabled = false
             topButton.isHidden = true
-            topLabel.pulsate1Count()
+            topLabel.pulsate1Count(dur: 0.45, val: 0.75)
             bottomLabel.isHidden = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) {
                 self.topLabel.isHidden = true
@@ -115,7 +119,7 @@ class ViewControllerChoice: UIViewController {
             topButton.isHidden = true
             bottomButton.isEnabled = false
             bottomButton.isHidden = true
-            bottomLabel.pulsate1Count()
+            bottomLabel.pulsate1Count(dur: 0.45, val: 0.75)
             topLabel.isHidden = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) {
                 self.bottomLabel.isHidden = true
@@ -134,7 +138,6 @@ class ViewControllerChoice: UIViewController {
         isoHead.isHidden = false
     }
     func addStartElement(){
-        print("addStartElement")
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "upFlap"), object: nil)
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "downFlap"), object: nil)
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addWheel"), object: nil)
@@ -181,7 +184,7 @@ class ViewControllerChoice: UIViewController {
     }
     @objc func resultContinent() {
         do {
-            for continent in try base.database.prepare(base.continentsTable.select(base.continent).filter(base.id == UserDefaults.standard.integer(forKey: "resultContinent"))) {
+            for continent in try base.database.prepare(base.continentsTable.select(base.continent).filter(base.id == resultContinentWheel)) {
                 resultContinentLabel.text = continent[base.continent].uppercased()
             }
         } catch {
@@ -217,7 +220,7 @@ class ViewControllerChoice: UIViewController {
     @objc func resultCountry() {
         resultCountryLabel.isHidden = false
         resultCountryLabel.backgroundColor = .white
-        resultCountryLabel.text = UserDefaults.standard.string(forKey: "resultCountry")?.uppercased()
+        resultCountryLabel.text = resultCountryName.uppercased()
         resultCountryLabel.layer.borderColor = UIColor.black.cgColor
         resultCountryLabel.layer.borderWidth = 2.0
         var bounds = resultCountryLabel.bounds
@@ -279,7 +282,7 @@ class ViewControllerChoice: UIViewController {
         rand = 0
         do {
             var c = 1
-            for country in try base.database.prepare(base.countriesTable.select(base.iso).filter(base.id_continent == UserDefaults.standard.integer(forKey: "resultContinent"))) {
+            for country in try base.database.prepare(base.countriesTable.select(base.iso).filter(base.id_continent == resultContinentWheel)) {
                 dictionaryCountries[c] = country[base.iso]
                 c += 1
             }
@@ -307,8 +310,7 @@ class ViewControllerChoice: UIViewController {
                 } else {
                     do {
                         for idSelect in try base.database.prepare(base.countriesTable.select(base.id, base.country).where(base.iso == self.dictionaryCountries[random]!)){
-                            print("id: \(idSelect[base.id]), \(language): \(idSelect[base.country])")
-                            UserDefaults.standard.set(idSelect[base.country], forKey: "resultCountry")
+                            self.resultCountryName = idSelect[base.country]
                             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "resultCountry"), object: nil)
                             idSelectCountry = idSelect[base.id]
                             print(idSelectCountry)
@@ -343,7 +345,6 @@ class ViewControllerChoice: UIViewController {
     }
     
     @objc func enableAddStartElement(){
-        print("enableAddStart")
         addStartElement()
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "enableAddStartElement"), object: nil)
     }
@@ -385,13 +386,13 @@ class ViewControllerChoice: UIViewController {
     }
     override func updateViewConstraints() {
         super.updateViewConstraints()
-        let halfWheelSize = CGFloat(UserDefaults.standard.float(forKey: "wheelSize") / 2)
+        let halfWheelSize = wheelSize / 2
         var proportWheelSize = CGFloat()
         switch screenHeight {
         case 896,812:
-            proportWheelSize = CGFloat(UserDefaults.standard.float(forKey: "wheelSize") * 0.08 + 7)
+            proportWheelSize = wheelSize * 0.08 + 7
         default:
-            proportWheelSize = CGFloat(UserDefaults.standard.float(forKey: "wheelSize") * 0.08)
+            proportWheelSize = wheelSize * 0.08
         }
         let proportWheelSize2 = CGFloat(proportWheelSize + (flapTopView.frame.height - halfWheelSize) / 2)
         self.resultView.translatesAutoresizingMaskIntoConstraints = false

@@ -12,10 +12,20 @@ import Foundation
 
 class ViewControllerStart: UIViewController {
     
-    @IBOutlet weak var arrowStartView: ArrowStart!
-    
-    
+
     var vcActiv = true
+    
+    
+    @IBAction func butCatalog(_ sender: Any) {
+        vcActiv = false
+        let appDel = UIApplication.shared.delegate as! AppDelegate
+        let sB: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newVC = sB.instantiateViewController(withIdentifier: "VCCat")
+        appDel.window?.rootViewController = newVC
+        appDel.window?.makeKeyAndVisible()
+    }
+
+    @IBOutlet weak var butCatalog: UIButton!
     @IBOutlet weak var but: UIButton!
     @IBAction func but(_ sender: Any) {
         vcActiv = false
@@ -124,6 +134,7 @@ class ViewControllerStart: UIViewController {
         self.flipUpDown(viewName: self.viewDownRose, picName: "compass")
 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "moveArrowStart"), object: nil)
+    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "moveCatalogStart"), object: nil)
         }
             }
                 }
@@ -196,6 +207,7 @@ DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 ////Enable button countinue
     @objc func enableButton(){
         self.but.isEnabled = true
+        self.butCatalog.isEnabled = true
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "enableButton"), object: nil)
     }
 ////
@@ -206,6 +218,7 @@ DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
     override func viewDidLoad() {
         super.viewDidLoad()
         but.isEnabled = false
+        butCatalog.isEnabled = false
         allFlip(time: 0.25)
         allFlipUpDown(time: 0.125)
         NotificationCenter.default.addObserver(self, selector: #selector(enableButton), name: NSNotification.Name(rawValue: "enableButton"), object: nil)

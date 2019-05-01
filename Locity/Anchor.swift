@@ -53,7 +53,7 @@ class Anchor: SKView {
     @objc func downAnchor(){
         scene!.removeAllChildren()
         scene!.addChild(anchor)
-        anchor.run(SKAction.moveBy(x: 0, y: -(scene!.frame.maxY - scene!.frame.minY) + indentAnchorDown, duration: UserDefaults.standard.double(forKey: "randomWheel")))
+        anchor.run(SKAction.moveBy(x: 0, y: -(scene!.frame.maxY - scene!.frame.minY) + indentAnchorDown, duration: randomWheel))
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "downAnchor"), object: nil)
     }
     @objc func upAnchor(){

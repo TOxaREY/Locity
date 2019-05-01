@@ -22,15 +22,16 @@ class Base {
     let country = Expression<String>(language)
     let iso = Expression<String>("iso")
     let map = Expression<String>("map")
-    let level = Expression<String>("level")
+    let arrow = Expression<String>("arrow")
     let id_continent = Expression<Int>("id_continent")
     
     let citiesTable = Table("Cities")
     let city = Expression<String>(language)
     let x = Expression<Double>("x")
     let y = Expression<Double>("y")
+    let capital = Expression<String>("capital")
     let id_country = Expression<Int>("id_country")
-
+    
     init() {
         do {
             let dbPath = Bundle.main.path(forResource: "world", ofType: "db")!

@@ -50,12 +50,25 @@ lab()
 //        }
 //    }
     func lab() {
-    label1.transform = CGAffineTransform(scaleX: 0, y: 1)
-    UIView.animate(withDuration: 3.0, animations: {
-        self.label1.transform = .identity
-    }, completion: { done in
-    print("ddddddd")
-    })
+//    label1.transform = CGAffineTransform(scaleX: 0, y: 1)
+//    UIView.animate(withDuration: 3.0, animations: {
+//        self.label1.transform = .identity
+//    }, completion: { done in
+//    print("ddddddd")
+//    })
+        label1.text = "dwfwgwgwgwg"
+//        label1.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
+//        label1.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        let scale = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        let translation = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
+        let scale2 = CGAffineTransform(scaleX: 1, y: 1)
+        let translation2 = CGAffineTransform(rotationAngle: 0)
+        label1.transform = scale.concatenating(translation)
+        UIView.animate(withDuration: 5.0, animations: {
+            self.label1.transform = scale2.concatenating(translation2)
+        }, completion: { done in
+            print("ddddddd")
+        })
     }
     
     
