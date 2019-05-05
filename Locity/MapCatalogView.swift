@@ -55,14 +55,16 @@ class MapCatalogView: SKView {
     }
     override func didMoveToSuperview() {
         let scene = SKScene(size: self.frame.size)
-        scene.backgroundColor = UIColor(hex: "#d1b38eff")!
+        scene.backgroundColor = .clear
         self.presentScene(scene)
         self.allowsTransparency = true
         delta = ((scene.frame.maxY - scene.frame.minY) - ((scene.frame.maxX - scene.frame.minX) * 1.4621578)) / 2
         NotificationCenter.default.addObserver(self, selector: #selector(addMapAndCities), name: NSNotification.Name(rawValue: "addMapAndCities"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(addCitiesCatalog), name: NSNotification.Name(rawValue: "addCitiesCatalog"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(resetMapAndCities), name: NSNotification.Name(rawValue: "resetMapAndCities"), object: nil)
     }
     @objc func addMapAndCities(){
+        scene!.backgroundColor = UIColor(hex: "#d1b38eff")!
         do {
             for mapImage in try base.database.prepare(base.countriesTable.select(base.map).filter(base.id == idSelectCountry)){
                 map = SKSpriteNode(imageNamed: mapImage[base.map])
@@ -90,9 +92,26 @@ class MapCatalogView: SKView {
         addCityToMap(name: ring4,cap: false, number: 4)
         addCityToMap(name: ring5,cap: false, number: 5)
     }
+    @objc func addCitiesCatalog(){
+        do {
+            var c = 1
+            for city in try base.database.prepare(base.citiesTable.select(base.city).filter(base.id_country == idSelectCountry && base.capital == "N")){
+                dictionaryCities[c] = city[base.city]
+                c += 1
+            }
+        } catch {
+            print(error)
+        }
+        addCityToMap(name: ringC,cap: true, number: 0)
+        addCityToMap(name: ring1,cap: false, number: 1)
+        addCityToMap(name: ring2,cap: false, number: 2)
+        addCityToMap(name: ring3,cap: false, number: 3)
+        addCityToMap(name: ring4,cap: false, number: 4)
+        addCityToMap(name: ring5,cap: false, number: 5)
+    }
     @objc func resetMapAndCities(){
         scene!.removeAllChildren()
-        print("reset")
+        dictionaryCities = [:]
     }
     
     func addCityToMap(name:SKSpriteNode, cap:Bool, number:Int) {

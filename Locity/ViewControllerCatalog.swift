@@ -16,6 +16,7 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
     var pickerCountry = String()
     var pushButton = Bool()
 
+    @IBOutlet weak var buttonReturn: UIButton!
     @IBOutlet weak var okImage: UIImageView!
     @IBOutlet weak var mapView: MapCatalogView!
     @IBAction func buttonReturn(_ sender: Any) {

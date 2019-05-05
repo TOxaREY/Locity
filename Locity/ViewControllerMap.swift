@@ -59,11 +59,11 @@ class ViewControllerMap: UIViewController {
     @IBAction func catalogButton(_ sender: Any) {
         catalogButtonOutlet.isEnabled = false
         self.catalogImage.removeAnimation()
-        self.mapImage.isHidden = true
         self.mapViewTouch.isHidden = true
         self.mapCatalogView.isHidden = false
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addMapAndCities"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addCitiesCatalog"), object: nil)
     }
+    @IBOutlet weak var roundCitySupport: UILabel!
     @IBOutlet weak var catalogButtonOutlet: UIButton!
     @IBOutlet weak var mapCatalogView: MapCatalogView!
     @IBOutlet weak var pointsTouchLabel: UILabel!
@@ -266,16 +266,19 @@ class ViewControllerMap: UIViewController {
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "resetCitys"), object: nil)
                         self.topSupport.font = self.topSupport.font.withSize(self.bottomSupportFontSize)
                         self.homeImageSupport.isHidden = false
+                        self.roundCitySupport.isHidden = false
                         UIView.animate(withDuration: 0.5, animations: {
                             self.bottomSupport.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
                             self.topSupport.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
                             self.pointsLabel.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
                             self.homeImage.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+                            self.roundCityLabel.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
                         }, completion: { done in
                             self.bottomSupport.isHidden = true
                             self.topSupport.isHidden = true
                             self.pointsLabel.isHidden = true
                             self.homeImage.isHidden = true
+                            self.roundCityLabel.isHidden = true
                             self.topSupport.text = self.bottomSupport.text
                             self.topSupport.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
                             self.catalogImage.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
@@ -492,6 +495,7 @@ class ViewControllerMap: UIViewController {
         homeImage.image = UIImage(named: "home.png")
         homeImage.removeAnimation()
         homeImage.isHidden = true
+        roundCitySupport.isHidden = true
         mapCatalogView.isHidden = true
         catalogButtonOutlet.isHidden = true
         catalogButtonOutlet.isEnabled = false
