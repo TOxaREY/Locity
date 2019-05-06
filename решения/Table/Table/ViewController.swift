@@ -13,7 +13,7 @@ var diff = String()
 var points = "0008"
 
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     
     
