@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F24E8E7422833C120010C98A /* Code New Roman b.otf in Resources */ = {isa = PBXBuildFile; fileRef = F24E8E7322833C120010C98A /* Code New Roman b.otf */; };
 		F2B62515227D957900938442 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B62514227D957900938442 /* AppDelegate.swift */; };
 		F2B62517227D957A00938442 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B62516227D957A00938442 /* ViewController.swift */; };
 		F2B6251A227D957A00938442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2B62518227D957A00938442 /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F24E8E7322833C120010C98A /* Code New Roman b.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Code New Roman b.otf"; path = "../../../image/исход/Code New Roman b.otf"; sourceTree = "<group>"; };
 		F2B62511227D957900938442 /* Table.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Table.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2B62514227D957900938442 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2B62516227D957A00938442 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 			children = (
 				F2B62514227D957900938442 /* AppDelegate.swift */,
 				F2B62516227D957A00938442 /* ViewController.swift */,
+				F24E8E7322833C120010C98A /* Code New Roman b.otf */,
 				F2B62518227D957A00938442 /* Main.storyboard */,
 				F2B6251E227D957C00938442 /* Assets.xcassets */,
 				F2B62520227D957C00938442 /* LaunchScreen.storyboard */,
@@ -128,6 +131,7 @@
 				F2B62522227D957C00938442 /* LaunchScreen.storyboard in Resources */,
 				F2B6251F227D957C00938442 /* Assets.xcassets in Resources */,
 				F2B6251A227D957A00938442 /* Main.storyboard in Resources */,
+				F24E8E7422833C120010C98A /* Code New Roman b.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

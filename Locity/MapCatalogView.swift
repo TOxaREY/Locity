@@ -38,6 +38,8 @@ extension UIColor {
     }
 }
 
+    var arrowCat = String()
+
 class MapCatalogView: SKView {
     let ringC = SKSpriteNode(imageNamed: "ringBlue.png")
     let ring1 = SKSpriteNode(imageNamed: "ringGray.png")
@@ -48,7 +50,7 @@ class MapCatalogView: SKView {
     var map = SKSpriteNode()
     var delta = CGFloat()
     var dictionaryCities:Dictionary<Int,String> = [:]
-    var arrow = String()
+    
     
     deinit {
         print("deinitSKVMapCatalog")
@@ -162,14 +164,14 @@ class MapCatalogView: SKView {
         }
         do {
             for arr in try base.database.prepare(base.countriesTable.select(base.arrow).filter(base.id == idSelectCountry)){
-                arrow = arr[base.arrow]
+                arrowCat = arr[base.arrow]
             }
         } catch {
             print(error)
         }
         name.size = CGSize(width: (scene!.frame.maxX - scene!.frame.minX) * 0.04, height: (scene!.frame.maxX - scene!.frame.minX) * 0.04)
         name.position = CGPoint(x: (scene!.frame.maxX - scene!.frame.minX) / xCityCatalog, y: (((scene!.frame.maxY - delta) - (scene!.frame.minY + delta)) / yCityCatalog) + delta)
-        if arrow == "U" {
+        if arrowCat == "U" {
             if name.position.x <= scene!.frame.width / 2 {
                 if name.position.x - cityLabel.frame.size.width / 2 <= 0 {
                     cityLabel.position = CGPoint(x: 0, y: name.position.y + name.size.height)

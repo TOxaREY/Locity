@@ -63,6 +63,8 @@ class ViewControllerMap: UIViewController {
         self.mapCatalogView.isHidden = false
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addCitiesCatalog"), object: nil)
     }
+    @IBOutlet weak var northLeftImage: UIImageView!
+    @IBOutlet weak var northImage: UIImageView!
     @IBOutlet weak var roundCitySupport: UILabel!
     @IBOutlet weak var catalogButtonOutlet: UIButton!
     @IBOutlet weak var mapCatalogView: MapCatalogView!
@@ -321,6 +323,7 @@ class ViewControllerMap: UIViewController {
         cityLabel.isHidden = true
         topFlapLabel.isHidden = false
         bottomFlapLabel.isHidden = false
+        checkArrow(direct: arrow).isHidden = false
         goTouch = true
         topFlapLabel.transform = CGAffineTransform(scaleX: 0.1, y: 1)
         bottomFlapLabel.transform = CGAffineTransform(scaleX: 0.1, y: 1)
@@ -328,6 +331,7 @@ class ViewControllerMap: UIViewController {
         roundLabel.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         pointsLabel.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         homeImage.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        checkArrow(direct: arrow).transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         UIView.animate(withDuration: 0.5) {
             self.roundCityLabel.transform = .identity
             self.roundLabel.transform = .identity
@@ -335,6 +339,7 @@ class ViewControllerMap: UIViewController {
             self.homeImage.transform = .identity
             self.topFlapLabel.transform = .identity
             self.bottomFlapLabel.transform = .identity
+            self.checkArrow(direct: self.arrow).transform = .identity
         }
         if enableButton {
             homeButtonOutlet.isHidden = false
@@ -496,6 +501,8 @@ class ViewControllerMap: UIViewController {
         homeImage.removeAnimation()
         homeImage.isHidden = true
         roundCitySupport.isHidden = true
+        northImage.isHidden = true
+        northLeftImage.isHidden = true
         mapCatalogView.isHidden = true
         catalogButtonOutlet.isHidden = true
         catalogButtonOutlet.isEnabled = false
@@ -527,6 +534,15 @@ class ViewControllerMap: UIViewController {
             effectView.effect = nil
         })
         NotificationCenter.default.addObserver(self, selector: #selector(self.transComplete), name: NSNotification.Name(rawValue: "transComplete"), object: nil)
+    }
+    func checkArrow(direct:String) -> (UIImageView) {
+        var i = UIImageView()
+        if direct == "U" {
+            i = northImage
+        } else if direct == "L" {
+            i = northLeftImage
+        }
+        return i
     }
     
     deinit {
@@ -569,7 +585,6 @@ class ViewControllerMap: UIViewController {
         } catch {
             print(error)
         }
-        print(arrow)
         pointsLabel.text = points
         startVCM()
     

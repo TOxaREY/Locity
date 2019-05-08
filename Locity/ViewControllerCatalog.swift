@@ -15,19 +15,13 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
     var arrayCoutries:Array<String> = []
     var pickerCountry = String()
     var pushButton = Bool()
-    var rand = 0
-    var arrayMosaic = [UIImageView]()
-    var arrayMosaicTemp = [UIImageView]()
-    
-    @IBOutlet weak var mosaic1: UIImageView!
-    @IBOutlet weak var mosaic2: UIImageView!
-    @IBOutlet weak var mosaic3: UIImageView!
-    @IBOutlet weak var mosaic4: UIImageView!
-    @IBOutlet weak var mosaic5: UIImageView!
-    @IBOutlet weak var mosaic6: UIImageView!
-    @IBOutlet weak var mosaic7: UIImageView!
-    @IBOutlet weak var mosaic8: UIImageView!
-    @IBOutlet weak var mosaic9: UIImageView!
+    var iso = String()
+    let letters = ["A":"\u{1F1E6}","B":"\u{1F1E7}","C":"\u{1F1E8}","D":"\u{1F1E9}","E":"\u{1F1EA}","F":"\u{1F1EB}","G":"\u{1F1EC}","H":"\u{1F1ED}","I":"\u{1F1EE}","J":"\u{1F1EF}","K":"\u{1F1F0}","L":"\u{1F1F1}","M":"\u{1F1F2}","N":"\u{1F1F3}","O":"\u{1F1F4}","P":"\u{1F1F5}","Q":"\u{1F1F6}","R":"\u{1F1F7}","S":"\u{1F1F8}","T":"\u{1F1F9}","U":"\u{1F1FA}","V":"\u{1F1FB}","W":"\u{1F1FC}","X":"\u{1F1FD}","Y":"\u{1F1FE}","Z":"\u{1F1FF}"]
+    var flagString = String()
+
+    @IBOutlet weak var northImage: UIImageView!
+    @IBOutlet weak var northLeftImage: UIImageView!
+    @IBOutlet weak var isoFlag: UILabel!
     @IBOutlet weak var buttonReturn: UIButton!
     @IBOutlet weak var okImage: UIImageView!
     @IBOutlet weak var mapView: MapCatalogView!
@@ -52,6 +46,7 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
         }
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addMapAndCities"), object: nil)
         mapView.isHidden = false
+        checkArrow(direct: arrowCat).isHidden = false
     }
     @IBOutlet weak var buttonOk: UIButton!
     @IBOutlet weak var picker: UIPickerView!
@@ -78,8 +73,21 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
         return pickerLabel!
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        isoFlag.text = ""
+        flagString = ""
+        checkArrow(direct: arrowCat).isHidden = true
         let actualRow = self.picker.selectedRow(inComponent: 0)
         pickerCountry = arrayCoutries[actualRow]
+        do {
+            for i in try base.database.prepare(base.countriesTable.select(base.iso).filter(base.country == pickerCountry)) {
+                iso = i[base.iso]
+                flagString.append(letters[String(iso.first!)]! + letters[String(iso.last!)]!)
+                isoFlag.text = flagString
+            }
+        } catch {
+            print(error)
+        }
+
         if pushButton {
             buttonOk.isEnabled = true
             mapView.isHidden = true
@@ -90,77 +98,42 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
         
     }
     
-    func animationMosaic(name: UIImageView) {
-        name.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-        name.isHidden = false
-        UIView.animate(withDuration: 0.5, animations: {
-            name.transform = .identity
-        }, completion: { done in
-            if self.arrayMosaicTemp.count != 0 {
-                self.rand = Int.random(in: 0...self.arrayMosaicTemp.count - 1)
-                self.animationMosaic(name: self.arrayMosaicTemp.remove(at: self.rand))
-            } else {
-                self.arrayMosaicTemp = self.arrayMosaic
-                self.rand = Int.random(in: 0...self.arrayMosaicTemp.count - 1)
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "animationMosaicReturn"), object: nil)
-            }
-        })
+    func checkArrow(direct:String) -> (UIImageView) {
+        var i = UIImageView()
+        if direct == "U" {
+            i = northImage
+        } else if direct == "L" {
+            i = northLeftImage
+        }
+        return i
     }
-    @objc func animationMosaicNotif(){
-        animationMosaic(name: arrayMosaicTemp.remove(at: rand))
-    }
-    func animationMosaicReturn(name: UIImageView) {
-        UIView.animate(withDuration: 0.5, animations: {
-            name.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-        }, completion: { done in
-            name.isHidden = true
-            if self.arrayMosaicTemp.count != 0 {
-                self.rand = Int.random(in: 0...self.arrayMosaicTemp.count - 1)
-                self.animationMosaicReturn(name: self.arrayMosaicTemp.remove(at: self.rand))
-            } else {
-                self.arrayMosaicTemp = self.arrayMosaic
-                self.rand = Int.random(in: 0...self.arrayMosaicTemp.count - 1)
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "animationMosaic"), object: nil)
-            }
-        })
-    }
-    @objc func animationMosaicReturnNotif(){
-        animationMosaicReturn(name: arrayMosaicTemp.remove(at: rand))
-    }
-    
-    
-    
+
     deinit {
         print("deinitVCCat")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        mosaic1.isHidden = true
-        mosaic2.isHidden = true
-        mosaic3.isHidden = true
-        mosaic4.isHidden = true
-        mosaic5.isHidden = true
-        mosaic6.isHidden = true
-        mosaic7.isHidden = true
-        mosaic8.isHidden = true
-        mosaic9.isHidden = true
-        mapView.isHidden = true
-        arrayMosaic = [mosaic1,mosaic2,mosaic3,mosaic4,mosaic5,mosaic6,mosaic7,mosaic8,mosaic9]
-        arrayMosaicTemp = arrayMosaic
-        rand = Int.random(in: 0...arrayMosaicTemp.count - 1)
-        animationMosaic(name: arrayMosaicTemp.remove(at: rand))
-        NotificationCenter.default.addObserver(self, selector: #selector(animationMosaicNotif), name: NSNotification.Name(rawValue: "animationMosaic"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(animationMosaicReturnNotif), name: NSNotification.Name(rawValue: "animationMosaicReturn"), object: nil)
         
         okImage.image = UIImage(named: "okGrey.png")
         pushButton = false
+        northImage.isHidden = true
+        northLeftImage.isHidden = true
 
         do {
             for cntr in try base.database.prepare(base.countriesTable.select(base.country)) {
                 arrayCoutries.append(cntr[base.country])
                 arrayCoutries = arrayCoutries.sorted {$0 < $1}
+            }
+        } catch {
+            print(error)
+        }
+        pickerCountry = arrayCoutries[0]
+        do {
+            for i in try base.database.prepare(base.countriesTable.select(base.iso).filter(base.country == pickerCountry)) {
+                iso = i[base.iso]
+                flagString.append(letters[String(iso.first!)]! + letters[String(iso.last!)]!)
+                isoFlag.text = flagString
             }
         } catch {
             print(error)
