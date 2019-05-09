@@ -1,84 +1,24 @@
 //
 //  AppDelegate.swift
-//  Locity
+//  Wave
 //
-//  Created by REYNIKOV ANTON on 14/02/2019.
+//  Created by REYNIKOV ANTON on 09/05/2019.
 //  Copyright © 2019 REYNIKOV ANTON. All rights reserved.
 //
 
 import UIKit
 import CoreData
 
-var language = String()
-var round = Int()
-var idSelectCountry = Int()
-var isoViewHeight = CGFloat()
-var diff = String()
-var deinitSKVWheelVCC = Bool()
-var deinitSKVFTVCC = Bool()
-var deinitSKVFBVCC = Bool()
-var deinitSKVAnchorVCC = Bool()
-var deinitSKVIsoViewRemoverVCC = Bool()
-var deinitVCC = Bool()
-var deinitVCS = Bool()
-var points = "0"
-let base = Base()
-
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        round = 1
-////Check language load
-        let preferredLanguage = NSLocale.preferredLanguages[0]
-        if preferredLanguage.starts(with: "en") {
-            language = "en"
-        } else {
-            if preferredLanguage.starts(with: "ru") {
-                language = "ru"
-            } else {
-                if preferredLanguage.starts(with: "fr") {
-                    language = "fr"
-                } else {
-                    if preferredLanguage.starts(with: "es") {
-                        language = "es"
-                    } else {
-                        if preferredLanguage.starts(with: "pt") {
-                            language = "pt"
-                        } else {
-                            if preferredLanguage.starts(with: "de") {
-                                language = "de"
-                            } else {
-                                if preferredLanguage.starts(with: "it") {
-                                    language = "it"
-                                } else {
-                                    language = "en"
-                                }}}}}}}
-////
-        print(language)
-        launchScreenTimer()
-        
+        // Override point for customization after application launch.
         return true
     }
-////LaunchScreen timer
-    private func launchScreenTimer(){
-        let launchScreenVC = UIStoryboard.init(name: "LaunchScreen", bundle: nil)
-        let rootVC = launchScreenVC.instantiateViewController(withIdentifier: "splashController")
-        self.window?.rootViewController = rootVC
-        self.window?.makeKeyAndVisible()
-        Timer.scheduledTimer(timeInterval: 4.0, target: self, selector: #selector(dismissSplashController), userInfo: nil, repeats: false)
-    }
-    @objc func dismissSplashController(){
-        let mainVC = UIStoryboard.init(name: "Main", bundle: nil)
-        let rootVC = mainVC.instantiateViewController(withIdentifier: "VCS")
-        self.window?.rootViewController = rootVC
-        self.window?.makeKeyAndVisible()
-    }
-////
-    
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -113,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          application to it. This property is optional since there are legitimate
          error conditions that could cause the creation of the store to fail.
         */
-        let container = NSPersistentContainer(name: "Locity")
+        let container = NSPersistentContainer(name: "Wave")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.

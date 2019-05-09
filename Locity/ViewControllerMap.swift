@@ -85,7 +85,11 @@ class ViewControllerMap: UIViewController {
     @IBAction func homeButton(_ sender: Any) {
         if buttonNextRound && round == 5 {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "resetMapAndCities"), object: nil)
-            print("list")
+            let appDel = UIApplication.shared.delegate as! AppDelegate
+            let sB: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let newVC = sB.instantiateViewController(withIdentifier: "VCF")
+            appDel.window?.rootViewController = newVC
+            appDel.window?.makeKeyAndVisible()
             } else {
             if buttonNextRound {
                 round += 1
@@ -547,7 +551,6 @@ class ViewControllerMap: UIViewController {
     
     deinit {
         print("deinitVCM")
-        deinitVCM = true
     }
     
     override func viewDidLoad() {

@@ -17,9 +17,12 @@
 		F2190290225B85D2001F1AE4 /* Wheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F219028F225B85D2001F1AE4 /* Wheel.swift */; };
 		F2190292225B8A6E001F1AE4 /* Anchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2190291225B8A6E001F1AE4 /* Anchor.swift */; };
 		F2190294225B8DCB001F1AE4 /* ViewControllerСhoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2190293225B8DCB001F1AE4 /* ViewControllerСhoice.swift */; };
+		F21926BE2284A02F007A5025 /* Wave.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21926BD2284A02F007A5025 /* Wave.swift */; };
 		F21E595B225CEFE000C0721B /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21E595A225CEFE000C0721B /* Base.swift */; };
+		F22606AF228381D900A7522E /* Code New Roman b.otf in Resources */ = {isa = PBXBuildFile; fileRef = F22606AE228381D800A7522E /* Code New Roman b.otf */; };
 		F226D920225FA17300828761 /* ViewControllerMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F226D91F225FA17300828761 /* ViewControllerMap.swift */; };
 		F2349C2E227587F30082E808 /* MapCatalogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2349C2D227587F30082E808 /* MapCatalogView.swift */; };
+		F24E8E76228369850010C98A /* ViewControllerFinish.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24E8E75228369850010C98A /* ViewControllerFinish.swift */; };
 		F2608C7D226EF9FA00E911C6 /* world.db in Resources */ = {isa = PBXBuildFile; fileRef = F2608C7C226EF9FA00E911C6 /* world.db */; };
 		F264063E221D92EE00AC753D /* ViewControllerStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = F264063D221D92EE00AC753D /* ViewControllerStart.swift */; };
 		F2644DA82260E518001FD8E7 /* Torn.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2644DA72260E518001FD8E7 /* Torn.swift */; };
@@ -45,9 +48,12 @@
 		F219028F225B85D2001F1AE4 /* Wheel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wheel.swift; sourceTree = "<group>"; };
 		F2190291225B8A6E001F1AE4 /* Anchor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anchor.swift; sourceTree = "<group>"; };
 		F2190293225B8DCB001F1AE4 /* ViewControllerСhoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewControllerСhoice.swift"; sourceTree = "<group>"; };
+		F21926BD2284A02F007A5025 /* Wave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wave.swift; sourceTree = "<group>"; };
 		F21E595A225CEFE000C0721B /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
+		F22606AE228381D800A7522E /* Code New Roman b.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Code New Roman b.otf"; path = "image/исход/Code New Roman b.otf"; sourceTree = SOURCE_ROOT; };
 		F226D91F225FA17300828761 /* ViewControllerMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerMap.swift; sourceTree = "<group>"; };
 		F2349C2D227587F30082E808 /* MapCatalogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCatalogView.swift; sourceTree = "<group>"; };
+		F24E8E75228369850010C98A /* ViewControllerFinish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFinish.swift; sourceTree = "<group>"; };
 		F2608C7C226EF9FA00E911C6 /* world.db */ = {isa = PBXFileReference; lastKnownFileType = file; name = world.db; path = MAPS_BASE/world.db; sourceTree = SOURCE_ROOT; };
 		F264063D221D92EE00AC753D /* ViewControllerStart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerStart.swift; sourceTree = "<group>"; };
 		F2644DA72260E518001FD8E7 /* Torn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Torn.swift; sourceTree = "<group>"; };
@@ -116,6 +122,7 @@
 			children = (
 				F2C837E82215F9D700C252AB /* Info.plist */,
 				F2190289225B8091001F1AE4 /* Titania.ttf */,
+				F22606AE228381D800A7522E /* Code New Roman b.otf */,
 				F204D8D8224142B40065FA0E /* Geo.ttf */,
 				F2C837D92215F9D600C252AB /* AppDelegate.swift */,
 				F2C837E52215F9D700C252AB /* LaunchScreen.storyboard */,
@@ -134,6 +141,8 @@
 				F2644DA72260E518001FD8E7 /* Torn.swift */,
 				F2FA6A2E2271EFCF00774002 /* Map.swift */,
 				F226D91F225FA17300828761 /* ViewControllerMap.swift */,
+				F21926BD2284A02F007A5025 /* Wave.swift */,
+				F24E8E75228369850010C98A /* ViewControllerFinish.swift */,
 				F2C837DD2215F9D600C252AB /* Main.storyboard */,
 				F2E5226622201A7B006938A8 /* Assets.xcassets */,
 				F2608C7C226EF9FA00E911C6 /* world.db */,
@@ -207,6 +216,7 @@
 				F2C837E72215F9D700C252AB /* LaunchScreen.storyboard in Resources */,
 				F2E5226722201A7B006938A8 /* Assets.xcassets in Resources */,
 				F204D8D9224142B40065FA0E /* Geo.ttf in Resources */,
+				F22606AF228381D900A7522E /* Code New Roman b.otf in Resources */,
 				F2C837DF2215F9D600C252AB /* Main.storyboard in Resources */,
 				F219028A225B8091001F1AE4 /* Titania.ttf in Resources */,
 			);
@@ -268,12 +278,14 @@
 				F2190292225B8A6E001F1AE4 /* Anchor.swift in Sources */,
 				F2C837E22215F9D600C252AB /* Locity.xcdatamodeld in Sources */,
 				F2644DA82260E518001FD8E7 /* Torn.swift in Sources */,
+				F21926BE2284A02F007A5025 /* Wave.swift in Sources */,
 				F219028C225B81B0001F1AE4 /* FlapTop.swift in Sources */,
 				F2C837DA2215F9D600C252AB /* AppDelegate.swift in Sources */,
 				F2D98F43225E57EA0077F8C4 /* IsoViewRemover.swift in Sources */,
 				F264063E221D92EE00AC753D /* ViewControllerStart.swift in Sources */,
 				F2349C2E227587F30082E808 /* MapCatalogView.swift in Sources */,
 				F2FA6A2F2271EFCF00774002 /* Map.swift in Sources */,
+				F24E8E76228369850010C98A /* ViewControllerFinish.swift in Sources */,
 				F219028E225B81FC001F1AE4 /* FlapBottom.swift in Sources */,
 				F2EF0AAD2278376200DF51FD /* CatalogStart.swift in Sources */,
 				F2190294225B8DCB001F1AE4 /* ViewControllerСhoice.swift in Sources */,
