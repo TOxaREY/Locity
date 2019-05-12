@@ -37,16 +37,13 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
         okImage.image = UIImage(named: "okBlack.png")
         buttonOk.isEnabled = false
         pushButton = true
-        do {
-            for idCon in try base.database.prepare(base.countriesTable.select(base.id).filter(base.country == pickerCountry)) {
-                idSelectCountry = idCon[base.id]
-            }
-        } catch {
-            print(error)
-        }
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addMapAndCities"), object: nil)
         mapView.isHidden = false
+        checkArrow(direct: arrowCat).transform = CGAffineTransform(scaleX: 0.05, y: 0.05)
         checkArrow(direct: arrowCat).isHidden = false
+        UIView.animate(withDuration: 0.5) {
+            self.checkArrow(direct: arrowCat).transform = .identity
+        }
     }
     @IBOutlet weak var buttonOk: UIButton!
     @IBOutlet weak var picker: UIPickerView!
@@ -83,6 +80,13 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
                 iso = i[base.iso]
                 flagString.append(letters[String(iso.first!)]! + letters[String(iso.last!)]!)
                 isoFlag.text = flagString
+            }
+        } catch {
+            print(error)
+        }
+        do {
+            for idCon in try base.database.prepare(base.countriesTable.select(base.id).filter(base.country == pickerCountry)) {
+                idSelectCountry = idCon[base.id]
             }
         } catch {
             print(error)

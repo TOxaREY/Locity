@@ -25,6 +25,7 @@ var city3CoorY = CGFloat()
 var ringSize = CGFloat()
 var resultTouchWrong = Bool()
 var radiusToch = CGFloat()
+var goTouch = Bool()
 
 
 class ViewControllerMap: UIViewController {
@@ -48,7 +49,6 @@ class ViewControllerMap: UIViewController {
     var boundStartCountry = CGRect()
     var coordinatesTouch = CGPoint.zero
     var clearCoordinates = CGPoint.zero
-    var goTouch = Bool()
     var buttonNextRound = Bool()
     var enableButton = Bool()
     var transCompleteTrue = Bool()
@@ -328,7 +328,9 @@ class ViewControllerMap: UIViewController {
         topFlapLabel.isHidden = false
         bottomFlapLabel.isHidden = false
         checkArrow(direct: arrow).isHidden = false
-        goTouch = true
+        if diff == "H" {
+            goTouch = true
+        }
         topFlapLabel.transform = CGAffineTransform(scaleX: 0.1, y: 1)
         bottomFlapLabel.transform = CGAffineTransform(scaleX: 0.1, y: 1)
         roundCityLabel.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
@@ -610,7 +612,7 @@ class ViewControllerMap: UIViewController {
                 if pow(CGFloat(abs(coordinatesTouch.x - cityCoorX)),2) <= pow(CGFloat(ringSize),2) - pow(CGFloat(abs(coordinatesTouch.y - cityCoorY)),2) && pow(CGFloat(abs(coordinatesTouch.y - cityCoorY)),2) <= pow(CGFloat(ringSize),2) - pow(CGFloat(abs(coordinatesTouch.x - cityCoorX)),2) {
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "coordinatesRight"), object: nil)
                     goTouch = false
-                    effectMovePointsLabel(text: "10",x: cityCoorX, y: cityCoorY)
+                    effectMovePointsLabel(text: "15",x: cityCoorX, y: cityCoorY)
                 } else {
                     if pow(CGFloat(abs(coordinatesTouch.x - city2CoorX)),2) <= pow(CGFloat(ringSize),2) - pow(CGFloat(abs(coordinatesTouch.y - city2CoorY)),2) && pow(CGFloat(abs(coordinatesTouch.y - city2CoorY)),2) <= pow(CGFloat(ringSize),2) - pow(CGFloat(abs(coordinatesTouch.x - city2CoorX)),2) {
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "coordinatesWrong2"), object: nil)
@@ -642,34 +644,32 @@ class ViewControllerMap: UIViewController {
                             if radiusToch <= 0.75 * ringSize {
                                 effectMovePointsLabel(text: "50", x: coordinatesTouch.x, y: coordinatesTouch.y)
                                 } else {
-                                if radiusToch > 0.75 * ringSize && radiusToch <= 1.075 * ringSize {
+                                if radiusToch > 0.75 * ringSize && radiusToch <= 1.111 * ringSize {
                                     effectMovePointsLabel(text: "45", x: coordinatesTouch.x, y: coordinatesTouch.y)
                                     } else {
-                                    if radiusToch > 1.075 * ringSize && radiusToch <= 1.4 * ringSize {
+                                    if radiusToch > 1.111 * ringSize && radiusToch <= 1.472 * ringSize {
                                         effectMovePointsLabel(text: "40", x: coordinatesTouch.x, y: coordinatesTouch.y)
                                         } else {
-                                        if radiusToch > 1.4 * ringSize && radiusToch <= 1.725 * ringSize {
+                                        if radiusToch > 1.472 * ringSize && radiusToch <= 1.833 * ringSize {
                                             effectMovePointsLabel(text: "35", x: coordinatesTouch.x, y: coordinatesTouch.y)
                                             } else {
-                                            if radiusToch > 1.725 * ringSize && radiusToch <= 2.05 * ringSize {
+                                            if radiusToch > 1.833 * ringSize && radiusToch <= 2.194 * ringSize {
                                                 effectMovePointsLabel(text: "30", x: coordinatesTouch.x, y: coordinatesTouch.y)
                                                 } else {
-                                                if radiusToch > 2.05 * ringSize && radiusToch <= 2.375 * ringSize {
+                                                if radiusToch > 2.194 * ringSize && radiusToch <= 2.555 * ringSize {
                                                     effectMovePointsLabel(text: "25", x: coordinatesTouch.x, y: coordinatesTouch.y)
                                                     } else {
-                                                    if radiusToch > 2.375 * ringSize && radiusToch <= 2.7 * ringSize {
+                                                    if radiusToch > 2.555 * ringSize && radiusToch <= 2.916 * ringSize {
                                                         effectMovePointsLabel(text: "20", x: coordinatesTouch.x, y: coordinatesTouch.y)
                                                         } else {
-                                                        if radiusToch > 2.7 * ringSize && radiusToch <= 3.025 * ringSize {
+                                                        if radiusToch > 2.916 * ringSize && radiusToch <= 3.277 * ringSize {
                                                             effectMovePointsLabel(text: "15", x: coordinatesTouch.x, y: coordinatesTouch.y)
                                                             } else {
-                                                            if radiusToch > 3.025 * ringSize && radiusToch <= 3.35 * ringSize {
+                                                            if radiusToch > 3.277 * ringSize && radiusToch <= 3.638 * ringSize {
                                                                 effectMovePointsLabel(text: "10", x: coordinatesTouch.x, y: coordinatesTouch.y)
                                                                 } else {
-                                                                if radiusToch > 3.35 * ringSize && radiusToch <= 3.675 * ringSize {
+                                                                if radiusToch > 3.638 * ringSize && radiusToch < 4 * ringSize {
                                                                     effectMovePointsLabel(text: "5", x: coordinatesTouch.x, y: coordinatesTouch.y)
-                                                                    } else {
-                                                                    if radiusToch > 3.675 * ringSize && radiusToch < 4.0 * ringSize {
                                                                     }
                                                                 }
                                                             }
@@ -681,15 +681,15 @@ class ViewControllerMap: UIViewController {
                                     }
                                 }
                             }
-                        }
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "drawAndScaleCircle"), object: nil)
                         goTouch = false
-                 }
+                    }
+                }
             }
         }
-   }
+    }
 }
-}
+
 
 
 

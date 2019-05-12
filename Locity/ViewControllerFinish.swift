@@ -22,6 +22,9 @@ class ViewControllerFinish: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var finishHomeImage: UIImageView!
     @IBOutlet weak var homeButton: UIButton!
     @IBAction func homeButton(_ sender: Any) {
+        diff = ""
+        round = 1
+        points = "0"
         let appDel = UIApplication.shared.delegate as! AppDelegate
         let sB: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let newVC = sB.instantiateViewController(withIdentifier: "VCS")
@@ -39,7 +42,7 @@ class ViewControllerFinish: UIViewController, UITableViewDataSource, UITableView
             let time = personH.value(forKeyPath: "time") as? String
             let points = personH.value(forKeyPath: "points") as? String
             let attributedText = NSMutableAttributedString(string: name! + " ", attributes: [NSAttributedString.Key.font: font])
-            attributedText.append(NSMutableAttributedString(string: time!, attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:0, green:0, blue:1, alpha:1.0),NSAttributedString.Key.font: font2]))
+            attributedText.append(NSMutableAttributedString(string: time!, attributes: [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: font2]))
             attributedText.append(NSMutableAttributedString(string: " " + points!, attributes: [NSAttributedString.Key.font: font3]))
             cell.textLabel?.attributedText = attributedText
             cell.textLabel?.textAlignment = .right
@@ -51,7 +54,7 @@ class ViewControllerFinish: UIViewController, UITableViewDataSource, UITableView
             let time = personE.value(forKeyPath: "time") as? String
             let points = personE.value(forKeyPath: "points") as? String
             let attributedText = NSMutableAttributedString(string: name! + " ", attributes: [NSAttributedString.Key.font: font])
-            attributedText.append(NSMutableAttributedString(string: time!, attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:0, green:0, blue:1, alpha:1.0),NSAttributedString.Key.font: font2]))
+            attributedText.append(NSMutableAttributedString(string: time!, attributes: [NSAttributedString.Key.foregroundColor: UIColor.black,NSAttributedString.Key.font: font2]))
             attributedText.append(NSMutableAttributedString(string: " " + points!, attributes: [NSAttributedString.Key.font: font3]))
             cell.textLabel?.attributedText = attributedText
             cell.textLabel?.textAlignment = .right
@@ -198,7 +201,10 @@ class ViewControllerFinish: UIViewController, UITableViewDataSource, UITableView
             }
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "waveAndShip"), object: nil)
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
+            action in
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "waveAndShip"), object: nil)
+        }
         
         alert.addTextField()
         alert.addAction(saveAction)

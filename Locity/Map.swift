@@ -74,6 +74,7 @@ class Map: SKView {
     
     @objc func resetCitys(){
         scene!.removeAllChildren()
+        scene!.removeAllActions()
     }
     @objc func coordinatesRight(){
         scene!.removeAllChildren()
@@ -91,11 +92,11 @@ class Map: SKView {
     }
     
     func pulse(name:SKSpriteNode){
-        let pulseUp = SKAction.scale(to: 1.2, duration: 0.75)
+        let pulseUp = SKAction.scale(to: 1.25, duration: 0.325)
         let pulseDown = SKAction.scale(to: 0.75, duration: 0.75)
-        let pulse = SKAction.sequence([pulseUp, pulseDown])
-        let repeatPulse = SKAction.repeatForever(pulse)
-        name.run(repeatPulse)
+        let pulseReturn = SKAction.scale(to: 1, duration: 0.325)
+        let pulse = SKAction.sequence([pulseUp, pulseDown, pulseReturn])
+        name.run(pulse, completion: {goTouch = true})
     }
     func ringPosition(name:SKSpriteNode,x:CGFloat,y:CGFloat,pulseOn:Bool,post:Bool,city:String){
         name.size = CGSize(width: (scene!.frame.maxX - scene!.frame.minX) * 0.04, height: (scene!.frame.maxX - scene!.frame.minX) * 0.04)
