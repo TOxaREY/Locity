@@ -17,6 +17,7 @@ class Base {
     let continentsTable = Table("Continents")
     let id = Expression<Int>("id")
     let continent = Expression<String>(language)
+    let continCat = Expression<String>("en")
     
     let countriesTable = Table("Countries")
     let country = Expression<String>(language)

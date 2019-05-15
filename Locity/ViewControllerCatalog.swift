@@ -18,6 +18,7 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
     var iso = String()
     let letters = ["A":"\u{1F1E6}","B":"\u{1F1E7}","C":"\u{1F1E8}","D":"\u{1F1E9}","E":"\u{1F1EA}","F":"\u{1F1EB}","G":"\u{1F1EC}","H":"\u{1F1ED}","I":"\u{1F1EE}","J":"\u{1F1EF}","K":"\u{1F1F0}","L":"\u{1F1F1}","M":"\u{1F1F2}","N":"\u{1F1F3}","O":"\u{1F1F4}","P":"\u{1F1F5}","Q":"\u{1F1F6}","R":"\u{1F1F7}","S":"\u{1F1F8}","T":"\u{1F1F9}","U":"\u{1F1FA}","V":"\u{1F1FB}","W":"\u{1F1FC}","X":"\u{1F1FD}","Y":"\u{1F1FE}","Z":"\u{1F1FF}"]
     var flagString = String()
+    var i = 0
 
     @IBOutlet weak var northImage: UIImageView!
     @IBOutlet weak var northLeftImage: UIImageView!
@@ -37,13 +38,9 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
         okImage.image = UIImage(named: "okBlack.png")
         buttonOk.isEnabled = false
         pushButton = true
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addMapAndCities"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addContin"), object: nil)
         mapView.isHidden = false
-        checkArrow(direct: arrowCat).transform = CGAffineTransform(scaleX: 0.05, y: 0.05)
-        checkArrow(direct: arrowCat).isHidden = false
-        UIView.animate(withDuration: 0.5) {
-            self.checkArrow(direct: arrowCat).transform = .identity
-        }
+        swip()
     }
     @IBOutlet weak var buttonOk: UIButton!
     @IBOutlet weak var picker: UIPickerView!
@@ -75,23 +72,7 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
         checkArrow(direct: arrowCat).isHidden = true
         let actualRow = self.picker.selectedRow(inComponent: 0)
         pickerCountry = arrayCoutries[actualRow]
-        do {
-            for i in try base.database.prepare(base.countriesTable.select(base.iso).filter(base.country == pickerCountry)) {
-                iso = i[base.iso]
-                flagString.append(letters[String(iso.first!)]! + letters[String(iso.last!)]!)
-                isoFlag.text = flagString
-            }
-        } catch {
-            print(error)
-        }
-        do {
-            for idCon in try base.database.prepare(base.countriesTable.select(base.id).filter(base.country == pickerCountry)) {
-                idSelectCountry = idCon[base.id]
-            }
-        } catch {
-            print(error)
-        }
-
+        baseCountry()
         if pushButton {
             buttonOk.isEnabled = true
             mapView.isHidden = true
@@ -110,6 +91,55 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
             i = northLeftImage
         }
         return i
+    }
+    func baseCountry() {
+        do {
+            for i in try base.database.prepare(base.countriesTable.select(base.iso).filter(base.country == pickerCountry)) {
+                iso = i[base.iso]
+                flagString.append(letters[String(iso.first!)]! + letters[String(iso.last!)]!)
+                isoFlag.text = flagString
+            }
+        } catch {
+            print(error)
+        }
+        do {
+            for idCon in try base.database.prepare(base.countriesTable.select(base.id).filter(base.country == pickerCountry)) {
+                idSelectCountry = idCon[base.id]
+            }
+        } catch {
+            print(error)
+        }
+
+    }
+    func swip() {
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
+        rightSwipe.direction = .right
+        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
+        leftSwipe.direction = .left
+        mapView.addGestureRecognizer(rightSwipe)
+        mapView.addGestureRecognizer(leftSwipe)
+    }
+
+    @objc func handleSwipe(sender: UISwipeGestureRecognizer) {
+        if sender.state == .ended {
+            if i == 0 {
+                switch sender.direction {
+                case .right, .left: NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addMapAndCities"), object: nil)
+                mapView.isHidden = false
+                checkArrow(direct: arrowCat).transform = CGAffineTransform(scaleX: 0.05, y: 0.05)
+                checkArrow(direct: arrowCat).isHidden = false
+                UIView.animate(withDuration: 0.5) {
+                    self.checkArrow(direct: arrowCat).transform = .identity
+                }; i = 1
+                default: break
+                }
+            } else if i == 1 {
+                switch sender.direction {
+                case .right, .left: checkArrow(direct: arrowCat).isHidden = true; NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addContin"), object: nil); i = 0
+                default: break
+                }
+            }
+        }
     }
 
     deinit {
@@ -133,15 +163,7 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
             print(error)
         }
         pickerCountry = arrayCoutries[0]
-        do {
-            for i in try base.database.prepare(base.countriesTable.select(base.iso).filter(base.country == pickerCountry)) {
-                iso = i[base.iso]
-                flagString.append(letters[String(iso.first!)]! + letters[String(iso.last!)]!)
-                isoFlag.text = flagString
-            }
-        } catch {
-            print(error)
-        }
+        baseCountry()
         self.picker.delegate = self
         self.picker.dataSource = self
     }

@@ -402,6 +402,7 @@ class ViewControllerChoice: UIViewController {
         self.anchorView.heightAnchor.constraint(equalToConstant: proportWheelSize2).isActive = true
         self.isoView.translatesAutoresizingMaskIntoConstraints = false
         self.isoView.topAnchor.constraint(equalTo: self.isoView.superview!.topAnchor, constant: halfWheelSize).isActive = true
+        self.spinButton.translatesAutoresizingMaskIntoConstraints = false
         switch screenHeight {
         case 896,812:
             self.spinButton.topAnchor.constraint(equalTo: self.spinButton.superview!.topAnchor, constant: halfWheelSize * 1.3).isActive = true

@@ -92,15 +92,21 @@ class Map: SKView {
     }
     
     func pulse(name:SKSpriteNode){
-        let pulseUp = SKAction.scale(to: 1.25, duration: 0.325)
-        let pulseDown = SKAction.scale(to: 0.75, duration: 0.75)
-        let pulseReturn = SKAction.scale(to: 1, duration: 0.325)
+        let pulseUp = SKAction.scale(to: 1.25, duration: 0.15)
+        let pulseDown = SKAction.scale(to: 0.75, duration: 0.30)
+        let pulseReturn = SKAction.scale(to: 1, duration: 0.15)
         let pulse = SKAction.sequence([pulseUp, pulseDown, pulseReturn])
-        name.run(pulse, completion: {goTouch = true})
+        let rep = SKAction.repeat(pulse, count: 2)
+        name.run(rep, completion: {goTouch = true})
     }
     func ringPosition(name:SKSpriteNode,x:CGFloat,y:CGFloat,pulseOn:Bool,post:Bool,city:String){
         name.size = CGSize(width: (scene!.frame.maxX - scene!.frame.minX) * 0.04, height: (scene!.frame.maxX - scene!.frame.minX) * 0.04)
         name.position = CGPoint(x: (scene!.frame.maxX - scene!.frame.minX) / x, y: (((scene!.frame.maxY - delta) - (scene!.frame.minY + delta)) / y) + delta)
+        let circle = SKShapeNode(circleOfRadius: ringSize * 1.2)
+        circle.position = name.position
+        circle.lineWidth = 1
+        circle.strokeColor = .red
+        scene!.addChild(circle)
         scene!.addChild(name)
         if pulseOn {
         pulse(name: name)

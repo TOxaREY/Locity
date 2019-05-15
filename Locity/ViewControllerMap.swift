@@ -54,15 +54,17 @@ class ViewControllerMap: UIViewController {
     var transCompleteTrue = Bool()
     var bottomSupportFontSize = CGFloat()
     var arrow = String()
+    var i = 0
   
     @IBOutlet weak var catalogImage: UIImageView!
     @IBAction func catalogButton(_ sender: Any) {
+        checkArrow(direct: arrow).isHidden = true
         catalogButtonOutlet.isEnabled = false
         self.catalogImage.removeAnimation()
-        self.mapViewTouch.isHidden = true
-        self.mapCatalogView.isHidden = false
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addCitiesCatalog"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addContin"), object: nil)
+        swip()
     }
+    @IBOutlet weak var swipView: UIView!
     @IBOutlet weak var northLeftImage: UIImageView!
     @IBOutlet weak var northImage: UIImageView!
     @IBOutlet weak var roundCitySupport: UILabel!
@@ -350,7 +352,6 @@ class ViewControllerMap: UIViewController {
         if enableButton {
             homeButtonOutlet.isHidden = false
             homeButtonOutlet.isEnabled = true
-            print("enableButtonComplete")
         }
         if diff == "E" {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addCitys"), object: nil)
@@ -509,7 +510,6 @@ class ViewControllerMap: UIViewController {
         roundCitySupport.isHidden = true
         northImage.isHidden = true
         northLeftImage.isHidden = true
-        mapCatalogView.isHidden = true
         catalogButtonOutlet.isHidden = true
         catalogButtonOutlet.isEnabled = false
         catalogImage.image = UIImage(named: "catalog.png")
@@ -550,6 +550,35 @@ class ViewControllerMap: UIViewController {
         }
         return i
     }
+    func swip() {
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
+        rightSwipe.direction = .right
+        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
+        leftSwipe.direction = .left
+        swipView.addGestureRecognizer(rightSwipe)
+        swipView.addGestureRecognizer(leftSwipe)
+    }
+    
+    @objc func handleSwipe(sender: UISwipeGestureRecognizer) {
+        if sender.state == .ended {
+            if i == 0 {
+                switch sender.direction {
+                case .right, .left: NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addMapAndCities"), object: nil)
+                checkArrow(direct: arrow).transform = CGAffineTransform(scaleX: 0.05, y: 0.05)
+                checkArrow(direct: arrow).isHidden = false
+                UIView.animate(withDuration: 0.5) {
+                    self.checkArrow(direct: self.arrow).transform = .identity
+                }; i = 1
+                default: break
+                }
+            } else if i == 1 {
+                switch sender.direction {
+                case .right, .left: checkArrow(direct: arrow).isHidden = true; NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addContin"), object: nil); i = 0
+                default: break
+                }
+            }
+        }
+    }
     
     deinit {
         print("deinitVCM")
@@ -557,9 +586,10 @@ class ViewControllerMap: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //
-        idSelectCountry = 20
-        //
+        
+        diff = "E"
+        idSelectCountry = 2
+        
         do {
             for idSelect in try base.database.prepare(base.countriesTable.select(base.country).filter(base.id == idSelectCountry)){
                 country = idSelect[base.country]
@@ -609,17 +639,17 @@ class ViewControllerMap: UIViewController {
             if goTouch {
                 coordinatesTouch = touch.location(in: mapViewTouch)
                 coordinatesTouch.y = mapViewTouch.frame.height - self.coordinatesTouch.y
-                if pow(CGFloat(abs(coordinatesTouch.x - cityCoorX)),2) <= pow(CGFloat(ringSize),2) - pow(CGFloat(abs(coordinatesTouch.y - cityCoorY)),2) && pow(CGFloat(abs(coordinatesTouch.y - cityCoorY)),2) <= pow(CGFloat(ringSize),2) - pow(CGFloat(abs(coordinatesTouch.x - cityCoorX)),2) {
+                if pow(CGFloat(ringSize * 1.2),2) >= pow(CGFloat(abs(coordinatesTouch.x - cityCoorX)),2) + pow(CGFloat(abs(coordinatesTouch.y - cityCoorY)),2) {
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "coordinatesRight"), object: nil)
                     goTouch = false
                     effectMovePointsLabel(text: "15",x: cityCoorX, y: cityCoorY)
                 } else {
-                    if pow(CGFloat(abs(coordinatesTouch.x - city2CoorX)),2) <= pow(CGFloat(ringSize),2) - pow(CGFloat(abs(coordinatesTouch.y - city2CoorY)),2) && pow(CGFloat(abs(coordinatesTouch.y - city2CoorY)),2) <= pow(CGFloat(ringSize),2) - pow(CGFloat(abs(coordinatesTouch.x - city2CoorX)),2) {
+                    if pow(CGFloat(ringSize * 1.2),2) >= pow(CGFloat(abs(coordinatesTouch.x - city2CoorX)),2) + pow(CGFloat(abs(coordinatesTouch.y - city2CoorY)),2) {
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "coordinatesWrong2"), object: nil)
                         goTouch = false
                         effectMovePointsLabel(text: "0",x: city2CoorX, y: city2CoorY)
                     } else {
-                        if pow(CGFloat(abs(coordinatesTouch.x - city3CoorX)),2) <= pow(CGFloat(ringSize),2) - pow(CGFloat(abs(coordinatesTouch.y - city3CoorY)),2) && pow(CGFloat(abs(coordinatesTouch.y - city3CoorY)),2) <= pow(CGFloat(ringSize),2) - pow(CGFloat(abs(coordinatesTouch.x - city3CoorX)),2) {
+                        if pow(CGFloat(ringSize * 1.2),2) >= pow(CGFloat(abs(coordinatesTouch.x - city3CoorX)),2) + pow(CGFloat(abs(coordinatesTouch.y - city3CoorY)),2) {
                             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "coordinatesWrong3"), object: nil)
                             goTouch = false
                             effectMovePointsLabel(text: "0",x: city3CoorX, y: city3CoorY)
@@ -627,7 +657,7 @@ class ViewControllerMap: UIViewController {
                     }
                 }
                 }
-            } else {
+            } else if diff == "H" {
                 if goTouch {
                     clearCoordinates = touch.location(in: blurView)
                     let halfFrameBlur = blurView.frame.height / 2

@@ -18,7 +18,7 @@ class Map: SKView {
         self.allowsTransparency = true
         let delta = ((scene.frame.maxY - scene.frame.minY) - ((scene.frame.maxX - scene.frame.minX) * 1.4621578)) / 2
         ring.size = CGSize(width: (scene.frame.maxX - scene.frame.minX) * 0.02415458937, height: (scene.frame.maxX - scene.frame.minX) * 0.02415458937)
-        ring.position = CGPoint(x: (scene.frame.maxX - scene.frame.minX) / 1.037594, y: (((scene.frame.maxY - delta) - (scene.frame.minY + delta)) / 1.558798) + delta)
+        ring.position = CGPoint(x: (scene.frame.maxX - scene.frame.minX) / 1.191938, y: (((scene.frame.maxY - delta) - (scene.frame.minY + delta)) / 5.746835) + delta)
         print(delta)
         scene.addChild(ring)
     }
