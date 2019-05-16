@@ -26,6 +26,7 @@
 		F2608C7D226EF9FA00E911C6 /* world.db in Resources */ = {isa = PBXBuildFile; fileRef = F2608C7C226EF9FA00E911C6 /* world.db */; };
 		F264063E221D92EE00AC753D /* ViewControllerStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = F264063D221D92EE00AC753D /* ViewControllerStart.swift */; };
 		F2644DA82260E518001FD8E7 /* Torn.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2644DA72260E518001FD8E7 /* Torn.swift */; };
+		F2742B41228CA60F00E02327 /* Contin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2742B40228CA60F00E02327 /* Contin.swift */; };
 		F2C837DA2215F9D600C252AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C837D92215F9D600C252AB /* AppDelegate.swift */; };
 		F2C837DF2215F9D600C252AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2C837DD2215F9D600C252AB /* Main.storyboard */; };
 		F2C837E22215F9D600C252AB /* Locity.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F2C837E02215F9D600C252AB /* Locity.xcdatamodeld */; };
@@ -57,6 +58,7 @@
 		F2608C7C226EF9FA00E911C6 /* world.db */ = {isa = PBXFileReference; lastKnownFileType = file; name = world.db; path = MAPS_BASE/world.db; sourceTree = SOURCE_ROOT; };
 		F264063D221D92EE00AC753D /* ViewControllerStart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerStart.swift; sourceTree = "<group>"; };
 		F2644DA72260E518001FD8E7 /* Torn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Torn.swift; sourceTree = "<group>"; };
+		F2742B40228CA60F00E02327 /* Contin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contin.swift; sourceTree = "<group>"; };
 		F2C837D62215F9D600C252AB /* Locity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Locity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2C837D92215F9D600C252AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2C837DE2215F9D600C252AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				F2190293225B8DCB001F1AE4 /* ViewControllerСhoice.swift */,
 				F2644DA72260E518001FD8E7 /* Torn.swift */,
 				F2FA6A2E2271EFCF00774002 /* Map.swift */,
+				F2742B40228CA60F00E02327 /* Contin.swift */,
 				F226D91F225FA17300828761 /* ViewControllerMap.swift */,
 				F21926BD2284A02F007A5025 /* Wave.swift */,
 				F24E8E75228369850010C98A /* ViewControllerFinish.swift */,
@@ -289,6 +292,7 @@
 				F219028E225B81FC001F1AE4 /* FlapBottom.swift in Sources */,
 				F2EF0AAD2278376200DF51FD /* CatalogStart.swift in Sources */,
 				F2190294225B8DCB001F1AE4 /* ViewControllerСhoice.swift in Sources */,
+				F2742B41228CA60F00E02327 /* Contin.swift in Sources */,
 				F226D920225FA17300828761 /* ViewControllerMap.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -102,11 +102,6 @@ class Map: SKView {
     func ringPosition(name:SKSpriteNode,x:CGFloat,y:CGFloat,pulseOn:Bool,post:Bool,city:String){
         name.size = CGSize(width: (scene!.frame.maxX - scene!.frame.minX) * 0.04, height: (scene!.frame.maxX - scene!.frame.minX) * 0.04)
         name.position = CGPoint(x: (scene!.frame.maxX - scene!.frame.minX) / x, y: (((scene!.frame.maxY - delta) - (scene!.frame.minY + delta)) / y) + delta)
-        let circle = SKShapeNode(circleOfRadius: ringSize * 1.2)
-        circle.position = name.position
-        circle.lineWidth = 1
-        circle.strokeColor = .red
-        scene!.addChild(circle)
         scene!.addChild(name)
         if pulseOn {
         pulse(name: name)

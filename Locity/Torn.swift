@@ -59,7 +59,7 @@ class Torn: SKView {
         t1.position = CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height / 2)
         scene.addChild(t1)
         let animate = SKAction.animate(with: [t2,t3,t4,t5,t6,t7,t8,t9,t10,t11,t12,t13,t14,t15,t16,t17,t18,t19,t20,t21,t22,t23,t24,t25,t26,t27,t28,t29,t30,t31,t32,t33,t34,t35,t36], timePerFrame: 0.025)
-        t1.run(animate, completion: {NotificationCenter.default.post(name: NSNotification.Name(rawValue: "enableVCM"), object: nil)})
-                
+        t1.run(animate)
+        
     }
 }

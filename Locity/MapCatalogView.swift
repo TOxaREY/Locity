@@ -47,10 +47,14 @@ class MapCatalogView: SKView {
     let ring3 = SKSpriteNode(imageNamed: "ringGray.png")
     let ring4 = SKSpriteNode(imageNamed: "ringGray.png")
     let ring5 = SKSpriteNode(imageNamed: "ringGray.png")
+    let ring = SKSpriteNode(imageNamed: "ringGreen.png")
+    let swipe = SKSpriteNode(imageNamed: "swipe.png")
     var map = SKSpriteNode()
     var contin = SKSpriteNode()
     var delta = CGFloat()
     var dictionaryCities:Dictionary<Int,String> = [:]
+    var xCountry = CGFloat()
+    var yCountry = CGFloat()
     
     
     deinit {
@@ -69,6 +73,7 @@ class MapCatalogView: SKView {
     }
     @objc func addContin(){
         scene!.removeAllChildren()
+        scene!.backgroundColor = UIColor(hex: "#d2b48cff")!
         do {
             for idContin in try base.database.prepare(base.countriesTable.select(base.id_continent).filter(base.id == idSelectCountry)){
                 switch idContin[base.id_continent] {
@@ -83,9 +88,34 @@ class MapCatalogView: SKView {
         } catch {
             print(error)
         }
+        do {
+            for country in try base.database.prepare(base.countriesTable.select(base.x).filter(base.id == idSelectCountry)){
+                xCountry = CGFloat(country[base.x])
+            }
+        } catch {
+            print(error)
+        }
+        do {
+            for country in try base.database.prepare(base.countriesTable.select(base.y).filter(base.id == idSelectCountry)){
+                yCountry = CGFloat(country[base.y])
+            }
+        } catch {
+            print(error)
+        }
+        swipe.size = CGSize(width: (scene!.frame.maxX - scene!.frame.minX) * 0.1, height: (scene!.frame.maxX - scene!.frame.minX) * 0.1)
+        swipe.position = CGPoint(x: scene!.size.width / 2, y: swipe.size.height)
+        swipe.zPosition = 1
+        scene!.addChild(swipe)
+        
+        ring.size = CGSize(width: (scene!.frame.maxX - scene!.frame.minX) * 0.04, height: (scene!.frame.maxX - scene!.frame.minX) * 0.04)
+        ring.position = CGPoint(x: (scene!.frame.maxX - scene!.frame.minX) / xCountry, y: (((scene!.frame.maxY - delta) - (scene!.frame.minY + delta)) / yCountry) + delta)
+        ring.zPosition = 2
+        scene!.addChild(ring)
+        
         contin.position = CGPoint(x: scene!.size.width / 2, y: scene!.size.height / 2)
         contin.size.width = scene!.frame.width
         contin.size.height = scene!.frame.width * 1.4621578
+        contin.zPosition = 0
         scene!.addChild(contin)
     }
     

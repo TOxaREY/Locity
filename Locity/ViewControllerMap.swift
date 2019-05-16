@@ -64,6 +64,8 @@ class ViewControllerMap: UIViewController {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addContin"), object: nil)
         swip()
     }
+    
+    @IBOutlet weak var continView: Contin!
     @IBOutlet weak var swipView: UIView!
     @IBOutlet weak var northLeftImage: UIImageView!
     @IBOutlet weak var northImage: UIImageView!
@@ -477,6 +479,13 @@ class ViewControllerMap: UIViewController {
         }
     }
     func startLabelVCM(){
+        let effectView = UIVisualEffectView()
+        effectView.frame = blurView.bounds
+        effectView.effect = UIBlurEffect(style: .regular)
+        blurView.addSubview(effectView)
+        UIView.animate(withDuration: 4, animations: {
+            effectView.effect = nil
+        })
         if diff == "H" {
             self.selectCityHard(dic: self.dictionaryCities)
         } else {
@@ -485,7 +494,8 @@ class ViewControllerMap: UIViewController {
         self.labelEffectAndCheckMaxSize(fSize: self.fontSize.dfz2, labelName: self.countryLabel, sSize: self.fontSize2.dfz2, nameSupport: self.bottomSupport, text: self.country,time: 2.0)
         self.labelEffectAndCheckMaxSize(fSize: self.fontSize.dfz2, labelName: self.cityLabel, sSize: self.fontSize2.dfz2, nameSupport: self.topSupport, text: self.city,time: 2.0)
     }
-    @objc func enableVCM(){
+    func enableVCM(){
+        mapImage.isHidden = false
         startLabelVCM()
         timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.deinitComplete), userInfo: nil, repeats: true)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "enableVCM"), object: nil)
@@ -532,13 +542,6 @@ class ViewControllerMap: UIViewController {
         roundCityLabel.font = self.roundCityLabel.font.withSize(self.fontSize2.dfz2)
         goTouch = false
         pointsTouchLabel.isHidden = true
-        let effectView = UIVisualEffectView()
-        effectView.frame = blurView.bounds
-        effectView.effect = UIBlurEffect(style: .regular)
-        blurView.addSubview(effectView)
-        UIView.animate(withDuration: 4, animations: {
-            effectView.effect = nil
-        })
         NotificationCenter.default.addObserver(self, selector: #selector(self.transComplete), name: NSNotification.Name(rawValue: "transComplete"), object: nil)
     }
     func checkArrow(direct:String) -> (UIImageView) {
@@ -587,9 +590,6 @@ class ViewControllerMap: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        diff = "E"
-        idSelectCountry = 2
-        
         do {
             for idSelect in try base.database.prepare(base.countriesTable.select(base.country).filter(base.id == idSelectCountry)){
                 country = idSelect[base.country]
@@ -621,10 +621,20 @@ class ViewControllerMap: UIViewController {
             print(error)
         }
         pointsLabel.text = points
+        mapImage.isHidden = true
         startVCM()
-    
-        NotificationCenter.default.addObserver(self, selector: #selector(self.enableVCM), name: NSNotification.Name(rawValue: "enableVCM"), object: nil)
-
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+            let effectView = UIVisualEffectView()
+            effectView.frame = self.continView.bounds
+            effectView.effect = nil
+            self.continView.addSubview(effectView)
+            UIView.animate(withDuration: 1, animations: {
+                effectView.effect = UIBlurEffect(style: .regular)
+            }, completion: { done in
+                self.continView.isHidden = true
+                self.enableVCM()
+            })
+        }
     }
 
     override func viewDidDisappear(_ animated: Bool) {
