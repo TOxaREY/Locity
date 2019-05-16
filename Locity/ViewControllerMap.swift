@@ -623,7 +623,7 @@ class ViewControllerMap: UIViewController {
         pointsLabel.text = points
         mapImage.isHidden = true
         startVCM()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
             let effectView = UIVisualEffectView()
             effectView.frame = self.continView.bounds
             effectView.effect = nil

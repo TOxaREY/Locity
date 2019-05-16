@@ -80,6 +80,7 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "resetMapAndCities"), object: nil)
         }
         pushButton = false
+        i = 0
         
     }
     

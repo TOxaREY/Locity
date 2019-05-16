@@ -103,7 +103,7 @@ class MapCatalogView: SKView {
             print(error)
         }
         swipe.size = CGSize(width: (scene!.frame.maxX - scene!.frame.minX) * 0.1, height: (scene!.frame.maxX - scene!.frame.minX) * 0.1)
-        swipe.position = CGPoint(x: scene!.size.width / 2, y: swipe.size.height)
+        swipe.position = CGPoint(x: scene!.size.width / 2, y: swipe.size.height / 1.5)
         swipe.zPosition = 1
         scene!.addChild(swipe)
         
@@ -228,6 +228,20 @@ class MapCatalogView: SKView {
         name.size = CGSize(width: (scene!.frame.maxX - scene!.frame.minX) * 0.04, height: (scene!.frame.maxX - scene!.frame.minX) * 0.04)
         name.position = CGPoint(x: (scene!.frame.maxX - scene!.frame.minX) / xCityCatalog, y: (((scene!.frame.maxY - delta) - (scene!.frame.minY + delta)) / yCityCatalog) + delta)
         name.zPosition = 0
+        
+        /////
+//        let circle = SKShapeNode(circleOfRadius: ((scene!.frame.maxX - scene!.frame.minX) * 0.04) * 1.5)
+//        circle.position = name.position
+//        circle.strokeColor = UIColor.red
+//        circle.lineWidth = 2
+//        circle.zPosition = 2
+//        scene!.addChild(circle)
+        /////
+        
+        
+        
+        
+        
         if arrowCat == "U" {
             if name.position.x <= scene!.frame.width / 2 {
                 if name.position.x - cityLabel.frame.size.width / 2 <= 0 {
