@@ -31,7 +31,7 @@ class Map: SKView {
         scene.backgroundColor = .clear
         self.presentScene(scene)
         self.allowsTransparency = true
-        delta = ((scene.frame.maxY - scene.frame.minY) - ((scene.frame.maxX - scene.frame.minX) * 1.4621578)) / 2
+         delta = ((scene.frame.maxY - scene.frame.minY) - ((scene.frame.maxX - scene.frame.minX) * ((scene.frame.maxY - scene.frame.minY) / (scene.frame.maxX - scene.frame.minX)))) / 2
         let uDRingSize = (scene.frame.maxX - scene.frame.minX) * 0.04
         ringSize = uDRingSize * 1.5
         NotificationCenter.default.addObserver(self, selector: #selector(addCitys), name: NSNotification.Name(rawValue: "addCitys"), object: nil)

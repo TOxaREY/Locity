@@ -65,6 +65,7 @@ class ViewControllerMap: UIViewController {
         swip()
     }
     
+    @IBOutlet weak var blur2View: UIView!
     @IBOutlet weak var continView: Contin!
     @IBOutlet weak var swipView: UIView!
     @IBOutlet weak var northLeftImage: UIImageView!
@@ -481,11 +482,13 @@ class ViewControllerMap: UIViewController {
     func startLabelVCM(){
         let effectView = UIVisualEffectView()
         effectView.frame = blurView.bounds
-        effectView.effect = UIBlurEffect(style: .regular)
+        effectView.effect = UIBlurEffect(style: .prominent)
         blurView.addSubview(effectView)
-        UIView.animate(withDuration: 4, animations: {
-            effectView.effect = nil
-        })
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            UIView.animate(withDuration: 1, animations: {
+                effectView.effect = nil
+            })
+        }
         if diff == "H" {
             self.selectCityHard(dic: self.dictionaryCities)
         } else {
@@ -623,15 +626,15 @@ class ViewControllerMap: UIViewController {
         pointsLabel.text = points
         mapImage.isHidden = true
         startVCM()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
             let effectView = UIVisualEffectView()
-            effectView.frame = self.continView.bounds
+            effectView.frame = self.blur2View.bounds
             effectView.effect = nil
-            self.continView.addSubview(effectView)
-            UIView.animate(withDuration: 1, animations: {
-                effectView.effect = UIBlurEffect(style: .regular)
+            self.blur2View.addSubview(effectView)
+            UIView.animate(withDuration: 0.5, animations: {
+                effectView.effect = UIBlurEffect(style: .prominent)
             }, completion: { done in
-                self.continView.isHidden = true
+                self.blur2View.isHidden = true
                 self.enableVCM()
             })
         }
@@ -671,11 +674,11 @@ class ViewControllerMap: UIViewController {
                 if goTouch {
                     clearCoordinates = touch.location(in: blurView)
                     let halfFrameBlur = blurView.frame.height / 2
-                    let halfFrameMap = mapImage.frame.width * 1.4621578 / 2
+                    let halfFrameMap = mapViewTouch.frame.height / 2
                     coordinatesTouch = touch.location(in: mapViewTouch)
                     coordinatesTouch.y = mapViewTouch.frame.height - self.coordinatesTouch.y
                     radiusToch = CGFloat(sqrtf(Float((pow(CGFloat(abs(coordinatesTouch.x - cityCoorX)),2)) + pow(CGFloat(abs(coordinatesTouch.y - cityCoorY)),2))))
-                    if clearCoordinates.y >= blurView.frame.height - halfFrameBlur - halfFrameMap && clearCoordinates.y <= halfFrameBlur + halfFrameMap {
+                    if clearCoordinates.y >= (halfFrameBlur - halfFrameMap) && clearCoordinates.y <= (halfFrameBlur + halfFrameMap) {
                         if radiusToch >= 4 * ringSize {
                             resultTouchWrong = true
                             effectMovePointsLabel(text: "0", x: coordinatesTouch.x, y: coordinatesTouch.y)

@@ -65,7 +65,7 @@ class MapCatalogView: SKView {
         scene.backgroundColor = .clear
         self.presentScene(scene)
         self.allowsTransparency = true
-        delta = ((scene.frame.maxY - scene.frame.minY) - ((scene.frame.maxX - scene.frame.minX) * 1.4621578)) / 2
+        delta = ((scene.frame.maxY - scene.frame.minY) - ((scene.frame.maxX - scene.frame.minX) * ((scene.frame.maxY - scene.frame.minY) / (scene.frame.maxX - scene.frame.minX)))) / 2
         NotificationCenter.default.addObserver(self, selector: #selector(addContin), name: NSNotification.Name(rawValue: "addContin"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(addMapAndCities), name: NSNotification.Name(rawValue: "addMapAndCities"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(addCitiesCatalog), name: NSNotification.Name(rawValue: "addCitiesCatalog"), object: nil)
@@ -114,7 +114,7 @@ class MapCatalogView: SKView {
         
         contin.position = CGPoint(x: scene!.size.width / 2, y: scene!.size.height / 2)
         contin.size.width = scene!.frame.width
-        contin.size.height = scene!.frame.width * 1.4621578
+        contin.size.height = scene!.frame.height
         contin.zPosition = 0
         scene!.addChild(contin)
     }
@@ -140,7 +140,7 @@ class MapCatalogView: SKView {
         }
         map.position = CGPoint(x: scene!.size.width / 2, y: scene!.size.height / 2)
         map.size.width = scene!.frame.width
-        map.size.height = scene!.frame.width * 1.4621578
+        map.size.height = scene!.frame.height
         scene!.addChild(map)
         addCityToMap(name: ringC,cap: true, number: 0)
         addCityToMap(name: ring1,cap: false, number: 1)

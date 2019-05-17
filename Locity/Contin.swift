@@ -55,10 +55,10 @@ class Contin: SKView {
             } catch {
                 print(error)
             }
-            self.delta = ((scene.frame.maxY - scene.frame.minY) - ((scene.frame.maxX - scene.frame.minX) * 1.4621578)) / 2
+            self.delta = ((scene.frame.maxY - scene.frame.minY) - ((scene.frame.maxX - scene.frame.minX) * ((scene.frame.maxY - scene.frame.minY) / (scene.frame.maxX - scene.frame.minX)))) / 2
             self.contin.position = CGPoint(x: scene.size.width / 2, y: scene.size.height / 2)
             self.contin.size.width = scene.frame.width
-            self.contin.size.height = scene.frame.width * 1.4621578
+            self.contin.size.height = scene.frame.height
             self.contin.zPosition = 0
             self.ring.size = CGSize(width: (scene.frame.maxX - scene.frame.minX) * 0.04, height: (scene.frame.maxX - scene.frame.minX) * 0.04)
             self.ring.position = CGPoint(x: (scene.frame.maxX - scene.frame.minX) / self.xCountry, y: (((scene.frame.maxY - self.delta) - (scene.frame.minY + self.delta)) / self.yCountry) + self.delta)

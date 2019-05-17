@@ -154,10 +154,10 @@ class ViewControllerChoice: UIViewController {
         self.labelRound.frame.size = self.labelRound.intrinsicContentSize
         let effectView = UIVisualEffectView()
         effectView.frame = self.blurView.bounds
-        effectView.effect = UIBlurEffect(style: .regular)
+        effectView.effect = UIBlurEffect(style: .prominent)
         self.blurView.addSubview(effectView)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            UIView.animate(withDuration: 1, animations: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            UIView.animate(withDuration: 0.5, animations: {
                 effectView.effect = nil
                 self.labelRound.alpha = 0
             })
