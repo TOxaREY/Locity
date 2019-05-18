@@ -55,6 +55,11 @@ class MapCatalogView: SKView {
     var dictionaryCities:Dictionary<Int,String> = [:]
     var xCountry = CGFloat()
     var yCountry = CGFloat()
+    var square = String()
+    var maxX = CGFloat()
+    var maxY = CGFloat()
+    var minX = CGFloat()
+    var minY = CGFloat()
     
     
     deinit {
@@ -65,7 +70,11 @@ class MapCatalogView: SKView {
         scene.backgroundColor = .clear
         self.presentScene(scene)
         self.allowsTransparency = true
-        delta = ((scene.frame.maxY - scene.frame.minY) - ((scene.frame.maxX - scene.frame.minX) * ((scene.frame.maxY - scene.frame.minY) / (scene.frame.maxX - scene.frame.minX)))) / 2
+        maxX = scene.frame.maxX
+        maxY = scene.frame.maxY
+        minX = scene.frame.minX
+        minY = scene.frame.minY
+        
         NotificationCenter.default.addObserver(self, selector: #selector(addContin), name: NSNotification.Name(rawValue: "addContin"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(addMapAndCities), name: NSNotification.Name(rawValue: "addMapAndCities"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(addCitiesCatalog), name: NSNotification.Name(rawValue: "addCitiesCatalog"), object: nil)
@@ -74,6 +83,13 @@ class MapCatalogView: SKView {
     @objc func addContin(){
         scene!.removeAllChildren()
         scene!.backgroundColor = UIColor(hex: "#d2b48cff")!
+        do {
+            for sq in try base.database.prepare(base.countriesTable.select(base.square).filter(base.id == idSelectCountry)){
+                square = sq[base.square]
+            }
+        } catch {
+            print(error)
+        }
         do {
             for idContin in try base.database.prepare(base.countriesTable.select(base.id_continent).filter(base.id == idSelectCountry)){
                 switch idContin[base.id_continent] {
@@ -102,19 +118,20 @@ class MapCatalogView: SKView {
         } catch {
             print(error)
         }
-        swipe.size = CGSize(width: (scene!.frame.maxX - scene!.frame.minX) * 0.1, height: (scene!.frame.maxX - scene!.frame.minX) * 0.1)
+        delta = ((maxY - minY) - ((maxX - minX) * 1.4621578)) / 2
+        swipe.size = CGSize(width: (maxX - minX) * 0.1, height: (maxX - minX) * 0.1)
         swipe.position = CGPoint(x: scene!.size.width / 2, y: swipe.size.height / 1.5)
         swipe.zPosition = 1
         scene!.addChild(swipe)
         
-        ring.size = CGSize(width: (scene!.frame.maxX - scene!.frame.minX) * 0.04, height: (scene!.frame.maxX - scene!.frame.minX) * 0.04)
-        ring.position = CGPoint(x: (scene!.frame.maxX - scene!.frame.minX) / xCountry, y: (((scene!.frame.maxY - delta) - (scene!.frame.minY + delta)) / yCountry) + delta)
+        ring.size = CGSize(width: (maxX - minX) * 0.04, height: (maxX - minX) * 0.04)
+        ring.position = CGPoint(x: (maxX - minX) / xCountry, y: (((maxY - delta) - (minY + delta)) / yCountry) + delta)
         ring.zPosition = 2
         scene!.addChild(ring)
         
         contin.position = CGPoint(x: scene!.size.width / 2, y: scene!.size.height / 2)
         contin.size.width = scene!.frame.width
-        contin.size.height = scene!.frame.height
+        contin.size.height = scene!.frame.width * 1.4621578
         contin.zPosition = 0
         scene!.addChild(contin)
     }
@@ -138,9 +155,14 @@ class MapCatalogView: SKView {
         } catch {
             print(error)
         }
+        switch square {
+        case "N": delta = ((maxY - minY) - ((maxX - minX) * ((maxY - minY) / (maxX - minX)))) / 2; map.size.height = scene!.frame.height
+        case "S": delta = ((maxY - minY) - ((maxX - minX) * 1.4621578)) / 2; map.size.height = scene!.frame.width * 1.4621578
+        default:
+            break
+        }
         map.position = CGPoint(x: scene!.size.width / 2, y: scene!.size.height / 2)
         map.size.width = scene!.frame.width
-        map.size.height = scene!.frame.height
         scene!.addChild(map)
         addCityToMap(name: ringC,cap: true, number: 0)
         addCityToMap(name: ring1,cap: false, number: 1)
@@ -150,6 +172,12 @@ class MapCatalogView: SKView {
         addCityToMap(name: ring5,cap: false, number: 5)
     }
     @objc func addCitiesCatalog(){
+        switch square {
+        case "N": delta = ((maxY - minY) - ((maxX - minX) * ((maxY - minY) / (maxX - minX)))) / 2; map.size.height = scene!.frame.height
+        case "S": delta = ((maxY - minY) - ((maxX - minX) * 1.4621578)) / 2; map.size.height = scene!.frame.width * 1.4621578
+        default:
+            break
+        }
         do {
             var c = 1
             for city in try base.database.prepare(base.citiesTable.select(base.city).filter(base.id_country == idSelectCountry && base.capital == "N")){
@@ -225,17 +253,17 @@ class MapCatalogView: SKView {
         } catch {
             print(error)
         }
-        name.size = CGSize(width: (scene!.frame.maxX - scene!.frame.minX) * 0.04, height: (scene!.frame.maxX - scene!.frame.minX) * 0.04)
-        name.position = CGPoint(x: (scene!.frame.maxX - scene!.frame.minX) / xCityCatalog, y: (((scene!.frame.maxY - delta) - (scene!.frame.minY + delta)) / yCityCatalog) + delta)
+        name.size = CGSize(width: (maxX - minX) * 0.04, height: (maxX - minX) * 0.04)
+        name.position = CGPoint(x: (maxX - minX) / xCityCatalog, y: (((maxY - delta) - (minY + delta)) / yCityCatalog) + delta)
         name.zPosition = 0
         
         /////
-//        let circle = SKShapeNode(circleOfRadius: ((scene!.frame.maxX - scene!.frame.minX) * 0.04) * 1.5)
-//        circle.position = name.position
-//        circle.strokeColor = UIColor.red
-//        circle.lineWidth = 2
-//        circle.zPosition = 2
-//        scene!.addChild(circle)
+        let circle = SKShapeNode(circleOfRadius: ((scene!.frame.maxX - scene!.frame.minX) * 0.04) * 1.5)
+        circle.position = name.position
+        circle.strokeColor = UIColor.red
+        circle.lineWidth = 2
+        circle.zPosition = 2
+        scene!.addChild(circle)
         /////
         
         

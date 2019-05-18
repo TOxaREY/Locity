@@ -55,6 +55,7 @@ class ViewControllerMap: UIViewController {
     var bottomSupportFontSize = CGFloat()
     var arrow = String()
     var i = 0
+    var square = String()
   
     @IBOutlet weak var catalogImage: UIImageView!
     @IBAction func catalogButton(_ sender: Any) {
@@ -623,8 +624,22 @@ class ViewControllerMap: UIViewController {
         } catch {
             print(error)
         }
+        do {
+            for sq in try base.database.prepare(base.countriesTable.select(base.square).filter(base.id == idSelectCountry)){
+                self.square = sq[base.square]
+            }
+        } catch {
+            print(error)
+        }
+        switch self.square {
+        case "N": mapImage.contentMode = .scaleToFill
+        case "S": mapImage.contentMode = .scaleAspectFit
+        default:
+            break
+        }
         pointsLabel.text = points
         mapImage.isHidden = true
+        
         startVCM()
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
             let effectView = UIVisualEffectView()

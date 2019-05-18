@@ -14,6 +14,11 @@ class Contin: SKView {
     let ring = SKSpriteNode(imageNamed: "ringGreen.png")
     var contin = SKSpriteNode()
     var delta = CGFloat()
+    var square = String()
+    var maxX = CGFloat()
+    var maxY = CGFloat()
+    var minX = CGFloat()
+    var minY = CGFloat()
     var xCountry = CGFloat()
     var yCountry = CGFloat()
 
@@ -25,6 +30,10 @@ class Contin: SKView {
         scene.backgroundColor = .clear
         self.presentScene(scene)
         self.allowsTransparency = true
+        maxX = scene.frame.maxX
+        maxY = scene.frame.maxY
+        minX = scene.frame.minX
+        minY = scene.frame.minY
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             do {
@@ -55,13 +64,20 @@ class Contin: SKView {
             } catch {
                 print(error)
             }
-            self.delta = ((scene.frame.maxY - scene.frame.minY) - ((scene.frame.maxX - scene.frame.minX) * ((scene.frame.maxY - scene.frame.minY) / (scene.frame.maxX - scene.frame.minX)))) / 2
+            do {
+                for sq in try base.database.prepare(base.countriesTable.select(base.square).filter(base.id == idSelectCountry)){
+                    self.square = sq[base.square]
+                }
+            } catch {
+                print(error)
+            }
+            self.delta = ((self.maxY - self.minY) - ((self.maxX - self.minX) * 1.4621578)) / 2
             self.contin.position = CGPoint(x: scene.size.width / 2, y: scene.size.height / 2)
             self.contin.size.width = scene.frame.width
-            self.contin.size.height = scene.frame.height
+            self.contin.size.height = scene.frame.width * 1.4621578
             self.contin.zPosition = 0
-            self.ring.size = CGSize(width: (scene.frame.maxX - scene.frame.minX) * 0.04, height: (scene.frame.maxX - scene.frame.minX) * 0.04)
-            self.ring.position = CGPoint(x: (scene.frame.maxX - scene.frame.minX) / self.xCountry, y: (((scene.frame.maxY - self.delta) - (scene.frame.minY + self.delta)) / self.yCountry) + self.delta)
+            self.ring.size = CGSize(width: (self.maxX - self.minX) * 0.04, height: (self.maxX - self.minX) * 0.04)
+            self.ring.position = CGPoint(x: (self.maxX - self.minX) / self.xCountry, y: (((self.maxY - self.delta) - (self.minY + self.delta)) / self.yCountry) + self.delta)
             self.ring.zPosition = 1
             
             scene.addChild(self.ring)

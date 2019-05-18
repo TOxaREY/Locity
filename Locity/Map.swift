@@ -9,6 +9,7 @@
 import Foundation
 import SpriteKit
 import AVFoundation
+import SQLite
 
 extension UIDevice {
     static func vibrate() {
@@ -23,6 +24,11 @@ class Map: SKView {
     let ringWrong = SKSpriteNode(imageNamed: "ringRed.png")
     let ringRight = SKSpriteNode(imageNamed: "ringGreen.png")
     var delta = CGFloat()
+    var square = String()
+    var maxX = CGFloat()
+    var maxY = CGFloat()
+    var minX = CGFloat()
+    var minY = CGFloat()
     deinit {
         print("deinitSKVMapVCM")
     }
@@ -31,8 +37,25 @@ class Map: SKView {
         scene.backgroundColor = .clear
         self.presentScene(scene)
         self.allowsTransparency = true
-         delta = ((scene.frame.maxY - scene.frame.minY) - ((scene.frame.maxX - scene.frame.minX) * ((scene.frame.maxY - scene.frame.minY) / (scene.frame.maxX - scene.frame.minX)))) / 2
-        let uDRingSize = (scene.frame.maxX - scene.frame.minX) * 0.04
+        maxX = scene.frame.maxX
+        maxY = scene.frame.maxY
+        minX = scene.frame.minX
+        minY = scene.frame.minY
+        
+        do {
+            for sq in try base.database.prepare(base.countriesTable.select(base.square).filter(base.id == idSelectCountry)){
+                square = sq[base.square]
+            }
+        } catch {
+            print(error)
+        }
+        switch square {
+        case "N": delta = ((maxY - minY) - ((maxX - minX) * ((maxY - minY) / (maxX - minX)))) / 2
+        case "S": delta = ((maxY - minY) - ((maxX - minX) * 1.4621578)) / 2
+        default:
+            break
+        }
+        let uDRingSize = (maxX - minX) * 0.04
         ringSize = uDRingSize * 1.5
         NotificationCenter.default.addObserver(self, selector: #selector(addCitys), name: NSNotification.Name(rawValue: "addCitys"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(coorCityHard), name: NSNotification.Name(rawValue: "coorCityHard"), object: nil)
@@ -49,8 +72,8 @@ class Map: SKView {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "addCity"), object: nil)
     }
     @objc func coorCityHard(){
-        ringRight.size = CGSize(width: (scene!.frame.maxX - scene!.frame.minX) * 0.04, height: (scene!.frame.maxX - scene!.frame.minX) * 0.04)
-        ringRight.position = CGPoint(x: (scene!.frame.maxX - scene!.frame.minX) / cityX, y: (((scene!.frame.maxY - delta) - (scene!.frame.minY + delta)) / cityY) + delta)
+        ringRight.size = CGSize(width: (maxX - minX) * 0.04, height: (maxX - minX) * 0.04)
+        ringRight.position = CGPoint(x: (maxX - minX) / cityX, y: (((maxY - delta) - (minY + delta)) / cityY) + delta)
         cityCoorX = ringRight.position.x
         cityCoorY = ringRight.position.y
     }
@@ -100,8 +123,8 @@ class Map: SKView {
         name.run(rep, completion: {goTouch = true})
     }
     func ringPosition(name:SKSpriteNode,x:CGFloat,y:CGFloat,pulseOn:Bool,post:Bool,city:String){
-        name.size = CGSize(width: (scene!.frame.maxX - scene!.frame.minX) * 0.04, height: (scene!.frame.maxX - scene!.frame.minX) * 0.04)
-        name.position = CGPoint(x: (scene!.frame.maxX - scene!.frame.minX) / x, y: (((scene!.frame.maxY - delta) - (scene!.frame.minY + delta)) / y) + delta)
+        name.size = CGSize(width: (maxX - minX) * 0.04, height: (maxX - minX) * 0.04)
+        name.position = CGPoint(x: (maxX - minX) / x, y: (((maxY - delta) - (minY + delta)) / y) + delta)
         scene!.addChild(name)
         if pulseOn {
         pulse(name: name)

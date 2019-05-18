@@ -24,6 +24,7 @@ class Base {
     let iso = Expression<String>("iso")
     let map = Expression<String>("map")
     let arrow = Expression<String>("arrow")
+    let square = Expression<String>("square")
     let id_continent = Expression<Int>("id_continent")
     
     let citiesTable = Table("Cities")
