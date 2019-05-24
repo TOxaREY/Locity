@@ -14,7 +14,6 @@ class Contin: SKView {
     let ring = SKSpriteNode(imageNamed: "ringGreen.png")
     var contin = SKSpriteNode()
     var delta = CGFloat()
-    var square = String()
     var maxX = CGFloat()
     var maxY = CGFloat()
     var minX = CGFloat()
@@ -60,13 +59,6 @@ class Contin: SKView {
             do {
                 for country in try base.database.prepare(base.countriesTable.select(base.y).filter(base.id == idSelectCountry)){
                     self.yCountry = CGFloat(country[base.y])
-                }
-            } catch {
-                print(error)
-            }
-            do {
-                for sq in try base.database.prepare(base.countriesTable.select(base.square).filter(base.id == idSelectCountry)){
-                    self.square = sq[base.square]
                 }
             } catch {
                 print(error)

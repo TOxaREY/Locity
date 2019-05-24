@@ -16,6 +16,7 @@ extension UIDevice {
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
     }
 }
+var square = String()
 
 class Map: SKView {
     let ring = SKSpriteNode(imageNamed: "ringGray.png")
@@ -24,7 +25,6 @@ class Map: SKView {
     let ringWrong = SKSpriteNode(imageNamed: "ringRed.png")
     let ringRight = SKSpriteNode(imageNamed: "ringGreen.png")
     var delta = CGFloat()
-    var square = String()
     var maxX = CGFloat()
     var maxY = CGFloat()
     var minX = CGFloat()

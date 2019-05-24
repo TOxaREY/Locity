@@ -47,6 +47,7 @@ class MapCatalogView: SKView {
     let ring3 = SKSpriteNode(imageNamed: "ringGray.png")
     let ring4 = SKSpriteNode(imageNamed: "ringGray.png")
     let ring5 = SKSpriteNode(imageNamed: "ringGray.png")
+    let ringNC = SKSpriteNode(imageNamed: "ringGray.png")
     let ring = SKSpriteNode(imageNamed: "ringGreen.png")
     let swipe = SKSpriteNode(imageNamed: "swipe.png")
     var map = SKSpriteNode()
@@ -55,7 +56,7 @@ class MapCatalogView: SKView {
     var dictionaryCities:Dictionary<Int,String> = [:]
     var xCountry = CGFloat()
     var yCountry = CGFloat()
-    var square = String()
+    var squareCat = String()
     var maxX = CGFloat()
     var maxY = CGFloat()
     var minX = CGFloat()
@@ -85,7 +86,7 @@ class MapCatalogView: SKView {
         scene!.backgroundColor = UIColor(hex: "#d2b48cff")!
         do {
             for sq in try base.database.prepare(base.countriesTable.select(base.square).filter(base.id == idSelectCountry)){
-                square = sq[base.square]
+                squareCat = sq[base.square]
             }
         } catch {
             print(error)
@@ -155,7 +156,7 @@ class MapCatalogView: SKView {
         } catch {
             print(error)
         }
-        switch square {
+        switch squareCat {
         case "N": delta = ((maxY - minY) - ((maxX - minX) * ((maxY - minY) / (maxX - minX)))) / 2; map.size.height = scene!.frame.height
         case "S": delta = ((maxY - minY) - ((maxX - minX) * 1.4621578)) / 2; map.size.height = scene!.frame.width * 1.4621578
         default:
@@ -164,15 +165,24 @@ class MapCatalogView: SKView {
         map.position = CGPoint(x: scene!.size.width / 2, y: scene!.size.height / 2)
         map.size.width = scene!.frame.width
         scene!.addChild(map)
-        addCityToMap(name: ringC,cap: true, number: 0)
-        addCityToMap(name: ring1,cap: false, number: 1)
-        addCityToMap(name: ring2,cap: false, number: 2)
-        addCityToMap(name: ring3,cap: false, number: 3)
-        addCityToMap(name: ring4,cap: false, number: 4)
-        addCityToMap(name: ring5,cap: false, number: 5)
+        if idSelectCountry == 17 {
+            addCityToMap(name: ringNC,cap: false, number: 1)
+            addCityToMap(name: ring1,cap: false, number: 2)
+            addCityToMap(name: ring2,cap: false, number: 3)
+            addCityToMap(name: ring3,cap: false, number: 4)
+            addCityToMap(name: ring4,cap: false, number: 5)
+            addCityToMap(name: ring5,cap: false, number: 6)
+        } else {
+            addCityToMap(name: ringC,cap: true, number: 0)
+            addCityToMap(name: ring1,cap: false, number: 1)
+            addCityToMap(name: ring2,cap: false, number: 2)
+            addCityToMap(name: ring3,cap: false, number: 3)
+            addCityToMap(name: ring4,cap: false, number: 4)
+            addCityToMap(name: ring5,cap: false, number: 5)
+        }
     }
     @objc func addCitiesCatalog(){
-        switch square {
+        switch squareCat {
         case "N": delta = ((maxY - minY) - ((maxX - minX) * ((maxY - minY) / (maxX - minX)))) / 2; map.size.height = scene!.frame.height
         case "S": delta = ((maxY - minY) - ((maxX - minX) * 1.4621578)) / 2; map.size.height = scene!.frame.width * 1.4621578
         default:
@@ -187,12 +197,22 @@ class MapCatalogView: SKView {
         } catch {
             print(error)
         }
-        addCityToMap(name: ringC,cap: true, number: 0)
-        addCityToMap(name: ring1,cap: false, number: 1)
-        addCityToMap(name: ring2,cap: false, number: 2)
-        addCityToMap(name: ring3,cap: false, number: 3)
-        addCityToMap(name: ring4,cap: false, number: 4)
-        addCityToMap(name: ring5,cap: false, number: 5)
+        if idSelectCountry == 17 {
+            addCityToMap(name: ringNC,cap: false, number: 1)
+            addCityToMap(name: ring1,cap: false, number: 2)
+            addCityToMap(name: ring2,cap: false, number: 3)
+            addCityToMap(name: ring3,cap: false, number: 4)
+            addCityToMap(name: ring4,cap: false, number: 5)
+            addCityToMap(name: ring5,cap: false, number: 6)
+        } else {
+            addCityToMap(name: ringC,cap: true, number: 0)
+            addCityToMap(name: ring1,cap: false, number: 1)
+            addCityToMap(name: ring2,cap: false, number: 2)
+            addCityToMap(name: ring3,cap: false, number: 3)
+            addCityToMap(name: ring4,cap: false, number: 4)
+            addCityToMap(name: ring5,cap: false, number: 5)
+        }
+        
     }
     @objc func resetMapAndCities(){
         scene!.removeAllChildren()
@@ -273,30 +293,54 @@ class MapCatalogView: SKView {
         if arrowCat == "U" {
             if name.position.x <= scene!.frame.width / 2 {
                 if name.position.x - cityLabel.frame.size.width / 2 <= 0 {
-                    cityLabel.position = CGPoint(x: cityLabel.frame.size.width / 2, y: name.position.y + name.size.height / 2)
+                    cityLabel.position = CGPoint(x: cityLabel.frame.size.width / 2, y: name.position.y + name.size.height / 1.5)
+                    if scene!.frame.maxY - cityLabel.position.y + cityLabel.frame.size.height / 2 < 0 {
+                        cityLabel.position.y = name.position.y - name.size.height * 1.5
+                    }
                 } else {
-                    cityLabel.position = CGPoint(x: name.position.x + 1.5 * name.size.height, y: name.position.y + name.size.height / 2)
+                    cityLabel.position = CGPoint(x: name.position.x + 1.5 * name.size.height, y: name.position.y + name.size.height / 1.5)
+                    if scene!.frame.maxY - cityLabel.position.y + cityLabel.frame.size.height / 2 < 0 {
+                        cityLabel.position.y = name.position.y - name.size.height * 1.5
+                    }
                 }
             } else {
                 if cityLabel.frame.size.width / 2 + name.position.x - 1.5 * name.size.height >= scene!.frame.maxX {
-                    cityLabel.position = CGPoint(x: scene!.frame.maxX - cityLabel.frame.size.width / 2, y: name.position.y + name.size.height / 2)
+                    cityLabel.position = CGPoint(x: scene!.frame.maxX - cityLabel.frame.size.width / 2, y: name.position.y + name.size.height / 1.5)
+                    if scene!.frame.maxY - cityLabel.position.y + cityLabel.frame.size.height / 2 < 0 {
+                        cityLabel.position.y = name.position.y - name.size.height * 1.5
+                    }
                 } else {
-                    cityLabel.position = CGPoint(x: name.position.x - 1.5 * name.size.height, y: name.position.y + name.size.height / 2)
+                    cityLabel.position = CGPoint(x: name.position.x - 1.5 * name.size.height, y: name.position.y + name.size.height / 1.5)
+                    if scene!.frame.maxY - cityLabel.position.y + cityLabel.frame.size.height / 2 < 0 {
+                        cityLabel.position.y = name.position.y - name.size.height * 1.5
+                    }
                 }
             }
         } else {
             cityLabel.zRotation = π / 2
             if name.position.y <= scene!.frame.height / 2 {
                 if name.position.y - cityLabel.frame.size.height / 2 <= 0 {
-                    cityLabel.position = CGPoint(x: name.position.x - name.size.width / 2, y: 0)
+                    cityLabel.position = CGPoint(x: name.position.x - name.size.width / 1.5, y: cityLabel.frame.size.height / 2)
+                    if cityLabel.position.x - cityLabel.frame.size.width / 2 < 0 {
+                        cityLabel.position.x = name.position.x + name.size.height * 1.5
+                    }
                 } else {
-                    cityLabel.position = CGPoint(x: name.position.x - name.size.height / 2, y: name.position.y + 1.5 * name.size.height)
+                    cityLabel.position = CGPoint(x: name.position.x - name.size.height / 1.5, y: name.position.y + 1.5 * name.size.height)
+                    if cityLabel.position.x - cityLabel.frame.size.width / 2 < 0 {
+                        cityLabel.position.x = name.position.x + name.size.height * 1.5
+                    }
                 }
             } else {
                 if cityLabel.frame.size.height / 2 + name.position.y - 1.5 * name.size.height >= scene!.frame.maxY {
-                    cityLabel.position = CGPoint(x: name.position.x - name.size.height / 2, y: scene!.frame.maxY - cityLabel.frame.size.height / 2)
+                    cityLabel.position = CGPoint(x: name.position.x - name.size.height / 1.5, y: scene!.frame.maxY - cityLabel.frame.size.height / 2)
+                    if cityLabel.position.x - cityLabel.frame.size.width / 2 < 0 {
+                        cityLabel.position.x = name.position.x + name.size.height * 1.5
+                    }
                 } else {
-                    cityLabel.position = CGPoint(x: name.position.x - name.size.height / 2, y: name.position.y - 1.5 * name.size.height)
+                    cityLabel.position = CGPoint(x: name.position.x - name.size.height / 1.5, y: name.position.y - 1.5 * name.size.height)
+                    if cityLabel.position.x - cityLabel.frame.size.width / 2 < 0 {
+                        cityLabel.position.x = name.position.x + name.size.height * 1.5
+                    }
                 }
             }
         }
