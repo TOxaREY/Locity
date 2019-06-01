@@ -1390,8 +1390,8 @@
                         <outlet property="buttonReturn" destination="3vy-wr-l8n" id="gHM-b1-Qou"/>
                         <outlet property="isoFlag" destination="j2a-WI-Tfy" id="Amn-kf-pal"/>
                         <outlet property="mapView" destination="nYc-jg-JfF" id="fk8-UV-JdR"/>
-                        <outlet property="northImage" destination="9qq-JE-mhh" id="cMM-aI-vWe"/>
-                        <outlet property="northLeftImage" destination="A2i-yE-zz5" id="cPS-cw-ivg"/>
+                        <outlet property="northImage" destination="9qq-JE-mhh" id="977-Jo-ZaQ"/>
+                        <outlet property="northLeftImage" destination="A2i-yE-zz5" id="lIL-0Y-uE3"/>
                         <outlet property="okImage" destination="qAx-q0-Yeb" id="pZk-fk-3dL"/>
                         <outlet property="picker" destination="3QW-5k-Ckd" id="7JN-ty-g5g"/>
                     </connections>

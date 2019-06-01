@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import Firebase
+import YandexMobileMetrica
 
 var language = String()
 var round = Int()
@@ -32,6 +34,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         round = 1
+        FirebaseApp.configure()
+        let configuration = YMMYandexMetricaConfiguration.init(apiKey: "60d7e011-0cdd-4a5a-8e4e-fe1d3483c98b")
+        YMMYandexMetrica.activate(with: configuration!)
+        
 ////Check language load
         let preferredLanguage = NSLocale.preferredLanguages[0]
         if preferredLanguage.starts(with: "en") {

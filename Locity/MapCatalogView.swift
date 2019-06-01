@@ -298,19 +298,19 @@ class MapCatalogView: SKView {
                         cityLabel.position.y = name.position.y - name.size.height * 1.5
                     }
                 } else {
-                    cityLabel.position = CGPoint(x: name.position.x + 1.5 * name.size.height, y: name.position.y + name.size.height / 1.5)
+                    cityLabel.position = CGPoint(x: name.position.x, y: name.position.y + name.size.height / 1.5)
                     if scene!.frame.maxY - cityLabel.position.y + cityLabel.frame.size.height / 2 < 0 {
                         cityLabel.position.y = name.position.y - name.size.height * 1.5
                     }
                 }
             } else {
-                if cityLabel.frame.size.width / 2 + name.position.x - 1.5 * name.size.height >= scene!.frame.maxX {
+                if cityLabel.frame.size.width / 2 + name.position.x >= scene!.frame.maxX {
                     cityLabel.position = CGPoint(x: scene!.frame.maxX - cityLabel.frame.size.width / 2, y: name.position.y + name.size.height / 1.5)
                     if scene!.frame.maxY - cityLabel.position.y + cityLabel.frame.size.height / 2 < 0 {
                         cityLabel.position.y = name.position.y - name.size.height * 1.5
                     }
                 } else {
-                    cityLabel.position = CGPoint(x: name.position.x - 1.5 * name.size.height, y: name.position.y + name.size.height / 1.5)
+                    cityLabel.position = CGPoint(x: name.position.x, y: name.position.y + name.size.height / 1.5)
                     if scene!.frame.maxY - cityLabel.position.y + cityLabel.frame.size.height / 2 < 0 {
                         cityLabel.position.y = name.position.y - name.size.height * 1.5
                     }
@@ -325,7 +325,7 @@ class MapCatalogView: SKView {
                         cityLabel.position.x = name.position.x + name.size.height * 1.5
                     }
                 } else {
-                    cityLabel.position = CGPoint(x: name.position.x - name.size.height / 1.5, y: name.position.y + 1.5 * name.size.height)
+                    cityLabel.position = CGPoint(x: name.position.x - name.size.height / 1.5, y: name.position.y)
                     if cityLabel.position.x - cityLabel.frame.size.width / 2 < 0 {
                         cityLabel.position.x = name.position.x + name.size.height * 1.5
                     }
@@ -337,7 +337,7 @@ class MapCatalogView: SKView {
                         cityLabel.position.x = name.position.x + name.size.height * 1.5
                     }
                 } else {
-                    cityLabel.position = CGPoint(x: name.position.x - name.size.height / 1.5, y: name.position.y - 1.5 * name.size.height)
+                    cityLabel.position = CGPoint(x: name.position.x - name.size.height / 1.5, y: name.position.y)
                     if cityLabel.position.x - cityLabel.frame.size.width / 2 < 0 {
                         cityLabel.position.x = name.position.x + name.size.height * 1.5
                     }

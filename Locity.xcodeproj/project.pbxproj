@@ -11,6 +11,7 @@
 		F2032C3822592BEC001C4FD8 /* ArrowStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2032C3722592BEC001C4FD8 /* ArrowStart.swift */; };
 		F204D8D9224142B40065FA0E /* Geo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F204D8D8224142B40065FA0E /* Geo.ttf */; };
 		F208AF882278A2B1006013AB /* ViewControllerCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F208AF872278A2B1006013AB /* ViewControllerCatalog.swift */; };
+		F2162BFB229BD23E00F31975 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F2162BFA229BD23E00F31975 /* GoogleService-Info.plist */; };
 		F219028A225B8091001F1AE4 /* Titania.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F2190289225B8091001F1AE4 /* Titania.ttf */; };
 		F219028C225B81B0001F1AE4 /* FlapTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = F219028B225B81B0001F1AE4 /* FlapTop.swift */; };
 		F219028E225B81FC001F1AE4 /* FlapBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = F219028D225B81FC001F1AE4 /* FlapBottom.swift */; };
@@ -43,6 +44,7 @@
 		F2032C3722592BEC001C4FD8 /* ArrowStart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowStart.swift; sourceTree = "<group>"; };
 		F204D8D8224142B40065FA0E /* Geo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Geo.ttf; path = "image/исход/Geo.ttf"; sourceTree = SOURCE_ROOT; };
 		F208AF872278A2B1006013AB /* ViewControllerCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerCatalog.swift; sourceTree = "<group>"; };
+		F2162BFA229BD23E00F31975 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		F2190289225B8091001F1AE4 /* Titania.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Titania.ttf; path = "image/исход/Titania.ttf"; sourceTree = SOURCE_ROOT; };
 		F219028B225B81B0001F1AE4 /* FlapTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlapTop.swift; sourceTree = "<group>"; };
 		F219028D225B81FC001F1AE4 /* FlapBottom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlapBottom.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				F2C837E82215F9D700C252AB /* Info.plist */,
+				F2162BFA229BD23E00F31975 /* GoogleService-Info.plist */,
 				F2190289225B8091001F1AE4 /* Titania.ttf */,
 				F22606AE228381D800A7522E /* Code New Roman b.otf */,
 				F204D8D8224142B40065FA0E /* Geo.ttf */,
@@ -216,6 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2608C7D226EF9FA00E911C6 /* world.db in Resources */,
+				F2162BFB229BD23E00F31975 /* GoogleService-Info.plist in Resources */,
 				F2C837E72215F9D700C252AB /* LaunchScreen.storyboard in Resources */,
 				F2E5226722201A7B006938A8 /* Assets.xcassets in Resources */,
 				F204D8D9224142B40065FA0E /* Geo.ttf in Resources */,
@@ -447,7 +451,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = deltaTOxaREY.Locity;
+				PRODUCT_BUNDLE_IDENTIFIER = deltaTOxaREY.City;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -466,7 +470,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = deltaTOxaREY.Locity;
+				PRODUCT_BUNDLE_IDENTIFIER = deltaTOxaREY.City;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
