@@ -593,6 +593,8 @@ class ViewControllerMap: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        idSelectCountry = 67
+//        diff = "E"
         
         do {
             for idSelect in try base.database.prepare(base.countriesTable.select(base.country).filter(base.id == idSelectCountry)){

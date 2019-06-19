@@ -1,0 +1,9 @@
+#!/bin/bash
+
+read bound
+read res
+read name
+pscoast $bound -I1/thin,blue -I2/thin,blue -B+n -Gtan -W1/0.01p -Slightblue -D$res -N1/0.01p > GMT_$name.ps
+psxy point.xy $bound -Sc0.1i -W1p -Gred -Ba > GMT_$name\3.ps
+pstext city.xy $bound -Ba -F+f12,Helvetica > GMT_$name\4.ps
+

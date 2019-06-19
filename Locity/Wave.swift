@@ -8,6 +8,7 @@
 
 import Foundation
 import SpriteKit
+import AVFoundation
 
 extension SKAction {
     static func oscillation(amplitude a: CGFloat, timePeriod t: CGFloat, midPoint: CGPoint) -> SKAction {
@@ -69,7 +70,7 @@ class Wave: SKView {
         let seq = SKAction.sequence([rotation1, rotation2, rotation3, rotation4])
         let loop = SKAction.repeatForever(seq)
         let moveBottom = SKAction.moveBy(x: 0, y: -scene!.frame.height / 2, duration: 1.0)
-        wave.run(moveLeft, completion: {self.scene!.backgroundColor = .clear; self.wave.run(moveBottom); self.wave2.run(moveBottom, completion: {self.scene!.removeAllChildren(); self.scene!.removeAllActions();NotificationCenter.default.post(name: NSNotification.Name(rawValue: "homeButtonEnable"), object: nil)})})
+        wave.run(moveLeft, completion: {self.scene!.backgroundColor = .clear; self.wave.run(moveBottom); self.wave2.run(moveBottom, completion: {self.scene!.removeAllChildren(); self.scene!.removeAllActions(); UIDevice.vibrate(); NotificationCenter.default.post(name: NSNotification.Name(rawValue: "homeButtonEnable"), object: nil)})})
         wave2.run(moveRight)
         ship.run(moveShip)
         ship.run(SKAction.repeatForever(oscillate))

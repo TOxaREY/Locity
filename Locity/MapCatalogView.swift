@@ -165,7 +165,7 @@ class MapCatalogView: SKView {
         map.position = CGPoint(x: scene!.size.width / 2, y: scene!.size.height / 2)
         map.size.width = scene!.frame.width
         scene!.addChild(map)
-        if idSelectCountry == 17 {
+        if idSelectCountry == 17 || idSelectCountry == 124 || idSelectCountry == 189{
             addCityToMap(name: ringNC,cap: false, number: 1)
             addCityToMap(name: ring1,cap: false, number: 2)
             addCityToMap(name: ring2,cap: false, number: 3)
@@ -197,7 +197,7 @@ class MapCatalogView: SKView {
         } catch {
             print(error)
         }
-        if idSelectCountry == 17 {
+        if idSelectCountry == 17 || idSelectCountry == 124 || idSelectCountry == 189 {
             addCityToMap(name: ringNC,cap: false, number: 1)
             addCityToMap(name: ring1,cap: false, number: 2)
             addCityToMap(name: ring2,cap: false, number: 3)
