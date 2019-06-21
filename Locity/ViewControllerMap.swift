@@ -59,16 +59,13 @@ class ViewControllerMap: UIViewController {
   
     @IBOutlet weak var catalogImage: UIImageView!
     @IBAction func catalogButton(_ sender: Any) {
-        checkArrow(direct: arrow).isHidden = true
         catalogButtonOutlet.isEnabled = false
         self.catalogImage.removeAnimation()
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addContin"), object: nil)
-        swip()
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addCitiesCatalog"), object: nil)
     }
     
     @IBOutlet weak var blur2View: UIView!
     @IBOutlet weak var continView: Contin!
-    @IBOutlet weak var swipView: UIView!
     @IBOutlet weak var northLeftImage: UIImageView!
     @IBOutlet weak var northImage: UIImageView!
     @IBOutlet weak var roundCitySupport: UILabel!
@@ -557,35 +554,6 @@ class ViewControllerMap: UIViewController {
         }
         return i
     }
-    func swip() {
-        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
-        rightSwipe.direction = .right
-        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
-        leftSwipe.direction = .left
-        swipView.addGestureRecognizer(rightSwipe)
-        swipView.addGestureRecognizer(leftSwipe)
-    }
-    
-    @objc func handleSwipe(sender: UISwipeGestureRecognizer) {
-        if sender.state == .ended {
-            if i == 0 {
-                switch sender.direction {
-                case .right, .left: NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addMapAndCities"), object: nil)
-                checkArrow(direct: arrow).transform = CGAffineTransform(scaleX: 0.05, y: 0.05)
-                checkArrow(direct: arrow).isHidden = false
-                UIView.animate(withDuration: 0.5) {
-                    self.checkArrow(direct: self.arrow).transform = .identity
-                }; i = 1
-                default: break
-                }
-            } else if i == 1 {
-                switch sender.direction {
-                case .right, .left: checkArrow(direct: arrow).isHidden = true; NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addContin"), object: nil); i = 0
-                default: break
-                }
-            }
-        }
-    }
     
     deinit {
         print("deinitVCM")
@@ -593,8 +561,8 @@ class ViewControllerMap: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        idSelectCountry = 67
-//        diff = "E"
+//        idSelectCountry = 64
+//        diff = "H"
         
         do {
             for idSelect in try base.database.prepare(base.countriesTable.select(base.country).filter(base.id == idSelectCountry)){

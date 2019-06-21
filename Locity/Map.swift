@@ -91,7 +91,7 @@ class Map: SKView {
         circle.lineWidth = 1
         scene!.addChild(self.ringRight)
         scene!.addChild(circle)
-        let scaleCircle = SKAction.scale(to: 0.01, duration: 2.0)
+        let scaleCircle = SKAction.scale(to: (ringRight.size.height) / radiusToch, duration: 1.0)
         circle.run(scaleCircle)
     }
     

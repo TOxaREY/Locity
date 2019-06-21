@@ -60,10 +60,10 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
             pickerLabel = UILabel()
             pickerLabel?.font = UIFont(name: "Georgia-Bold", size: 20.0)!
             pickerLabel?.textAlignment = .center
+            pickerLabel?.adjustsFontSizeToFitWidth = true
         }
         pickerView.backgroundColor = UIColor.white
         pickerLabel?.text = arrayCoutries[row]
-
         return pickerLabel!
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
