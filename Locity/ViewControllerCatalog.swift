@@ -19,7 +19,9 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
     let letters = ["A":"\u{1F1E6}","B":"\u{1F1E7}","C":"\u{1F1E8}","D":"\u{1F1E9}","E":"\u{1F1EA}","F":"\u{1F1EB}","G":"\u{1F1EC}","H":"\u{1F1ED}","I":"\u{1F1EE}","J":"\u{1F1EF}","K":"\u{1F1F0}","L":"\u{1F1F1}","M":"\u{1F1F2}","N":"\u{1F1F3}","O":"\u{1F1F4}","P":"\u{1F1F5}","Q":"\u{1F1F6}","R":"\u{1F1F7}","S":"\u{1F1F8}","T":"\u{1F1F9}","U":"\u{1F1FA}","V":"\u{1F1FB}","W":"\u{1F1FC}","X":"\u{1F1FD}","Y":"\u{1F1FE}","Z":"\u{1F1FF}"]
     var flagString = String()
     var i = 0
+    var rusDir = String()
 
+    
     @IBOutlet weak var northImage: UIImageView!
     @IBOutlet weak var northLeftImage: UIImageView!
     @IBOutlet weak var isoFlag: UILabel!
@@ -99,14 +101,18 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
                 iso = i[base.iso]
                 flagString.append(letters[String(iso.first!)]! + letters[String(iso.last!)]!)
                 isoFlag.text = flagString
+                if iso == "RU" {
+                    break
+                }
             }
         } catch {
             print(error)
         }
         do {
-            for idCon in try base.database.prepare(base.countriesTable.select(base.id).filter(base.country == pickerCountry)) {
-                idSelectCountry = idCon[base.id]
-            }
+                for idCon in try base.database.prepare(base.countriesTable.select(base.id).filter(base.country == pickerCountry)) {
+                    idSelectCountry = idCon[base.id]
+                    print(idSelectCountry)
+                }
         } catch {
             print(error)
         }
@@ -123,7 +129,90 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
 
     @objc func handleSwipe(sender: UISwipeGestureRecognizer) {
         if sender.state == .ended {
-            if i == 0 {
+            if idSelectCountry == 189 || idSelectCountry == 130 {
+                switch idSelectCountry {
+                case 189:
+                    switch sender.direction {
+                    case .right, .left: NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addMapAndCities"), object: nil)
+                    mapView.isHidden = false
+                    checkArrow(direct: arrowCat).transform = CGAffineTransform(scaleX: 0.05, y: 0.05)
+                    checkArrow(direct: arrowCat).isHidden = false
+                    UIView.animate(withDuration: 0.5) {
+                        self.checkArrow(direct: arrowCat).transform = .identity
+                    }
+                   idSelectCountry = 130
+                    if sender.direction == .left {
+                        rusDir = "left"
+                    } else if sender.direction == .right {
+                        rusDir = "right"
+                        }
+                    default: break
+                    }
+                case 130:
+                    if rusDir == "left" {
+                    northImage.isHidden = true
+                    if i == 0 {
+                    switch sender.direction {
+                    case .left: NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addMapAndCities"), object: nil)
+                    mapView.isHidden = false
+                    checkArrow(direct: arrowCat).transform = CGAffineTransform(scaleX: 0.05, y: 0.05)
+                    checkArrow(direct: arrowCat).isHidden = false
+                    UIView.animate(withDuration: 0.5) {
+                        self.checkArrow(direct: arrowCat).transform = .identity
+                    }
+                        i += 1
+                    case .right: checkArrow(direct: arrowCat).isHidden = true; NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addContin"), object: nil); idSelectCountry = 189
+                    default: break
+                    }
+                    } else if i == 1 {
+                        idSelectCountry = 189
+                        switch sender.direction {
+                        case .left: checkArrow(direct: arrowCat).isHidden = true; NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addContin"), object: nil); i = 0
+                        case .right: northLeftImage.isHidden = true
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addMapAndCities"), object: nil)
+                        mapView.isHidden = false
+                        checkArrow(direct: arrowCat).transform = CGAffineTransform(scaleX: 0.05, y: 0.05)
+                        checkArrow(direct: arrowCat).isHidden = false
+                        UIView.animate(withDuration: 0.5) {
+                            self.checkArrow(direct: arrowCat).transform = .identity
+                        }; idSelectCountry = 130; i = 0
+                        default: break
+                        }
+                    }
+                    } else if rusDir == "right" {
+                        northImage.isHidden = true
+                        if i == 0 {
+                            switch sender.direction {
+                            case .left: checkArrow(direct: arrowCat).isHidden = true; NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addContin"), object: nil); idSelectCountry = 189
+                            case .right: NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addMapAndCities"), object: nil)
+                            mapView.isHidden = false
+                            checkArrow(direct: arrowCat).transform = CGAffineTransform(scaleX: 0.05, y: 0.05)
+                            checkArrow(direct: arrowCat).isHidden = false
+                            UIView.animate(withDuration: 0.5) {
+                                self.checkArrow(direct: arrowCat).transform = .identity
+                            }
+                            i += 1
+                            default: break
+                            }
+                        } else if i == 1 {
+                            idSelectCountry = 189
+                            switch sender.direction {
+                            case .left: northLeftImage.isHidden = true
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addMapAndCities"), object: nil)
+                            mapView.isHidden = false
+                            checkArrow(direct: arrowCat).transform = CGAffineTransform(scaleX: 0.05, y: 0.05)
+                            checkArrow(direct: arrowCat).isHidden = false
+                            UIView.animate(withDuration: 0.5) {
+                                self.checkArrow(direct: arrowCat).transform = .identity
+                            }; idSelectCountry = 130; i = 0
+                            case .right: checkArrow(direct: arrowCat).isHidden = true; NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addContin"), object: nil); i = 0
+                            default: break
+                            }
+                        }
+                    }
+                default: break
+                }
+            } else if i == 0 {
                 switch sender.direction {
                 case .right, .left: NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addMapAndCities"), object: nil)
                 mapView.isHidden = false
@@ -131,12 +220,14 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
                 checkArrow(direct: arrowCat).isHidden = false
                 UIView.animate(withDuration: 0.5) {
                     self.checkArrow(direct: arrowCat).transform = .identity
-                }; i = 1
+                }
+                i = 1
                 default: break
                 }
             } else if i == 1 {
                 switch sender.direction {
-                case .right, .left: checkArrow(direct: arrowCat).isHidden = true; NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addContin"), object: nil); i = 0
+                case .right, .left: checkArrow(direct: arrowCat).isHidden = true; NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addContin"), object: nil)
+                i = 0
                 default: break
                 }
             }
@@ -157,9 +248,16 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
 
         do {
             for cntr in try base.database.prepare(base.countriesTable.select(base.country)) {
+                if cntr[base.country] == "Russia" || cntr[base.country] == "Россия" || cntr[base.country] == "Russie" || cntr[base.country] == "Rusia" || cntr[base.country] == "Rússia" || cntr[base.country] == "Russland" {
+                    continue
+                } else {
                 arrayCoutries.append(cntr[base.country])
-                arrayCoutries = arrayCoutries.sorted {$0 < $1}
+                }
             }
+            for rus in try base.database.prepare(base.countriesTable.select(base.country).filter(base.id == 130)) {
+                arrayCoutries.append(rus[base.country])
+            }
+            arrayCoutries = arrayCoutries.sorted {$0 < $1}
         } catch {
             print(error)
         }

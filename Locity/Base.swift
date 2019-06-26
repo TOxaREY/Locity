@@ -32,6 +32,7 @@ class Base {
     let x = Expression<Double>("x")
     let y = Expression<Double>("y")
     let capital = Expression<String>("capital")
+    let dir = Expression<String>("dir")
     let id_country = Expression<Int>("id_country")
     
     init() {

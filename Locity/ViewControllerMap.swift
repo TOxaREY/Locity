@@ -366,14 +366,14 @@ class ViewControllerMap: UIViewController {
         switch  cityNumder {
         case "c1":
             do {
-                for city in try base.database.prepare(base.citiesTable.select(base.x).filter(base.city == cityName)){
+                for city in try base.database.prepare(base.citiesTable.select(base.x).filter(base.city == cityName && base.id_country == idSelectCountry)){
                     cityX = CGFloat(city[base.x])
                 }
             } catch {
                 print(error)
             };
             do {
-                for city in try base.database.prepare(base.citiesTable.select(base.y).filter(base.city == cityName)){
+                for city in try base.database.prepare(base.citiesTable.select(base.y).filter(base.city == cityName && base.id_country == idSelectCountry)){
                     cityY = CGFloat(city[base.y])
                 }
             } catch {
@@ -381,14 +381,14 @@ class ViewControllerMap: UIViewController {
             }
         case "c2":
             do {
-                for city in try base.database.prepare(base.citiesTable.select(base.x).filter(base.city == cityName)){
+                for city in try base.database.prepare(base.citiesTable.select(base.x).filter(base.city == cityName && base.id_country == idSelectCountry)){
                     city2X = CGFloat(city[base.x])
                 }
             } catch {
                 print(error)
             };
             do {
-                for city in try base.database.prepare(base.citiesTable.select(base.y).filter(base.city == cityName)){
+                for city in try base.database.prepare(base.citiesTable.select(base.y).filter(base.city == cityName && base.id_country == idSelectCountry)){
                     city2Y = CGFloat(city[base.y])
                 }
             } catch {
@@ -396,14 +396,14 @@ class ViewControllerMap: UIViewController {
             }
         case "c3":
             do {
-                for city in try base.database.prepare(base.citiesTable.select(base.x).filter(base.city == cityName)){
+                for city in try base.database.prepare(base.citiesTable.select(base.x).filter(base.city == cityName && base.id_country == idSelectCountry)){
                     city3X = CGFloat(city[base.x])
                 }
             } catch {
                 print(error)
             };
             do {
-                for city in try base.database.prepare(base.citiesTable.select(base.y).filter(base.city == cityName)){
+                for city in try base.database.prepare(base.citiesTable.select(base.y).filter(base.city == cityName && base.id_country == idSelectCountry)){
                     city3Y = CGFloat(city[base.y])
                 }
             } catch {
@@ -561,8 +561,8 @@ class ViewControllerMap: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        idSelectCountry = 64
-//        diff = "H"
+//        idSelectCountry = 189
+//        diff = "E"
         
         do {
             for idSelect in try base.database.prepare(base.countriesTable.select(base.country).filter(base.id == idSelectCountry)){

@@ -61,7 +61,9 @@ class MapCatalogView: SKView {
     var maxY = CGFloat()
     var minX = CGFloat()
     var minY = CGFloat()
-    
+    var dir = String()
+    var dirY = CGFloat()
+    var dirX = CGFloat()
     
     deinit {
         print("deinitSKVMapCatalog")
@@ -92,29 +94,41 @@ class MapCatalogView: SKView {
             print(error)
         }
         do {
-            for idContin in try base.database.prepare(base.countriesTable.select(base.id_continent).filter(base.id == idSelectCountry)){
-                switch idContin[base.id_continent] {
-                case 1: contin = SKSpriteNode(imageNamed: "Oceania.png")
-                case 2: contin = SKSpriteNode(imageNamed: "Asia.png")
-                case 3: contin = SKSpriteNode(imageNamed: "Africa.png")
-                case 4: contin = SKSpriteNode(imageNamed: "Europe.png")
-                case 5: contin = SKSpriteNode(imageNamed: "America.png")
-                default: break
+            if idSelectCountry == 189 || idSelectCountry == 130 {
+                contin = SKSpriteNode(imageNamed: "Russia.png")
+            } else {
+                for idContin in try base.database.prepare(base.countriesTable.select(base.id_continent).filter(base.id == idSelectCountry)){
+                    switch idContin[base.id_continent] {
+                        case 1: contin = SKSpriteNode(imageNamed: "Oceania.png")
+                        case 2: contin = SKSpriteNode(imageNamed: "Asia.png")
+                        case 3: contin = SKSpriteNode(imageNamed: "Africa.png")
+                        case 4: contin = SKSpriteNode(imageNamed: "Europe.png")
+                        case 5: contin = SKSpriteNode(imageNamed: "America.png")
+                        default: break
+                    }
                 }
             }
         } catch {
             print(error)
         }
         do {
-            for country in try base.database.prepare(base.countriesTable.select(base.x).filter(base.id == idSelectCountry)){
-                xCountry = CGFloat(country[base.x])
+            if idSelectCountry == 189 || idSelectCountry == 130 {
+                xCountry = CGFloat(2.101523)
+            } else {
+                for country in try base.database.prepare(base.countriesTable.select(base.x).filter(base.id == idSelectCountry)){
+                    xCountry = CGFloat(country[base.x])
+                }
             }
         } catch {
             print(error)
         }
         do {
-            for country in try base.database.prepare(base.countriesTable.select(base.y).filter(base.id == idSelectCountry)){
-                yCountry = CGFloat(country[base.y])
+            if idSelectCountry == 189 || idSelectCountry == 130 {
+                yCountry = CGFloat(1.841785)
+            } else {
+                for country in try base.database.prepare(base.countriesTable.select(base.y).filter(base.id == idSelectCountry)){
+                    yCountry = CGFloat(country[base.y])
+                }
             }
         } catch {
             print(error)
@@ -165,7 +179,7 @@ class MapCatalogView: SKView {
         map.position = CGPoint(x: scene!.size.width / 2, y: scene!.size.height / 2)
         map.size.width = scene!.frame.width
         scene!.addChild(map)
-        if idSelectCountry == 17 || idSelectCountry == 124 || idSelectCountry == 189{
+        if idSelectCountry == 17 || idSelectCountry == 124 || idSelectCountry == 130{
             addCityToMap(name: ringNC,cap: false, number: 1)
             addCityToMap(name: ring1,cap: false, number: 2)
             addCityToMap(name: ring2,cap: false, number: 3)
@@ -179,6 +193,12 @@ class MapCatalogView: SKView {
             addCityToMap(name: ring3,cap: false, number: 3)
             addCityToMap(name: ring4,cap: false, number: 4)
             addCityToMap(name: ring5,cap: false, number: 5)
+        }
+        if idSelectCountry == 189 {
+            swipe.size = CGSize(width: (maxX - minX) * 0.1, height: (maxX - minX) * 0.1)
+            swipe.position = CGPoint(x: scene!.size.width / 2, y: swipe.size.height / 1.5)
+            swipe.zPosition = 1
+            scene!.addChild(swipe)
         }
     }
     @objc func addCitiesCatalog(){
@@ -197,7 +217,7 @@ class MapCatalogView: SKView {
         } catch {
             print(error)
         }
-        if idSelectCountry == 17 || idSelectCountry == 124 || idSelectCountry == 189 {
+        if idSelectCountry == 17 || idSelectCountry == 124 || idSelectCountry == 130 {
             addCityToMap(name: ringNC,cap: false, number: 1)
             addCityToMap(name: ring1,cap: false, number: 2)
             addCityToMap(name: ring2,cap: false, number: 3)
@@ -227,7 +247,15 @@ class MapCatalogView: SKView {
         cityLabel.fontColor = .black
         cityLabel.fontName = "Georgia-Bold"
         cityLabel.zPosition = 1
+
         if cap {
+            do {
+                for dirCity in try base.database.prepare(base.citiesTable.select(base.dir).filter(base.id_country == idSelectCountry && base.capital == "C")){
+                    dir = dirCity[base.dir]
+                }
+            } catch {
+                print(error)
+            }
         do {
             for city in try base.database.prepare(base.citiesTable.select(base.x).filter(base.id_country == idSelectCountry && base.capital == "C")){
                 xCityCatalog = CGFloat(city[base.x])
@@ -251,14 +279,21 @@ class MapCatalogView: SKView {
             }
         } else {
             do {
-                for city in try base.database.prepare(base.citiesTable.select(base.x).filter(base.city == dictionaryCities[number]!)){
+                for dirCity in try base.database.prepare(base.citiesTable.select(base.dir).filter(base.city == dictionaryCities[number]! && base.id_country == idSelectCountry)){
+                    dir = dirCity[base.dir]
+                }
+            } catch {
+                print(error)
+            }
+            do {
+                for city in try base.database.prepare(base.citiesTable.select(base.x).filter(base.city == dictionaryCities[number]! && base.id_country == idSelectCountry)){
                     xCityCatalog = CGFloat(city[base.x])
                 }
             } catch {
                 print(error)
             }
             do {
-                for city in try base.database.prepare(base.citiesTable.select(base.y).filter(base.city == dictionaryCities[number]!)){
+                for city in try base.database.prepare(base.citiesTable.select(base.y).filter(base.city == dictionaryCities[number]! && base.id_country == idSelectCountry)){
                     yCityCatalog = CGFloat(city[base.y])
                 }
             } catch {
@@ -276,38 +311,48 @@ class MapCatalogView: SKView {
         name.size = CGSize(width: (maxX - minX) * 0.04, height: (maxX - minX) * 0.04)
         name.position = CGPoint(x: (maxX - minX) / xCityCatalog, y: (((maxY - delta) - (minY + delta)) / yCityCatalog) + delta)
         name.zPosition = 0
-
+        
         if arrowCat == "U" {
+            if dir == "T" {
+                dirY = name.position.y + name.size.height / 1.5
+            } else if dir == "B" {
+                dirY = name.position.y - name.size.height * 1.5
+            }
             if name.position.x - cityLabel.frame.size.width / 2 <= 0 {
-                cityLabel.position = CGPoint(x: cityLabel.frame.size.width / 2, y: name.position.y + name.size.height / 1.5)
+                cityLabel.position = CGPoint(x: cityLabel.frame.size.width / 2, y: dirY)
                 if scene!.frame.maxY - cityLabel.position.y + cityLabel.frame.size.height / 2 < 0 {
                     cityLabel.position.y = name.position.y - name.size.height * 1.5
                     }
                 } else  if cityLabel.frame.size.width / 2 + name.position.x >= scene!.frame.maxX {
-                cityLabel.position = CGPoint(x: scene!.frame.maxX - cityLabel.frame.size.width / 2, y: name.position.y + name.size.height / 1.5)
+                cityLabel.position = CGPoint(x: scene!.frame.maxX - cityLabel.frame.size.width / 2, y: dirY)
                 if scene!.frame.maxY - cityLabel.position.y + cityLabel.frame.size.height / 2 < 0 {
                     cityLabel.position.y = name.position.y - name.size.height * 1.5
                 }
             } else {
-                cityLabel.position = CGPoint(x: name.position.x, y: name.position.y + name.size.height / 1.5)
+                cityLabel.position = CGPoint(x: name.position.x, y: dirY)
                 if scene!.frame.maxY - cityLabel.position.y + cityLabel.frame.size.height / 2 < 0 {
                     cityLabel.position.y = name.position.y - name.size.height * 1.5
                 }
             }
         } else if arrowCat == "L" {
+            if dir == "T" {
+                dirX = name.position.x - name.size.width / 1.5
+            } else if dir == "B" {
+                dirX = name.position.x + name.size.height * 1.5
+            }
             cityLabel.zRotation = π / 2
             if name.position.y - cityLabel.frame.size.height / 2 <= 0 {
-                cityLabel.position = CGPoint(x: name.position.x - name.size.width / 1.5, y: cityLabel.frame.size.height / 2)
+                cityLabel.position = CGPoint(x: dirX, y: cityLabel.frame.size.height / 2)
                 if cityLabel.position.x - cityLabel.frame.size.width / 2 < 0 {
                     cityLabel.position.x = name.position.x + name.size.height * 1.5
                 }
             } else if cityLabel.frame.size.height / 2 + name.position.y >= scene!.frame.maxY {
-                cityLabel.position = CGPoint(x: name.position.x - name.size.height / 1.5, y: scene!.frame.maxY - cityLabel.frame.size.height / 2)
+                cityLabel.position = CGPoint(x: dirX, y: scene!.frame.maxY - cityLabel.frame.size.height / 2)
                 if cityLabel.position.x - cityLabel.frame.size.width / 2 < 0 {
                     cityLabel.position.x = name.position.x + name.size.height * 1.5
                 }
             } else {
-                cityLabel.position = CGPoint(x: name.position.x - name.size.height / 1.5, y: name.position.y)
+                cityLabel.position = CGPoint(x: dirX, y: name.position.y)
                 if cityLabel.position.x - cityLabel.frame.size.width / 2 < 0 {
                     cityLabel.position.x = name.position.x + name.size.height * 1.5
                 }
