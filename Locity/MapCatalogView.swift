@@ -312,49 +312,51 @@ class MapCatalogView: SKView {
         name.position = CGPoint(x: (maxX - minX) / xCityCatalog, y: (((maxY - delta) - (minY + delta)) / yCityCatalog) + delta)
         name.zPosition = 0
         
+        let dirUb = name.position.y - name.size.height / 1.5 - cityLabel.frame.size.height / 2
+        let dirLb = name.position.x + name.size.height / 1.5 + cityLabel.frame.size.height / 2
         if arrowCat == "U" {
             if dir == "T" {
                 dirY = name.position.y + name.size.height / 1.5
             } else if dir == "B" {
-                dirY = name.position.y - name.size.height * 1.5
+                dirY = dirUb
             }
             if name.position.x - cityLabel.frame.size.width / 2 <= 0 {
                 cityLabel.position = CGPoint(x: cityLabel.frame.size.width / 2, y: dirY)
                 if scene!.frame.maxY - cityLabel.position.y + cityLabel.frame.size.height / 2 < 0 {
-                    cityLabel.position.y = name.position.y - name.size.height * 1.5
+                    cityLabel.position.y = dirUb
                     }
                 } else  if cityLabel.frame.size.width / 2 + name.position.x >= scene!.frame.maxX {
                 cityLabel.position = CGPoint(x: scene!.frame.maxX - cityLabel.frame.size.width / 2, y: dirY)
                 if scene!.frame.maxY - cityLabel.position.y + cityLabel.frame.size.height / 2 < 0 {
-                    cityLabel.position.y = name.position.y - name.size.height * 1.5
+                    cityLabel.position.y = dirUb
                 }
             } else {
                 cityLabel.position = CGPoint(x: name.position.x, y: dirY)
                 if scene!.frame.maxY - cityLabel.position.y + cityLabel.frame.size.height / 2 < 0 {
-                    cityLabel.position.y = name.position.y - name.size.height * 1.5
+                    cityLabel.position.y = dirUb
                 }
             }
         } else if arrowCat == "L" {
             if dir == "T" {
                 dirX = name.position.x - name.size.width / 1.5
             } else if dir == "B" {
-                dirX = name.position.x + name.size.height * 1.5
+                dirX = dirLb
             }
             cityLabel.zRotation = π / 2
             if name.position.y - cityLabel.frame.size.height / 2 <= 0 {
                 cityLabel.position = CGPoint(x: dirX, y: cityLabel.frame.size.height / 2)
                 if cityLabel.position.x - cityLabel.frame.size.width / 2 < 0 {
-                    cityLabel.position.x = name.position.x + name.size.height * 1.5
+                    cityLabel.position.x = dirLb
                 }
             } else if cityLabel.frame.size.height / 2 + name.position.y >= scene!.frame.maxY {
                 cityLabel.position = CGPoint(x: dirX, y: scene!.frame.maxY - cityLabel.frame.size.height / 2)
                 if cityLabel.position.x - cityLabel.frame.size.width / 2 < 0 {
-                    cityLabel.position.x = name.position.x + name.size.height * 1.5
+                    cityLabel.position.x = dirLb
                 }
             } else {
                 cityLabel.position = CGPoint(x: dirX, y: name.position.y)
                 if cityLabel.position.x - cityLabel.frame.size.width / 2 < 0 {
-                    cityLabel.position.x = name.position.x + name.size.height * 1.5
+                    cityLabel.position.x = dirLb
                 }
             }
         }

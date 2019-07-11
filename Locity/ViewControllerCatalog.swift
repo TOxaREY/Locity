@@ -257,7 +257,7 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
             for rus in try base.database.prepare(base.countriesTable.select(base.country).filter(base.id == 130)) {
                 arrayCoutries.append(rus[base.country])
             }
-            arrayCoutries = arrayCoutries.sorted {$0 < $1}
+            arrayCoutries = arrayCoutries.sorted { $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedAscending }
         } catch {
             print(error)
         }

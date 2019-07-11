@@ -217,6 +217,7 @@ DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        RateManager.showRatesController()
         but.isEnabled = false
         butCatalog.isEnabled = false
         allFlip(time: 0.25)

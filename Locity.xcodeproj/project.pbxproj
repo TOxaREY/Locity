@@ -22,6 +22,7 @@
 		F21E595B225CEFE000C0721B /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21E595A225CEFE000C0721B /* Base.swift */; };
 		F22606AF228381D900A7522E /* Code New Roman b.otf in Resources */ = {isa = PBXBuildFile; fileRef = F22606AE228381D800A7522E /* Code New Roman b.otf */; };
 		F226D920225FA17300828761 /* ViewControllerMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F226D91F225FA17300828761 /* ViewControllerMap.swift */; };
+		F232546F22D3DC9D0075005C /* RateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F232546E22D3DC9D0075005C /* RateManager.swift */; };
 		F2349C2E227587F30082E808 /* MapCatalogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2349C2D227587F30082E808 /* MapCatalogView.swift */; };
 		F24E8E76228369850010C98A /* ViewControllerFinish.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24E8E75228369850010C98A /* ViewControllerFinish.swift */; };
 		F2608C7D226EF9FA00E911C6 /* world.db in Resources */ = {isa = PBXBuildFile; fileRef = F2608C7C226EF9FA00E911C6 /* world.db */; };
@@ -55,6 +56,7 @@
 		F21E595A225CEFE000C0721B /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
 		F22606AE228381D800A7522E /* Code New Roman b.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Code New Roman b.otf"; path = "image/исход/Code New Roman b.otf"; sourceTree = SOURCE_ROOT; };
 		F226D91F225FA17300828761 /* ViewControllerMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerMap.swift; sourceTree = "<group>"; };
+		F232546E22D3DC9D0075005C /* RateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateManager.swift; sourceTree = "<group>"; };
 		F2349C2D227587F30082E808 /* MapCatalogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCatalogView.swift; sourceTree = "<group>"; };
 		F24E8E75228369850010C98A /* ViewControllerFinish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFinish.swift; sourceTree = "<group>"; };
 		F2608C7C226EF9FA00E911C6 /* world.db */ = {isa = PBXFileReference; lastKnownFileType = file; name = world.db; path = MAPS_BASE/world.db; sourceTree = SOURCE_ROOT; };
@@ -130,6 +132,7 @@
 				F22606AE228381D800A7522E /* Code New Roman b.otf */,
 				F204D8D8224142B40065FA0E /* Geo.ttf */,
 				F2C837D92215F9D600C252AB /* AppDelegate.swift */,
+				F232546E22D3DC9D0075005C /* RateManager.swift */,
 				F2C837E52215F9D700C252AB /* LaunchScreen.storyboard */,
 				F2032C3722592BEC001C4FD8 /* ArrowStart.swift */,
 				F2EF0AAC2278376200DF51FD /* CatalogStart.swift */,
@@ -288,6 +291,7 @@
 				F21926BE2284A02F007A5025 /* Wave.swift in Sources */,
 				F219028C225B81B0001F1AE4 /* FlapTop.swift in Sources */,
 				F2C837DA2215F9D600C252AB /* AppDelegate.swift in Sources */,
+				F232546F22D3DC9D0075005C /* RateManager.swift in Sources */,
 				F2D98F43225E57EA0077F8C4 /* IsoViewRemover.swift in Sources */,
 				F264063E221D92EE00AC753D /* ViewControllerStart.swift in Sources */,
 				F2349C2E227587F30082E808 /* MapCatalogView.swift in Sources */,

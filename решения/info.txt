@@ -1,0 +1,7 @@
+Database created is based on:
+Map - http://gmt.soest.hawaii.edu/projects/gmt
+City name - https://en.wikipedia.org/
+Сoordinates - https://www.google.com/maps
+
+Web - http://locity.toxarey.xyz
+For questions about app, please write to locity@toxarey.xyz

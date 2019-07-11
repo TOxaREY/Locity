@@ -9,18 +9,51 @@
 import UIKit
 import CoreData
 
+extension UITextView {
+    
+    func centerVertically() {
+        var topCorrect = (self.bounds.size.height - self.contentSize.height * self.zoomScale) / 2
+        topCorrect = topCorrect < 0.0 ? 0.0 : topCorrect
+        self.contentInset.top = topCorrect
+    }
+}
+
 class ViewControllerFinish: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     
     var sizeFont:CGFloat = UIScreen.main.bounds.width / 11.5
     var namesH: [NSManagedObject] = []
     var namesE: [NSManagedObject] = []
     
+
+
+    @IBOutlet weak var textInfo: UITextView!
+    @IBOutlet weak var viewBg: UIView!
+    @IBOutlet weak var viewBg2: UIView!
+    @IBOutlet weak var infoView: UIView!
+    @IBOutlet weak var cancelImage: UIImageView!
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBAction func cancelButton(_ sender: Any) {
+        infoView.isHidden = true
+        viewBg.backgroundColor = UIColor.clear
+        viewBg2.backgroundColor = UIColor.clear
+        hardLabel.backgroundColor = UIColor.clear
+        easyLabel.backgroundColor = UIColor.clear
+    }
     @IBOutlet weak var hardLabel: UILabel!
     @IBOutlet weak var easyLabel: UILabel!
     @IBOutlet weak var hTableView: UITableView!
     @IBOutlet weak var eTableView: UITableView!
     @IBOutlet weak var finishHomeImage: UIImageView!
     @IBOutlet weak var homeButton: UIButton!
+    @IBOutlet weak var infoButton: UIButton!
+    @IBAction func infoButton(_ sender: Any) {
+        infoView.isHidden = false
+        viewBg.backgroundColor = UIColor.black.withAlphaComponent(0.75)
+        viewBg2.backgroundColor = UIColor.black.withAlphaComponent(0.75)
+        hardLabel.backgroundColor = UIColor.black.withAlphaComponent(0.75)
+        easyLabel.backgroundColor = UIColor.black.withAlphaComponent(0.75)
+    }
+    @IBOutlet weak var infoImageGG: UIImageView!
     @IBAction func homeButton(_ sender: Any) {
         diff = ""
         round = 1
@@ -135,26 +168,38 @@ class ViewControllerFinish: UIViewController, UITableViewDataSource, UITableView
     }
     @objc func homeButtonEnable() {
         finishHomeImage.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        infoImageGG.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         finishHomeImage.isHidden = false
+        infoImageGG.isHidden = false
         UIView.animate(withDuration: 1.0, animations: {
             self.finishHomeImage.transform = .identity
+            self.infoImageGG.transform = .identity
         }, completion: { done in
             self.homeButton.isEnabled = true
+            self.infoButton.isEnabled = true
         })
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "homeButtonEnable"), object: nil)
     }
-    
+
+
     deinit {
         print("deinitVCF")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        textInfo.centerVertically()
+        textInfo.isEditable = false
+        textInfo.dataDetectorTypes = .all
+        infoView.layer.cornerRadius = 10
+        infoView.isHidden = true
         homeButton.isEnabled = false
+        infoButton.isEnabled = false
         hardLabel.font = hardLabel.font.withSize(sizeFont)
         easyLabel.font = easyLabel.font.withSize(sizeFont)
         finishHomeImage.isHidden = true
+        infoImageGG.isHidden = true
         if points.count == 1 {
             points.append("00")
             points = String(points.reversed())
@@ -173,7 +218,7 @@ class ViewControllerFinish: UIViewController, UITableViewDataSource, UITableView
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         let date = Date()
         let dff = DateFormatter()
         dff.dateFormat = "yyyy-MM-dd"

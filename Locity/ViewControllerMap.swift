@@ -55,7 +55,7 @@ class ViewControllerMap: UIViewController {
     var bottomSupportFontSize = CGFloat()
     var arrow = String()
     var i = 0
-    var square = String()
+//    var square = String()
   
     @IBOutlet weak var catalogImage: UIImageView!
     @IBAction func catalogButton(_ sender: Any) {
@@ -561,8 +561,8 @@ class ViewControllerMap: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        idSelectCountry = 189
-//        diff = "E"
+        idSelectCountry = 185
+        diff = "E"
         
         do {
             for idSelect in try base.database.prepare(base.countriesTable.select(base.country).filter(base.id == idSelectCountry)){
@@ -594,20 +594,21 @@ class ViewControllerMap: UIViewController {
         } catch {
             print(error)
         }
-        do {
-            for sq in try base.database.prepare(base.countriesTable.select(base.square).filter(base.id == idSelectCountry)){
-                self.square = sq[base.square]
-            }
-        } catch {
-            print(error)
-        }
-        switch self.square {
-        case "N": mapImage.contentMode = .scaleToFill
-        case "S": mapImage.contentMode = .scaleAspectFit
-        default:
-            break
-        }
+//        do {
+//            for sq in try base.database.prepare(base.countriesTable.select(base.square).filter(base.id == idSelectCountry)){
+//                self.square = sq[base.square]
+//            }
+//        } catch {
+//            print(error)
+//        }
+//        switch self.square {
+//        case "N": mapImage.contentMode = .scaleToFill
+//        case "S": mapImage.contentMode = .scaleToFill
+//        default:
+//            break
+//        }
         pointsLabel.text = points
+        mapImage.contentMode = .scaleToFill
         mapImage.isHidden = true
         
         startVCM()
