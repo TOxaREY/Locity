@@ -202,9 +202,16 @@ class MapCatalogView: SKView {
         }
     }
     @objc func addCitiesCatalog(){
+        do {
+            for sq in try base.database.prepare(base.countriesTable.select(base.square).filter(base.id == idSelectCountry)){
+                squareCat = sq[base.square]
+            }
+        } catch {
+            print(error)
+        }
         switch squareCat {
-        case "N": delta = ((maxY - minY) - ((maxX - minX) * ((maxY - minY) / (maxX - minX)))) / 2; map.size.height = scene!.frame.height
-        case "S": delta = ((maxY - minY) - ((maxX - minX) * 1.4621578)) / 2; map.size.height = scene!.frame.width * 1.4621578
+        case "N": delta = ((maxY - minY) - ((maxX - minX) * ((maxY - minY) / (maxX - minX)))) / 2
+        case "S": delta = ((maxY - minY) - ((maxX - minX) * 1.4621578)) / 2
         default:
             break
         }
@@ -310,6 +317,7 @@ class MapCatalogView: SKView {
         }
         name.size = CGSize(width: (maxX - minX) * 0.04, height: (maxX - minX) * 0.04)
         name.position = CGPoint(x: (maxX - minX) / xCityCatalog, y: (((maxY - delta) - (minY + delta)) / yCityCatalog) + delta)
+        print("deltaC \(delta)")
         name.zPosition = 0
         
         let dirUb = name.position.y - name.size.height / 1.5 - cityLabel.frame.size.height / 2

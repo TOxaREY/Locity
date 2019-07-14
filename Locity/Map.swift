@@ -33,6 +33,7 @@ class Map: SKView {
         print("deinitSKVMapVCM")
     }
     override func didMoveToSuperview() {
+    
         let scene = SKScene(size: self.frame.size)
         scene.backgroundColor = .clear
         self.presentScene(scene)
@@ -42,19 +43,26 @@ class Map: SKView {
         minX = scene.frame.minX
         minY = scene.frame.minY
         
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
         do {
             for sq in try base.database.prepare(base.countriesTable.select(base.square).filter(base.id == idSelectCountry)){
                 square = sq[base.square]
+                print("id \(idSelectCountry)")
+                print("square \(square)")
             }
         } catch {
             print(error)
         }
         switch square {
-        case "N": delta = ((maxY - minY) - ((maxX - minX) * ((maxY - minY) / (maxX - minX)))) / 2
-        case "S": delta = ((maxY - minY) - ((maxX - minX) * 1.4621578)) / 2
+        case "N": self.delta = ((self.maxY - self.minY) - ((self.maxX - self.minX) * ((self.maxY - self.minY) / (self.maxX - self.minX)))) / 2
+        case "S": self.delta = ((self.maxY - self.minY) - ((self.maxX - self.minX) * 1.4621578)) / 2
         default:
             break
         }
+            print("delta \(self.delta)")
+        }
+        
         let uDRingSize = (maxX - minX) * 0.04
         ringSize = uDRingSize * 1.5
         NotificationCenter.default.addObserver(self, selector: #selector(addCitys), name: NSNotification.Name(rawValue: "addCitys"), object: nil)

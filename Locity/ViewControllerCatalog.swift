@@ -9,8 +9,25 @@
 import UIKit
 import SQLite
 
+extension UIView  {
+    func isScrolling () -> Bool {
+        
+        if let scrollView = self as? UIScrollView {
+            if  (scrollView.isDragging || scrollView.isDecelerating) {
+                return true
+            }
+        }
+        
+        for subview in self.subviews {
+            if ( subview.isScrolling() ) {
+                return true
+            }
+        }
+        return false
+    }
+}
 
-class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UIGestureRecognizerDelegate {
     
     var arrayCoutries:Array<String> = []
     var pickerCountry = String()
@@ -20,8 +37,8 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
     var flagString = String()
     var i = 0
     var rusDir = String()
+    var e = 0
 
-    
     @IBOutlet weak var northImage: UIImageView!
     @IBOutlet weak var northLeftImage: UIImageView!
     @IBOutlet weak var isoFlag: UILabel!
@@ -37,12 +54,13 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
         appDel.window?.makeKeyAndVisible()
     }
     @IBAction func buttonOk(_ sender: Any) {
+        if picker.isScrolling() == false {
         okImage.image = UIImage(named: "okBlack.png")
         buttonOk.isEnabled = false
-        pushButton = true
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addContin"), object: nil)
         mapView.isHidden = false
         swip()
+        }
     }
     @IBOutlet weak var buttonOk: UIButton!
     @IBOutlet weak var picker: UIPickerView!
@@ -75,25 +93,21 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
         let actualRow = self.picker.selectedRow(inComponent: 0)
         pickerCountry = arrayCoutries[actualRow]
         baseCountry()
-        if pushButton {
-            buttonOk.isEnabled = true
-            mapView.isHidden = true
-            okImage.image = UIImage(named: "okGrey.png")
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "resetMapAndCities"), object: nil)
-        }
-        pushButton = false
+        buttonOk.isEnabled = true
+        mapView.isHidden = true
+        okImage.image = UIImage(named: "okGrey.png")
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "resetMapAndCities"), object: nil)
         i = 0
-        
     }
     
     func checkArrow(direct:String) -> (UIImageView) {
-        var i = UIImageView()
+        var ii = UIImageView()
         if direct == "U" {
-            i = northImage
+            ii = northImage
         } else if direct == "L" {
-            i = northLeftImage
+            ii = northLeftImage
         }
-        return i
+        return ii
     }
     func baseCountry() {
         do {
@@ -233,6 +247,31 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
             }
         }
     }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+    @objc func pickerPan(panRecognizer: UIPanGestureRecognizer) {
+        if panRecognizer.state == .began {
+            if e == 0 {
+                isoFlag.text = "\u{1F30E}"
+            } else if e == 1 {
+                isoFlag.text = "\u{1F30D}"
+            } else if e == 2 {
+                isoFlag.text = "\u{1F30F}"
+            }
+            flagString = ""
+            checkArrow(direct: arrowCat).isHidden = true
+            buttonOk.isEnabled = true
+            mapView.isHidden = true
+            okImage.image = UIImage(named: "okGrey.png")
+            if e == 2 {
+                e = 0
+            } else {
+                e += 1
+            }
+        }
+    }
 
     deinit {
         print("deinitVCCat")
@@ -241,8 +280,11 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let pan = UIPanGestureRecognizer(target: self, action: #selector(pickerPan))
+        pan.delegate = self
+        picker.addGestureRecognizer(pan)
+        
         okImage.image = UIImage(named: "okGrey.png")
-        pushButton = false
         northImage.isHidden = true
         northLeftImage.isHidden = true
 
@@ -270,5 +312,4 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
         super.viewDidDisappear(false)
         NotificationCenter.default.removeObserver(self)
     }
-
 }
