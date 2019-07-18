@@ -11,6 +11,11 @@ import CoreData
 import Firebase
 import YandexMobileMetrica
 
+
+var screenHeight: CGFloat {
+    return UIScreen.main.bounds.height
+}
+var nameStoryboard = String()
 var language = String()
 var round = Int()
 var idSelectCountry = Int()
@@ -33,6 +38,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+////Check storyboard
+        switch screenHeight {
+        case 568: nameStoryboard = "SE"
+        case 667: nameStoryboard = "8"
+        case 736: nameStoryboard = "8+"
+        case 812: nameStoryboard = "Xs"
+        case 896: nameStoryboard = "Xsr"
+        default: nameStoryboard = "8"
+        }
+////
         round = 1
         FirebaseApp.configure()
         let configuration = YMMYandexMetricaConfiguration.init(apiKey: "60d7e011-0cdd-4a5a-8e4e-fe1d3483c98b")
@@ -79,7 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Timer.scheduledTimer(timeInterval: 4.0, target: self, selector: #selector(dismissSplashController), userInfo: nil, repeats: false)
     }
     @objc func dismissSplashController(){
-        let mainVC = UIStoryboard.init(name: "Main", bundle: nil)
+        let mainVC = UIStoryboard.init(name: nameStoryboard, bundle: nil)
         let rootVC = mainVC.instantiateViewController(withIdentifier: "VCS")
         self.window?.rootViewController = rootVC
         self.window?.makeKeyAndVisible()

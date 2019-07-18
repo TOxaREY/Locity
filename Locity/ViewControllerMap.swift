@@ -89,7 +89,7 @@ class ViewControllerMap: UIViewController {
         if buttonNextRound && round == 5 {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "resetMapAndCities"), object: nil)
             let appDel = UIApplication.shared.delegate as! AppDelegate
-            let sB: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let sB: UIStoryboard = UIStoryboard(name: nameStoryboard, bundle: nil)
             let newVC = sB.instantiateViewController(withIdentifier: "VCF")
             appDel.window?.rootViewController = newVC
             appDel.window?.makeKeyAndVisible()
@@ -99,7 +99,7 @@ class ViewControllerMap: UIViewController {
                 print(points)
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "resetMapAndCities"), object: nil)
                 let appDel = UIApplication.shared.delegate as! AppDelegate
-                let sB: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let sB: UIStoryboard = UIStoryboard(name: nameStoryboard, bundle: nil)
                 let newVC = sB.instantiateViewController(withIdentifier: "VCC")
                 appDel.window?.rootViewController = newVC
                 appDel.window?.makeKeyAndVisible()
@@ -109,7 +109,7 @@ class ViewControllerMap: UIViewController {
                 round = 1
                 points = "0"
                 let appDel = UIApplication.shared.delegate as! AppDelegate
-                let sB: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let sB: UIStoryboard = UIStoryboard(name: nameStoryboard, bundle: nil)
                 let newVC = sB.instantiateViewController(withIdentifier: "VCS")
                 appDel.window?.rootViewController = newVC
                 appDel.window?.makeKeyAndVisible()

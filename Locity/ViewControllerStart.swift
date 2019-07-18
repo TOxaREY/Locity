@@ -19,7 +19,7 @@ class ViewControllerStart: UIViewController {
     @IBAction func butCatalog(_ sender: Any) {
         vcActiv = false
         let appDel = UIApplication.shared.delegate as! AppDelegate
-        let sB: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let sB: UIStoryboard = UIStoryboard(name: nameStoryboard, bundle: nil)
         let newVC = sB.instantiateViewController(withIdentifier: "VCCat")
         appDel.window?.rootViewController = newVC
         appDel.window?.makeKeyAndVisible()
@@ -30,7 +30,7 @@ class ViewControllerStart: UIViewController {
     @IBAction func but(_ sender: Any) {
         vcActiv = false
         let appDel = UIApplication.shared.delegate as! AppDelegate
-        let sB: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let sB: UIStoryboard = UIStoryboard(name: nameStoryboard, bundle: nil)
         let newVC = sB.instantiateViewController(withIdentifier: "VCC")
         appDel.window?.rootViewController = newVC
         appDel.window?.makeKeyAndVisible()

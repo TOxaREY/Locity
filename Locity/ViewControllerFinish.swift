@@ -59,7 +59,7 @@ class ViewControllerFinish: UIViewController, UITableViewDataSource, UITableView
         round = 1
         points = "0"
         let appDel = UIApplication.shared.delegate as! AppDelegate
-        let sB: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let sB: UIStoryboard = UIStoryboard(name: nameStoryboard, bundle: nil)
         let newVC = sB.instantiateViewController(withIdentifier: "VCS")
         appDel.window?.rootViewController = newVC
         appDel.window?.makeKeyAndVisible()

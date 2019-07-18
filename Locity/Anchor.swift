@@ -20,7 +20,7 @@ class Anchor: SKView {
     override func didMoveToSuperview() {
 ////Dispatch for loading view constraints
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            switch UIScreen.main.bounds.height {
+            switch screenHeight {
             case 896:
                 self.indentAnchorDown = 52
             case 812:

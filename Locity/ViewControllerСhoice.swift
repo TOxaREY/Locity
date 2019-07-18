@@ -10,11 +10,6 @@ import UIKit
 import SpriteKit
 import SQLite
 
-////Check height
-var screenHeight: CGFloat {
-    return UIScreen.main.bounds.height
-}
-////
 ////Dynamic font size
 extension CGFloat {
     var dfz: CGFloat {
@@ -23,12 +18,12 @@ extension CGFloat {
 }
 extension CGFloat {
     var dfz2: CGFloat {
-        switch UIScreen.main.bounds.height {
+        switch screenHeight {
         case 896, 812:
             return (self / 320) * UIScreen.main.bounds.width * 1.3
         case 736, 667:
             return (self / 320) * UIScreen.main.bounds.width * 1.1
-        default:
+        default: 
             return (self / 320) * UIScreen.main.bounds.width
         }
     }
@@ -328,7 +323,7 @@ class ViewControllerChoice: UIViewController {
         }, completion: { done in
             self.resultContinentLabel.isHidden = true
             let appDel = UIApplication.shared.delegate as! AppDelegate
-            let sB: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let sB: UIStoryboard = UIStoryboard(name: nameStoryboard, bundle: nil)
             let newVC = sB.instantiateViewController(withIdentifier: "VCM")
             appDel.window?.rootViewController = newVC
             appDel.window?.makeKeyAndVisible()
