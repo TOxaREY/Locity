@@ -11,7 +11,6 @@ import SpriteKit
 
 class Anchor: SKView {
     let anchor = SKSpriteNode(imageNamed: "anchor.png")
-    var timer: Timer!
     var indentAnchorDown: CGFloat = 0.0
     deinit {
         print("deinitSKVAnchorVCC")
