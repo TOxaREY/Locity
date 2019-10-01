@@ -16,7 +16,7 @@ class IsoViewRemover: SKView {
         deinitSKVIsoViewRemoverVCC = true
     }
     override func didMoveToSuperview() {
-////Dispatch for loading view constraints
+        //Dispatch for loading view constraints
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             let scene = SKScene(size: self.frame.size)
             scene.backgroundColor = .clear

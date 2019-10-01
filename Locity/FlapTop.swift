@@ -40,11 +40,11 @@ class FlapTop: SKView {
         body.restitution = 0.35
         flap.physicsBody = body
         if round == 1 {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-            scene.addChild(self.flap)
-            self.timer = Timer.scheduledTimer(timeInterval: 0.005, target: self, selector: #selector(self.restingDown), userInfo: nil, repeats: true)
-            NotificationCenter.default.addObserver(self, selector: #selector(self.upFlap), name: NSNotification.Name(rawValue: "upFlap"), object: nil)
-        }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                scene.addChild(self.flap)
+                self.timer = Timer.scheduledTimer(timeInterval: 0.005, target: self, selector: #selector(self.restingDown), userInfo: nil, repeats: true)
+                NotificationCenter.default.addObserver(self, selector: #selector(self.upFlap), name: NSNotification.Name(rawValue: "upFlap"), object: nil)
+            }
         } else {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                 scene.addChild(self.flap)
@@ -88,7 +88,7 @@ class FlapTop: SKView {
         scene!.addChild(flap)
         timer = Timer.scheduledTimer(timeInterval: 0.005, target: self, selector: #selector(self.restingUp), userInfo: nil, repeats: true)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "upFlap"), object: nil)
-
+        
     }
 }
 

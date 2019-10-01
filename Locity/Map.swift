@@ -33,7 +33,7 @@ class Map: SKView {
         print("deinitSKVMapVCM")
     }
     override func didMoveToSuperview() {
-    
+        
         let scene = SKScene(size: self.frame.size)
         scene.backgroundColor = .clear
         self.presentScene(scene)
@@ -45,21 +45,21 @@ class Map: SKView {
         
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-        do {
-            for sq in try base.database.prepare(base.countriesTable.select(base.square).filter(base.id == idSelectCountry)){
-                square = sq[base.square]
-                print("id \(idSelectCountry)")
-                print("square \(square)")
+            do {
+                for sq in try base.database.prepare(base.countriesTable.select(base.square).filter(base.id == idSelectCountry)){
+                    square = sq[base.square]
+                    print("id \(idSelectCountry)")
+                    print("square \(square)")
+                }
+            } catch {
+                print(error)
             }
-        } catch {
-            print(error)
-        }
-        switch square {
-        case "N": self.delta = ((self.maxY - self.minY) - ((self.maxX - self.minX) * ((self.maxY - self.minY) / (self.maxX - self.minX)))) / 2
-        case "S": self.delta = ((self.maxY - self.minY) - ((self.maxX - self.minX) * 1.4621578)) / 2
-        default:
-            break
-        }
+            switch square {
+            case "N": self.delta = ((self.maxY - self.minY) - ((self.maxX - self.minX) * ((self.maxY - self.minY) / (self.maxX - self.minX)))) / 2
+            case "S": self.delta = ((self.maxY - self.minY) - ((self.maxX - self.minX) * 1.4621578)) / 2
+            default:
+                break
+            }
             print("delta \(self.delta)")
         }
         
@@ -135,7 +135,7 @@ class Map: SKView {
         name.position = CGPoint(x: (maxX - minX) / x, y: (((maxY - delta) - (minY + delta)) / y) + delta)
         scene!.addChild(name)
         if pulseOn {
-        pulse(name: name)
+            pulse(name: name)
         }
         if post {
             switch city {

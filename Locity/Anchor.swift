@@ -17,7 +17,7 @@ class Anchor: SKView {
         deinitSKVAnchorVCC = true
     }
     override func didMoveToSuperview() {
-////Dispatch for loading view constraints
+        //Dispatch for loading view constraints
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             switch screenHeight {
             case 896:

@@ -20,7 +20,7 @@ class Contin: SKView {
     var minY = CGFloat()
     var xCountry = CGFloat()
     var yCountry = CGFloat()
-
+    
     deinit {
         print("deinitSKVContinVCM")
     }

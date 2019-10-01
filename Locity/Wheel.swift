@@ -36,12 +36,12 @@ class Wheel: SKView {
         NotificationCenter.default.addObserver(self, selector: #selector(spinWheel), name: NSNotification.Name(rawValue: "spinWheel"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(removeWheel), name: NSNotification.Name(rawValue: "removeWheel"), object: nil)
     }
-////Duration for anchor down
+    //Duration for anchor down
     func duration (random:Double) -> (Double) {
         let a = 42.28 * pow(random * 10, 0.15) / 10
         return a
     }
-////
+
     @objc func addWheel(){
         scene!.removeAllChildren()
         scene!.addChild(wheel)
@@ -108,7 +108,7 @@ class Wheel: SKView {
             x = 1000
         }
         body.applyImpulse(CGVector(dx: 0.0, dy: x))
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "breakdown"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "breakdown"), object: nil)
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "breakdown2"), object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "removeWheel"), object: nil)
     }

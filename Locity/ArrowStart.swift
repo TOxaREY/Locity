@@ -15,16 +15,16 @@ class ArrowStart: SKView {
         print("deinitSKVArrowStartVCS")
     }
     override func didMoveToSuperview() {
-            let scene = SKScene(size: self.frame.size)
-            scene.backgroundColor = .clear
-            self.presentScene(scene)
-            self.allowsTransparency = true
-            self.arrowStart.size = CGSize(width: scene.frame.height , height: scene.frame.height)
-            self.arrowStart.position = CGPoint(x: -scene.frame.height, y: scene.frame.height / 2)
-            scene.addChild(arrowStart)
-            NotificationCenter.default.addObserver(self, selector: #selector(self.moveArrowStart), name: NSNotification.Name(rawValue: "moveArrowStart"), object: nil)
+        let scene = SKScene(size: self.frame.size)
+        scene.backgroundColor = .clear
+        self.presentScene(scene)
+        self.allowsTransparency = true
+        self.arrowStart.size = CGSize(width: scene.frame.height , height: scene.frame.height)
+        self.arrowStart.position = CGPoint(x: -scene.frame.height, y: scene.frame.height / 2)
+        scene.addChild(arrowStart)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.moveArrowStart), name: NSNotification.Name(rawValue: "moveArrowStart"), object: nil)
     }
-
+    
     @objc func moveArrowStart(){
         let moveRight = SKAction.moveBy(x: scene!.frame.width + scene!.frame.height / 2, y: 0, duration: 1.5)
         let pulseUp = SKAction.scale(to: 0.75, duration: 0.75)

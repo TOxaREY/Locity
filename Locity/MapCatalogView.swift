@@ -38,7 +38,7 @@ extension UIColor {
     }
 }
 
-    var arrowCat = String()
+var arrowCat = String()
 
 class MapCatalogView: SKView {
     let ringC = SKSpriteNode(imageNamed: "ringBlue.png")
@@ -99,12 +99,12 @@ class MapCatalogView: SKView {
             } else {
                 for idContin in try base.database.prepare(base.countriesTable.select(base.id_continent).filter(base.id == idSelectCountry)){
                     switch idContin[base.id_continent] {
-                        case 1: contin = SKSpriteNode(imageNamed: "Oceania.png")
-                        case 2: contin = SKSpriteNode(imageNamed: "Asia.png")
-                        case 3: contin = SKSpriteNode(imageNamed: "Africa.png")
-                        case 4: contin = SKSpriteNode(imageNamed: "Europe.png")
-                        case 5: contin = SKSpriteNode(imageNamed: "America.png")
-                        default: break
+                    case 1: contin = SKSpriteNode(imageNamed: "Oceania.png")
+                    case 2: contin = SKSpriteNode(imageNamed: "Asia.png")
+                    case 3: contin = SKSpriteNode(imageNamed: "Africa.png")
+                    case 4: contin = SKSpriteNode(imageNamed: "Europe.png")
+                    case 5: contin = SKSpriteNode(imageNamed: "America.png")
+                    default: break
                     }
                 }
             }
@@ -254,7 +254,7 @@ class MapCatalogView: SKView {
         cityLabel.fontColor = .black
         cityLabel.fontName = "Georgia-Bold"
         cityLabel.zPosition = 1
-
+        
         if cap {
             do {
                 for dirCity in try base.database.prepare(base.citiesTable.select(base.dir).filter(base.id_country == idSelectCountry && base.capital == "C")){
@@ -263,16 +263,16 @@ class MapCatalogView: SKView {
             } catch {
                 print(error)
             }
-        do {
-            for city in try base.database.prepare(base.citiesTable.select(base.x).filter(base.id_country == idSelectCountry && base.capital == "C")){
-                xCityCatalog = CGFloat(city[base.x])
+            do {
+                for city in try base.database.prepare(base.citiesTable.select(base.x).filter(base.id_country == idSelectCountry && base.capital == "C")){
+                    xCityCatalog = CGFloat(city[base.x])
+                }
+            } catch {
+                print(error)
             }
-        } catch {
-            print(error)
-        }
             do {
                 for city in try base.database.prepare(base.citiesTable.select(base.y).filter(base.id_country == idSelectCountry && base.capital == "C")){
-                yCityCatalog = CGFloat(city[base.y])
+                    yCityCatalog = CGFloat(city[base.y])
                 }
             } catch {
                 print(error)
@@ -332,8 +332,8 @@ class MapCatalogView: SKView {
                 cityLabel.position = CGPoint(x: cityLabel.frame.size.width / 2, y: dirY)
                 if scene!.frame.maxY - cityLabel.position.y + cityLabel.frame.size.height / 2 < 0 {
                     cityLabel.position.y = dirUb
-                    }
-                } else  if cityLabel.frame.size.width / 2 + name.position.x >= scene!.frame.maxX {
+                }
+            } else  if cityLabel.frame.size.width / 2 + name.position.x >= scene!.frame.maxX {
                 cityLabel.position = CGPoint(x: scene!.frame.maxX - cityLabel.frame.size.width / 2, y: dirY)
                 if scene!.frame.maxY - cityLabel.position.y + cityLabel.frame.size.height / 2 < 0 {
                     cityLabel.position.y = dirUb
@@ -371,5 +371,4 @@ class MapCatalogView: SKView {
         scene!.addChild(name)
         scene!.addChild(cityLabel)
     }
-    
 }

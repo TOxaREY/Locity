@@ -54,7 +54,7 @@ class Wave: SKView {
         scene.addChild(ship)
         scene.addChild(moon)
         NotificationCenter.default.addObserver(self, selector: #selector(waveAndShip), name: NSNotification.Name(rawValue: "waveAndShip"), object: nil)
-
+        
     }
     @objc func waveAndShip() {
         let moveRight = SKAction.moveBy(x: wave2.size.width / 2, y: 0, duration: 10.0)

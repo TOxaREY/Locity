@@ -56,7 +56,7 @@ class ViewControllerMap: UIViewController {
     var arrow = String()
     var i = 0
     var square = String()
-  
+    
     @IBOutlet weak var catalogImage: UIImageView!
     @IBAction func catalogButton(_ sender: Any) {
         catalogButtonOutlet.isEnabled = false
@@ -93,7 +93,7 @@ class ViewControllerMap: UIViewController {
             let newVC = sB.instantiateViewController(withIdentifier: "VCF")
             appDel.window?.rootViewController = newVC
             appDel.window?.makeKeyAndVisible()
-            } else {
+        } else {
             if buttonNextRound {
                 round += 1
                 print(points)
@@ -163,9 +163,9 @@ class ViewControllerMap: UIViewController {
         labelName.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         UIView.animate(withDuration: time, animations: {
             labelName.transform = .identity
-            }, completion: { done in
-                let scaleCalcul = sup / fS
-                self.effectMove(labelName: labelName, scaleCalcul: scaleCalcul, nameSupport: nameSupport,time: time)
+        }, completion: { done in
+            let scaleCalcul = sup / fS
+            self.effectMove(labelName: labelName, scaleCalcul: scaleCalcul, nameSupport: nameSupport,time: time)
         })
     }
     
@@ -181,14 +181,14 @@ class ViewControllerMap: UIViewController {
         let translation = CGAffineTransform(translationX: deltaX, y: deltaY)
         UIView.animate(withDuration: time, animations: {
             labelName.transform = scale.concatenating(translation)
-            }, completion: { done in
-                labelName.transform = .identity
-                if labelName == self.cityLabel {
-                    labelName.bounds = self.boundStartCity
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "transComplete"), object: nil)
-                } else {
-                    labelName.bounds = self.boundStartCountry
-                }
+        }, completion: { done in
+            labelName.transform = .identity
+            if labelName == self.cityLabel {
+                labelName.bounds = self.boundStartCity
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "transComplete"), object: nil)
+            } else {
+                labelName.bounds = self.boundStartCountry
+            }
         })
     }
     func effectMovePointsLabel(text:String,x:CGFloat,y:CGFloat){
@@ -355,7 +355,7 @@ class ViewControllerMap: UIViewController {
             homeButtonOutlet.isEnabled = true
         }
         if diff == "E" {
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addCitys"), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addCitys"), object: nil)
         } else {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "coorCityHard"), object: nil)
         }
@@ -417,21 +417,21 @@ class ViewControllerMap: UIViewController {
         let random = Int.random(in: 1...dic.count)
         if rand == random || rand2 == random {
             selectCityHard(dic: dic)
+        } else {
+            if rand == 0 {
+                rand = random
+                city = dic[random]!
+                coordinate(cityName: city, cityNumder: "c1")
             } else {
-                if rand == 0 {
-                    rand = random
+                if rand2 == 0 {
+                    rand2 = random
                     city = dic[random]!
                     coordinate(cityName: city, cityNumder: "c1")
                 } else {
-                    if rand2 == 0 {
-                        rand2 = random
-                        city = dic[random]!
-                        coordinate(cityName: city, cityNumder: "c1")
-                    } else {
-                        city = dic[random]!
-                        rand3 = random
-                        coordinate(cityName: city, cityNumder: "c1")
-                    }
+                    city = dic[random]!
+                    rand3 = random
+                    coordinate(cityName: city, cityNumder: "c1")
+                }
             }
         }
     }
@@ -622,36 +622,36 @@ class ViewControllerMap: UIViewController {
             })
         }
     }
-
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(false)
         NotificationCenter.default.removeObserver(self)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-
+        
         if let touch = touches.first {
             if diff == "E" {
-            if goTouch {
-                coordinatesTouch = touch.location(in: mapViewTouch)
-                coordinatesTouch.y = mapViewTouch.frame.height - self.coordinatesTouch.y
-                if pow(CGFloat(ringSize * 1.2),2) >= pow(CGFloat(abs(coordinatesTouch.x - cityCoorX)),2) + pow(CGFloat(abs(coordinatesTouch.y - cityCoorY)),2) {
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "coordinatesRight"), object: nil)
-                    goTouch = false
-                    effectMovePointsLabel(text: "15",x: cityCoorX, y: cityCoorY)
-                } else {
-                    if pow(CGFloat(ringSize * 1.2),2) >= pow(CGFloat(abs(coordinatesTouch.x - city2CoorX)),2) + pow(CGFloat(abs(coordinatesTouch.y - city2CoorY)),2) {
-                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "coordinatesWrong2"), object: nil)
+                if goTouch {
+                    coordinatesTouch = touch.location(in: mapViewTouch)
+                    coordinatesTouch.y = mapViewTouch.frame.height - self.coordinatesTouch.y
+                    if pow(CGFloat(ringSize * 1.2),2) >= pow(CGFloat(abs(coordinatesTouch.x - cityCoorX)),2) + pow(CGFloat(abs(coordinatesTouch.y - cityCoorY)),2) {
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "coordinatesRight"), object: nil)
                         goTouch = false
-                        effectMovePointsLabel(text: "0",x: city2CoorX, y: city2CoorY)
+                        effectMovePointsLabel(text: "15",x: cityCoorX, y: cityCoorY)
                     } else {
-                        if pow(CGFloat(ringSize * 1.2),2) >= pow(CGFloat(abs(coordinatesTouch.x - city3CoorX)),2) + pow(CGFloat(abs(coordinatesTouch.y - city3CoorY)),2) {
-                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "coordinatesWrong3"), object: nil)
+                        if pow(CGFloat(ringSize * 1.2),2) >= pow(CGFloat(abs(coordinatesTouch.x - city2CoorX)),2) + pow(CGFloat(abs(coordinatesTouch.y - city2CoorY)),2) {
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "coordinatesWrong2"), object: nil)
                             goTouch = false
-                            effectMovePointsLabel(text: "0",x: city3CoorX, y: city3CoorY)
+                            effectMovePointsLabel(text: "0",x: city2CoorX, y: city2CoorY)
+                        } else {
+                            if pow(CGFloat(ringSize * 1.2),2) >= pow(CGFloat(abs(coordinatesTouch.x - city3CoorX)),2) + pow(CGFloat(abs(coordinatesTouch.y - city3CoorY)),2) {
+                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "coordinatesWrong3"), object: nil)
+                                goTouch = false
+                                effectMovePointsLabel(text: "0",x: city3CoorX, y: city3CoorY)
+                            }
                         }
                     }
-                }
                 }
             } else if diff == "H" {
                 if goTouch {
@@ -665,38 +665,37 @@ class ViewControllerMap: UIViewController {
                         if radiusToch >= 4 * ringSize {
                             resultTouchWrong = true
                             effectMovePointsLabel(text: "0", x: coordinatesTouch.x, y: coordinatesTouch.y)
-                            } else {
+                        } else {
                             resultTouchWrong = false
                             if radiusToch <= 0.75 * ringSize {
                                 effectMovePointsLabel(text: "50", x: coordinatesTouch.x, y: coordinatesTouch.y)
-                                } else {
+                            } else {
                                 if radiusToch > 0.75 * ringSize && radiusToch <= 1.111 * ringSize {
                                     effectMovePointsLabel(text: "45", x: coordinatesTouch.x, y: coordinatesTouch.y)
-                                    } else {
+                                } else {
                                     if radiusToch > 1.111 * ringSize && radiusToch <= 1.472 * ringSize {
                                         effectMovePointsLabel(text: "40", x: coordinatesTouch.x, y: coordinatesTouch.y)
-                                        } else {
+                                    } else {
                                         if radiusToch > 1.472 * ringSize && radiusToch <= 1.833 * ringSize {
                                             effectMovePointsLabel(text: "35", x: coordinatesTouch.x, y: coordinatesTouch.y)
-                                            } else {
+                                        } else {
                                             if radiusToch > 1.833 * ringSize && radiusToch <= 2.194 * ringSize {
                                                 effectMovePointsLabel(text: "30", x: coordinatesTouch.x, y: coordinatesTouch.y)
-                                                } else {
+                                            } else {
                                                 if radiusToch > 2.194 * ringSize && radiusToch <= 2.555 * ringSize {
                                                     effectMovePointsLabel(text: "25", x: coordinatesTouch.x, y: coordinatesTouch.y)
-                                                    } else {
+                                                } else {
                                                     if radiusToch > 2.555 * ringSize && radiusToch <= 2.916 * ringSize {
                                                         effectMovePointsLabel(text: "20", x: coordinatesTouch.x, y: coordinatesTouch.y)
-                                                        } else {
+                                                    } else {
                                                         if radiusToch > 2.916 * ringSize && radiusToch <= 3.277 * ringSize {
                                                             effectMovePointsLabel(text: "15", x: coordinatesTouch.x, y: coordinatesTouch.y)
-                                                            } else {
+                                                        } else {
                                                             if radiusToch > 3.277 * ringSize && radiusToch <= 3.638 * ringSize {
                                                                 effectMovePointsLabel(text: "10", x: coordinatesTouch.x, y: coordinatesTouch.y)
-                                                                } else {
+                                                            } else {
                                                                 if radiusToch > 3.638 * ringSize && radiusToch < 4 * ringSize {
                                                                     effectMovePointsLabel(text: "5", x: coordinatesTouch.x, y: coordinatesTouch.y)
-                                                                    }
                                                                 }
                                                             }
                                                         }
@@ -707,6 +706,7 @@ class ViewControllerMap: UIViewController {
                                     }
                                 }
                             }
+                        }
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "drawAndScaleCircle"), object: nil)
                         goTouch = false
                     }

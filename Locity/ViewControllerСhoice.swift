@@ -10,7 +10,7 @@ import UIKit
 import SpriteKit
 import SQLite
 
-////Dynamic font size
+//Dynamic font size
 extension CGFloat {
     var dfz: CGFloat {
         return (self / 320) * UIScreen.main.bounds.width
@@ -28,8 +28,8 @@ extension CGFloat {
         }
     }
 }
-////
-////Pulsate label & image
+
+//Pulsate label & image
 extension UILabel {
     func pulsate1Count(dur:Double,val:Double) {
         let pulse = CABasicAnimation(keyPath: "transform.scale")
@@ -57,7 +57,6 @@ extension UIImageView {
         layer.removeAllAnimations()
     }
 }
-////
 
 
 class ViewControllerChoice: UIViewController {
@@ -70,7 +69,7 @@ class ViewControllerChoice: UIViewController {
     let fontSize2:CGFloat = 40
     let fontSize3:CGFloat = 100
     var resultCountryName = String()
-
+    
     @IBOutlet weak var wheelView: Wheel!
     @IBOutlet weak var flapBottomView: FlapBottom!
     @IBOutlet weak var labelRound: UILabel!
@@ -101,7 +100,7 @@ class ViewControllerChoice: UIViewController {
                 self.topLabel.isHidden = true
                 self.addStartElement()
                 print("H")
-           }
+            }
         }
     }
     @IBOutlet weak var bottomLabel: UILabel!
@@ -190,7 +189,7 @@ class ViewControllerChoice: UIViewController {
         resultContinentLabel.layer.borderColor = UIColor.black.cgColor
         resultContinentLabel.layer.borderWidth = 2.0
         var bounds = resultContinentLabel.bounds
-    
+        
         func checkSize(fS:CGFloat) {
             var fS = fS
             resultContinentLabel.font = resultContinentLabel.font.withSize(CGFloat(fS))
@@ -253,7 +252,7 @@ class ViewControllerChoice: UIViewController {
         bottomLabel.isHidden = false
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "enableButtonFlap"), object: nil)
     }
-
+    
     func flapTopLabel(){
         if self.isoLabelEnable {
             UIView.transition(with: self.isoLabel, duration: 1.0, options: .transitionFlipFromTop, animations: nil, completion: nil)
@@ -262,7 +261,7 @@ class ViewControllerChoice: UIViewController {
             }
         }
     }
-
+    
     @objc func enableSpinButton(){
         spinButton.isEnabled = true
         spinButton.isHidden = false
@@ -289,15 +288,13 @@ class ViewControllerChoice: UIViewController {
     }
     func selectCountries(dic:Dictionary<Int, String>) {
         let random = Int.random(in: 1...dic.count)
-////Check two equal in a row
+        //Check two equal in a row
         if rand == random {
-////
             selectCountries(dic: dic)
         } else {
             rand = random
-////Speed view loop countries
+            //Speed view loop countries
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-////
                 self.isoLabel.text = self.dictionaryCountries[random]
                 self.i += 1
                 if self.i != 20 {
@@ -327,12 +324,12 @@ class ViewControllerChoice: UIViewController {
             let newVC = sB.instantiateViewController(withIdentifier: "VCM")
             appDel.window?.rootViewController = newVC
             appDel.window?.makeKeyAndVisible()
-            })
+        })
         UIView.animate(withDuration: 3.75, animations: {
             self.resultCountryLabel.transform = CGAffineTransform(translationX: UIScreen.main.bounds.width / 2 + self.resultCountryLabel.frame.width / 2, y: 0)
         }, completion: { done in
             self.resultCountryLabel.isHidden = true
-       })
+        })
         self.isoLabel.isHidden = true
         self.isoViewRemover.isHidden = false
         self.isoViewFrame.isHidden = true
@@ -358,12 +355,12 @@ class ViewControllerChoice: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         deinitFalse()
         disableButtonLabelStart()
         labelRound.text = "\(round)/5"
-
-////Dispatch for loading orientation device
+        
+        //Dispatch for loading orientation device
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.topLabel.font = self.topLabel.font.withSize(self.fontSize.dfz)
             self.bottomLabel.font = self.bottomLabel.font.withSize(self.fontSize.dfz)

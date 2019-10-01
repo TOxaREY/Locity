@@ -38,7 +38,7 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
     var i = 0
     var rusDir = String()
     var e = 0
-
+    
     @IBOutlet weak var northImage: UIImageView!
     @IBOutlet weak var northLeftImage: UIImageView!
     @IBOutlet weak var isoFlag: UILabel!
@@ -55,11 +55,11 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
     }
     @IBAction func buttonOk(_ sender: Any) {
         if picker.isScrolling() == false {
-        okImage.image = UIImage(named: "okBlack.png")
-        buttonOk.isEnabled = false
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addContin"), object: nil)
-        mapView.isHidden = false
-        swip()
+            okImage.image = UIImage(named: "okBlack.png")
+            buttonOk.isEnabled = false
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addContin"), object: nil)
+            mapView.isHidden = false
+            swip()
         }
     }
     @IBOutlet weak var buttonOk: UIButton!
@@ -123,14 +123,14 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
             print(error)
         }
         do {
-                for idCon in try base.database.prepare(base.countriesTable.select(base.id).filter(base.country == pickerCountry)) {
-                    idSelectCountry = idCon[base.id]
-                    print(idSelectCountry)
-                }
+            for idCon in try base.database.prepare(base.countriesTable.select(base.id).filter(base.country == pickerCountry)) {
+                idSelectCountry = idCon[base.id]
+                print(idSelectCountry)
+            }
         } catch {
             print(error)
         }
-
+        
     }
     func swip() {
         let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
@@ -140,7 +140,7 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
         mapView.addGestureRecognizer(rightSwipe)
         mapView.addGestureRecognizer(leftSwipe)
     }
-
+    
     @objc func handleSwipe(sender: UISwipeGestureRecognizer) {
         if sender.state == .ended {
             if idSelectCountry == 189 || idSelectCountry == 130 {
@@ -154,7 +154,7 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
                     UIView.animate(withDuration: 0.5) {
                         self.checkArrow(direct: arrowCat).transform = .identity
                     }
-                   idSelectCountry = 130
+                    idSelectCountry = 130
                     if sender.direction == .left {
                         rusDir = "left"
                     } else if sender.direction == .right {
@@ -164,35 +164,35 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
                     }
                 case 130:
                     if rusDir == "left" {
-                    northImage.isHidden = true
-                    if i == 0 {
-                    switch sender.direction {
-                    case .left: NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addMapAndCities"), object: nil)
-                    mapView.isHidden = false
-                    checkArrow(direct: arrowCat).transform = CGAffineTransform(scaleX: 0.05, y: 0.05)
-                    checkArrow(direct: arrowCat).isHidden = false
-                    UIView.animate(withDuration: 0.5) {
-                        self.checkArrow(direct: arrowCat).transform = .identity
-                    }
-                        i += 1
-                    case .right: checkArrow(direct: arrowCat).isHidden = true; NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addContin"), object: nil); idSelectCountry = 189
-                    default: break
-                    }
-                    } else if i == 1 {
-                        idSelectCountry = 189
-                        switch sender.direction {
-                        case .left: checkArrow(direct: arrowCat).isHidden = true; NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addContin"), object: nil); i = 0
-                        case .right: northLeftImage.isHidden = true
-                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addMapAndCities"), object: nil)
-                        mapView.isHidden = false
-                        checkArrow(direct: arrowCat).transform = CGAffineTransform(scaleX: 0.05, y: 0.05)
-                        checkArrow(direct: arrowCat).isHidden = false
-                        UIView.animate(withDuration: 0.5) {
-                            self.checkArrow(direct: arrowCat).transform = .identity
-                        }; idSelectCountry = 130; i = 0
-                        default: break
+                        northImage.isHidden = true
+                        if i == 0 {
+                            switch sender.direction {
+                            case .left: NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addMapAndCities"), object: nil)
+                            mapView.isHidden = false
+                            checkArrow(direct: arrowCat).transform = CGAffineTransform(scaleX: 0.05, y: 0.05)
+                            checkArrow(direct: arrowCat).isHidden = false
+                            UIView.animate(withDuration: 0.5) {
+                                self.checkArrow(direct: arrowCat).transform = .identity
+                            }
+                            i += 1
+                            case .right: checkArrow(direct: arrowCat).isHidden = true; NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addContin"), object: nil); idSelectCountry = 189
+                            default: break
+                            }
+                        } else if i == 1 {
+                            idSelectCountry = 189
+                            switch sender.direction {
+                            case .left: checkArrow(direct: arrowCat).isHidden = true; NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addContin"), object: nil); i = 0
+                            case .right: northLeftImage.isHidden = true
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addMapAndCities"), object: nil)
+                            mapView.isHidden = false
+                            checkArrow(direct: arrowCat).transform = CGAffineTransform(scaleX: 0.05, y: 0.05)
+                            checkArrow(direct: arrowCat).isHidden = false
+                            UIView.animate(withDuration: 0.5) {
+                                self.checkArrow(direct: arrowCat).transform = .identity
+                            }; idSelectCountry = 130; i = 0
+                            default: break
+                            }
                         }
-                    }
                     } else if rusDir == "right" {
                         northImage.isHidden = true
                         if i == 0 {
@@ -272,7 +272,7 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
             }
         }
     }
-
+    
     deinit {
         print("deinitVCCat")
     }
@@ -287,13 +287,13 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
         okImage.image = UIImage(named: "okGrey.png")
         northImage.isHidden = true
         northLeftImage.isHidden = true
-
+        
         do {
             for cntr in try base.database.prepare(base.countriesTable.select(base.country)) {
                 if cntr[base.country] == "Russia" || cntr[base.country] == "Россия" || cntr[base.country] == "Russie" || cntr[base.country] == "Rusia" || cntr[base.country] == "Rússia" || cntr[base.country] == "Russland" {
                     continue
                 } else {
-                arrayCoutries.append(cntr[base.country])
+                    arrayCoutries.append(cntr[base.country])
                 }
             }
             for rus in try base.database.prepare(base.countriesTable.select(base.country).filter(base.id == 130)) {

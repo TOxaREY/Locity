@@ -24,8 +24,8 @@ class ViewControllerFinish: UIViewController, UITableViewDataSource, UITableView
     var namesH: [NSManagedObject] = []
     var namesE: [NSManagedObject] = []
     
-
-
+    
+    
     @IBOutlet weak var textInfo: UITextView!
     @IBOutlet weak var viewBg: UIView!
     @IBOutlet weak var viewBg2: UIView!
@@ -180,8 +180,8 @@ class ViewControllerFinish: UIViewController, UITableViewDataSource, UITableView
         })
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "homeButtonEnable"), object: nil)
     }
-
-
+    
+    
     deinit {
         print("deinitVCF")
     }
@@ -218,7 +218,7 @@ class ViewControllerFinish: UIViewController, UITableViewDataSource, UITableView
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
+        
         let date = Date()
         let dff = DateFormatter()
         dff.dateFormat = "yyyy-MM-dd"
