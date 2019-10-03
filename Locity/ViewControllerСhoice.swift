@@ -361,13 +361,13 @@ class ViewControllerChoice: UIViewController {
         labelRound.text = "\(round)/5"
         
         //Dispatch for loading orientation device
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.topLabel.font = self.topLabel.font.withSize(self.fontSize.dfz)
-            self.bottomLabel.font = self.bottomLabel.font.withSize(self.fontSize.dfz)
-            self.labelRound.font = self.labelRound.font.withSize(self.fontSize3.dfz)
-            self.isoLabel.font = self.isoLabel.font.withSize(self.fontSize2.dfz2)
-            isoViewHeight = self.isoView.frame.height
-        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//            self.topLabel.font = self.topLabel.font.withSize(self.fontSize.dfz)
+//            self.bottomLabel.font = self.bottomLabel.font.withSize(self.fontSize.dfz)
+//            self.labelRound.font = self.labelRound.font.withSize(self.fontSize3.dfz)
+//            self.isoLabel.font = self.isoLabel.font.withSize(self.fontSize2.dfz2)
+//            isoViewHeight = self.isoView.frame.height
+//        }
         NotificationCenter.default.addObserver(self, selector: #selector(self.enableButtonFlap), name: NSNotification.Name(rawValue: "enableButtonFlap"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.enableSpinButton), name: NSNotification.Name(rawValue: "enableSpinButton"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.resultContinent), name: NSNotification.Name(rawValue: "resultContinent"), object: nil)
@@ -405,6 +405,15 @@ class ViewControllerChoice: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(false)
         NotificationCenter.default.removeObserver(self)
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        self.topLabel.font = self.topLabel.font.withSize(self.fontSize.dfz)
+        self.bottomLabel.font = self.bottomLabel.font.withSize(self.fontSize.dfz)
+        self.labelRound.font = self.labelRound.font.withSize(self.fontSize3.dfz)
+        self.isoLabel.font = self.isoLabel.font.withSize(self.fontSize2.dfz2)
+        isoViewHeight = self.isoView.frame.height
+        print(isoViewHeight)
     }
 }
 
