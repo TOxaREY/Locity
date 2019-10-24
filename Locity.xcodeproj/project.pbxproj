@@ -9,10 +9,7 @@
 /* Begin PBXBuildFile section */
 		0E4E3F217F9FBFB241C776DF /* Pods_Locity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D41178CB4ACD674072CC7404 /* Pods_Locity.framework */; };
 		F2032C3822592BEC001C4FD8 /* ArrowStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2032C3722592BEC001C4FD8 /* ArrowStart.swift */; };
-		F204D8D9224142B40065FA0E /* Geo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F204D8D8224142B40065FA0E /* Geo.ttf */; };
 		F208AF882278A2B1006013AB /* ViewControllerCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F208AF872278A2B1006013AB /* ViewControllerCatalog.swift */; };
-		F2162BFB229BD23E00F31975 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F2162BFA229BD23E00F31975 /* GoogleService-Info.plist */; };
-		F219028A225B8091001F1AE4 /* Titania.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F2190289225B8091001F1AE4 /* Titania.ttf */; };
 		F219028C225B81B0001F1AE4 /* FlapTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = F219028B225B81B0001F1AE4 /* FlapTop.swift */; };
 		F219028E225B81FC001F1AE4 /* FlapBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = F219028D225B81FC001F1AE4 /* FlapBottom.swift */; };
 		F2190290225B85D2001F1AE4 /* Wheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F219028F225B85D2001F1AE4 /* Wheel.swift */; };
@@ -20,12 +17,10 @@
 		F2190294225B8DCB001F1AE4 /* ViewControllerСhoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2190293225B8DCB001F1AE4 /* ViewControllerСhoice.swift */; };
 		F21926BE2284A02F007A5025 /* Wave.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21926BD2284A02F007A5025 /* Wave.swift */; };
 		F21E595B225CEFE000C0721B /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21E595A225CEFE000C0721B /* Base.swift */; };
-		F22606AF228381D900A7522E /* Code New Roman b.otf in Resources */ = {isa = PBXBuildFile; fileRef = F22606AE228381D800A7522E /* Code New Roman b.otf */; };
 		F226D920225FA17300828761 /* ViewControllerMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F226D91F225FA17300828761 /* ViewControllerMap.swift */; };
 		F232546F22D3DC9D0075005C /* RateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F232546E22D3DC9D0075005C /* RateManager.swift */; };
 		F2349C2E227587F30082E808 /* MapCatalogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2349C2D227587F30082E808 /* MapCatalogView.swift */; };
 		F24E8E76228369850010C98A /* ViewControllerFinish.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24E8E75228369850010C98A /* ViewControllerFinish.swift */; };
-		F2608C7D226EF9FA00E911C6 /* world.db in Resources */ = {isa = PBXBuildFile; fileRef = F2608C7C226EF9FA00E911C6 /* world.db */; };
 		F264063E221D92EE00AC753D /* ViewControllerStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = F264063D221D92EE00AC753D /* ViewControllerStart.swift */; };
 		F2644DA82260E518001FD8E7 /* Torn.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2644DA72260E518001FD8E7 /* Torn.swift */; };
 		F2668AFD22E0C571005C1D2D /* SE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2668AFB22E0C570005C1D2D /* SE.storyboard */; };
@@ -33,6 +28,11 @@
 		F2668B0322E0C59F005C1D2D /* 8+.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2668B0122E0C59F005C1D2D /* 8+.storyboard */; };
 		F2668B0622E0C5AC005C1D2D /* Xs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2668B0422E0C5AC005C1D2D /* Xs.storyboard */; };
 		F2668B0922E0C5B6005C1D2D /* Xsr.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2668B0722E0C5B6005C1D2D /* Xsr.storyboard */; };
+		F27333B02361B33D0075B7B4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F27333AF2361B33D0075B7B4 /* GoogleService-Info.plist */; };
+		F27333B42361B6B30075B7B4 /* world.db in Resources */ = {isa = PBXBuildFile; fileRef = F27333B32361B4B30075B7B4 /* world.db */; };
+		F27333B52361B6BF0075B7B4 /* Geo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F224ECAF2361AF340055B35F /* Geo.ttf */; };
+		F27333B62361B6C20075B7B4 /* Code New Roman b.otf in Resources */ = {isa = PBXBuildFile; fileRef = F224ECAD2361AF300055B35F /* Code New Roman b.otf */; };
+		F27333B72361B6C40075B7B4 /* Titania.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F2EEB0E82361AF6A00A94741 /* Titania.ttf */; };
 		F2742B41228CA60F00E02327 /* Contin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2742B40228CA60F00E02327 /* Contin.swift */; };
 		F2C837DA2215F9D600C252AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C837D92215F9D600C252AB /* AppDelegate.swift */; };
 		F2C837E22215F9D600C252AB /* Locity.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F2C837E02215F9D600C252AB /* Locity.xcdatamodeld */; };
@@ -47,10 +47,7 @@
 		D41178CB4ACD674072CC7404 /* Pods_Locity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Locity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB5A5AB80A9B04496A0092C4 /* Pods-Locity.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Locity.release.xcconfig"; path = "Target Support Files/Pods-Locity/Pods-Locity.release.xcconfig"; sourceTree = "<group>"; };
 		F2032C3722592BEC001C4FD8 /* ArrowStart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowStart.swift; sourceTree = "<group>"; };
-		F204D8D8224142B40065FA0E /* Geo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Geo.ttf; path = "image/исход/Geo.ttf"; sourceTree = SOURCE_ROOT; };
 		F208AF872278A2B1006013AB /* ViewControllerCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerCatalog.swift; sourceTree = "<group>"; };
-		F2162BFA229BD23E00F31975 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
-		F2190289225B8091001F1AE4 /* Titania.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Titania.ttf; path = "image/исход/Titania.ttf"; sourceTree = SOURCE_ROOT; };
 		F219028B225B81B0001F1AE4 /* FlapTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlapTop.swift; sourceTree = "<group>"; };
 		F219028D225B81FC001F1AE4 /* FlapBottom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlapBottom.swift; sourceTree = "<group>"; };
 		F219028F225B85D2001F1AE4 /* Wheel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wheel.swift; sourceTree = "<group>"; };
@@ -58,7 +55,8 @@
 		F2190293225B8DCB001F1AE4 /* ViewControllerСhoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewControllerСhoice.swift"; sourceTree = "<group>"; };
 		F21926BD2284A02F007A5025 /* Wave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wave.swift; sourceTree = "<group>"; };
 		F21E595A225CEFE000C0721B /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
-		F22606AE228381D800A7522E /* Code New Roman b.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Code New Roman b.otf"; path = "image/исход/Code New Roman b.otf"; sourceTree = SOURCE_ROOT; };
+		F224ECAD2361AF300055B35F /* Code New Roman b.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Code New Roman b.otf"; sourceTree = "<group>"; };
+		F224ECAF2361AF340055B35F /* Geo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Geo.ttf; sourceTree = "<group>"; };
 		F2262729230FF034004B2874 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F226272A230FF034004B2874 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SE.storyboard; sourceTree = "<group>"; };
 		F226272B230FF035004B2874 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/8.storyboard; sourceTree = "<group>"; };
@@ -69,9 +67,10 @@
 		F232546E22D3DC9D0075005C /* RateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateManager.swift; sourceTree = "<group>"; };
 		F2349C2D227587F30082E808 /* MapCatalogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCatalogView.swift; sourceTree = "<group>"; };
 		F24E8E75228369850010C98A /* ViewControllerFinish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFinish.swift; sourceTree = "<group>"; };
-		F2608C7C226EF9FA00E911C6 /* world.db */ = {isa = PBXFileReference; lastKnownFileType = file; name = world.db; path = MAPS_BASE/world.db; sourceTree = SOURCE_ROOT; };
 		F264063D221D92EE00AC753D /* ViewControllerStart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerStart.swift; sourceTree = "<group>"; };
 		F2644DA72260E518001FD8E7 /* Torn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Torn.swift; sourceTree = "<group>"; };
+		F27333AF2361B33D0075B7B4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F27333B32361B4B30075B7B4 /* world.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = world.db; sourceTree = "<group>"; };
 		F2742B40228CA60F00E02327 /* Contin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contin.swift; sourceTree = "<group>"; };
 		F2C837D62215F9D600C252AB /* Locity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Locity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2C837D92215F9D600C252AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +78,7 @@
 		F2C837E82215F9D700C252AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F2D98F42225E57EA0077F8C4 /* IsoViewRemover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsoViewRemover.swift; sourceTree = "<group>"; };
 		F2E5226622201A7B006938A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F2EEB0E82361AF6A00A94741 /* Titania.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Titania.ttf; sourceTree = "<group>"; };
 		F2EF0AAC2278376200DF51FD /* CatalogStart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogStart.swift; sourceTree = "<group>"; };
 		F2FA6A2E2271EFCF00774002 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		F45610F7AE796C113D7A32C6 /* Pods-Locity.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Locity.debug.xcconfig"; path = "Target Support Files/Pods-Locity/Pods-Locity.debug.xcconfig"; sourceTree = "<group>"; };
@@ -113,6 +113,90 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		F224EC9B2361A3F50055B35F /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				F224ECAF2361AF340055B35F /* Geo.ttf */,
+				F224ECAD2361AF300055B35F /* Code New Roman b.otf */,
+				F2EEB0E82361AF6A00A94741 /* Titania.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		F224EC9D2361A4320055B35F /* Bases */ = {
+			isa = PBXGroup;
+			children = (
+				F21E595A225CEFE000C0721B /* Base.swift */,
+				F27333B32361B4B30075B7B4 /* world.db */,
+				F2C837E02215F9D600C252AB /* Locity.xcdatamodeld */,
+			);
+			path = Bases;
+			sourceTree = "<group>";
+		};
+		F224EC9E2361A45A0055B35F /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				F2668AFB22E0C570005C1D2D /* SE.storyboard */,
+				F2668AFE22E0C595005C1D2D /* 8.storyboard */,
+				F2668B0122E0C59F005C1D2D /* 8+.storyboard */,
+				F2668B0422E0C5AC005C1D2D /* Xs.storyboard */,
+				F2668B0722E0C5B6005C1D2D /* Xsr.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		F224EC9F2361A48C0055B35F /* Finish */ = {
+			isa = PBXGroup;
+			children = (
+				F21926BD2284A02F007A5025 /* Wave.swift */,
+				F24E8E75228369850010C98A /* ViewControllerFinish.swift */,
+			);
+			path = Finish;
+			sourceTree = "<group>";
+		};
+		F224ECA02361A4B50055B35F /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				F2644DA72260E518001FD8E7 /* Torn.swift */,
+				F2FA6A2E2271EFCF00774002 /* Map.swift */,
+				F2742B40228CA60F00E02327 /* Contin.swift */,
+				F226D91F225FA17300828761 /* ViewControllerMap.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		F224ECA12361A4DB0055B35F /* Choice */ = {
+			isa = PBXGroup;
+			children = (
+				F219028F225B85D2001F1AE4 /* Wheel.swift */,
+				F219028B225B81B0001F1AE4 /* FlapTop.swift */,
+				F219028D225B81FC001F1AE4 /* FlapBottom.swift */,
+				F2190291225B8A6E001F1AE4 /* Anchor.swift */,
+				F2D98F42225E57EA0077F8C4 /* IsoViewRemover.swift */,
+				F2190293225B8DCB001F1AE4 /* ViewControllerСhoice.swift */,
+			);
+			path = Choice;
+			sourceTree = "<group>";
+		};
+		F224ECA22361A4FC0055B35F /* Start */ = {
+			isa = PBXGroup;
+			children = (
+				F2032C3722592BEC001C4FD8 /* ArrowStart.swift */,
+				F2EF0AAC2278376200DF51FD /* CatalogStart.swift */,
+				F264063D221D92EE00AC753D /* ViewControllerStart.swift */,
+			);
+			path = Start;
+			sourceTree = "<group>";
+		};
+		F224ECA32361A50E0055B35F /* Catalog */ = {
+			isa = PBXGroup;
+			children = (
+				F2349C2D227587F30082E808 /* MapCatalogView.swift */,
+				F208AF872278A2B1006013AB /* ViewControllerCatalog.swift */,
+			);
+			path = Catalog;
+			sourceTree = "<group>";
+		};
 		F2C837CD2215F9D600C252AB = {
 			isa = PBXGroup;
 			children = (
@@ -135,39 +219,19 @@
 			isa = PBXGroup;
 			children = (
 				F2C837E82215F9D700C252AB /* Info.plist */,
-				F2162BFA229BD23E00F31975 /* GoogleService-Info.plist */,
-				F2190289225B8091001F1AE4 /* Titania.ttf */,
-				F22606AE228381D800A7522E /* Code New Roman b.otf */,
-				F204D8D8224142B40065FA0E /* Geo.ttf */,
+				F27333AF2361B33D0075B7B4 /* GoogleService-Info.plist */,
+				F224EC9B2361A3F50055B35F /* Fonts */,
 				F2C837D92215F9D600C252AB /* AppDelegate.swift */,
 				F232546E22D3DC9D0075005C /* RateManager.swift */,
 				F2C837E52215F9D700C252AB /* LaunchScreen.storyboard */,
-				F2032C3722592BEC001C4FD8 /* ArrowStart.swift */,
-				F2EF0AAC2278376200DF51FD /* CatalogStart.swift */,
-				F264063D221D92EE00AC753D /* ViewControllerStart.swift */,
-				F2349C2D227587F30082E808 /* MapCatalogView.swift */,
-				F208AF872278A2B1006013AB /* ViewControllerCatalog.swift */,
-				F219028F225B85D2001F1AE4 /* Wheel.swift */,
-				F219028B225B81B0001F1AE4 /* FlapTop.swift */,
-				F219028D225B81FC001F1AE4 /* FlapBottom.swift */,
-				F2190291225B8A6E001F1AE4 /* Anchor.swift */,
-				F2D98F42225E57EA0077F8C4 /* IsoViewRemover.swift */,
-				F21E595A225CEFE000C0721B /* Base.swift */,
-				F2190293225B8DCB001F1AE4 /* ViewControllerСhoice.swift */,
-				F2644DA72260E518001FD8E7 /* Torn.swift */,
-				F2FA6A2E2271EFCF00774002 /* Map.swift */,
-				F2742B40228CA60F00E02327 /* Contin.swift */,
-				F226D91F225FA17300828761 /* ViewControllerMap.swift */,
-				F21926BD2284A02F007A5025 /* Wave.swift */,
-				F24E8E75228369850010C98A /* ViewControllerFinish.swift */,
-				F2668AFB22E0C570005C1D2D /* SE.storyboard */,
-				F2668AFE22E0C595005C1D2D /* 8.storyboard */,
-				F2668B0122E0C59F005C1D2D /* 8+.storyboard */,
-				F2668B0422E0C5AC005C1D2D /* Xs.storyboard */,
-				F2668B0722E0C5B6005C1D2D /* Xsr.storyboard */,
+				F224ECA22361A4FC0055B35F /* Start */,
+				F224ECA32361A50E0055B35F /* Catalog */,
+				F224ECA12361A4DB0055B35F /* Choice */,
+				F224ECA02361A4B50055B35F /* Map */,
+				F224EC9F2361A48C0055B35F /* Finish */,
+				F224EC9E2361A45A0055B35F /* Storyboards */,
 				F2E5226622201A7B006938A8 /* Assets.xcassets */,
-				F2608C7C226EF9FA00E911C6 /* world.db */,
-				F2C837E02215F9D600C252AB /* Locity.xcdatamodeld */,
+				F224EC9D2361A4320055B35F /* Bases */,
 			);
 			path = Locity;
 			sourceTree = "<group>";
@@ -233,16 +297,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F2608C7D226EF9FA00E911C6 /* world.db in Resources */,
-				F2162BFB229BD23E00F31975 /* GoogleService-Info.plist in Resources */,
+				F27333B42361B6B30075B7B4 /* world.db in Resources */,
 				F2C837E72215F9D700C252AB /* LaunchScreen.storyboard in Resources */,
+				F27333B62361B6C20075B7B4 /* Code New Roman b.otf in Resources */,
+				F27333B52361B6BF0075B7B4 /* Geo.ttf in Resources */,
+				F27333B02361B33D0075B7B4 /* GoogleService-Info.plist in Resources */,
+				F27333B72361B6C40075B7B4 /* Titania.ttf in Resources */,
 				F2E5226722201A7B006938A8 /* Assets.xcassets in Resources */,
-				F204D8D9224142B40065FA0E /* Geo.ttf in Resources */,
 				F2668B0022E0C595005C1D2D /* 8.storyboard in Resources */,
 				F2668AFD22E0C571005C1D2D /* SE.storyboard in Resources */,
 				F2668B0922E0C5B6005C1D2D /* Xsr.storyboard in Resources */,
-				F22606AF228381D900A7522E /* Code New Roman b.otf in Resources */,
-				F219028A225B8091001F1AE4 /* Titania.ttf in Resources */,
 				F2668B0322E0C59F005C1D2D /* 8+.storyboard in Resources */,
 				F2668B0622E0C5AC005C1D2D /* Xs.storyboard in Resources */,
 			);

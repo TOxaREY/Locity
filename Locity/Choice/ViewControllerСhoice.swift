@@ -151,9 +151,9 @@ class ViewControllerChoice: UIViewController {
         effectView.effect = UIBlurEffect(style: .prominent)
         self.blurView.addSubview(effectView)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            UIView.animate(withDuration: 0.5, animations: {
+            UIView.animate(withDuration: 0.5, animations: { [weak self] in
                 effectView.effect = nil
-                self.labelRound.alpha = 0
+                self?.labelRound.alpha = 0
             })
         }
     }
@@ -202,8 +202,8 @@ class ViewControllerChoice: UIViewController {
             } else {
                 resultContinentLabel.bounds = bounds
                 resultContinentLabel.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-                UIView.animate(withDuration: 2.0) {
-                    self.resultContinentLabel.transform = .identity
+                UIView.animate(withDuration: 2.0) { [weak self] in
+                    self?.resultContinentLabel.transform = .identity
                 }
             }
         }
@@ -231,8 +231,8 @@ class ViewControllerChoice: UIViewController {
             } else {
                 resultCountryLabel.bounds = bounds
                 resultCountryLabel.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-                UIView.animate(withDuration: 2.0) {
-                    self.resultCountryLabel.transform = .identity
+                UIView.animate(withDuration: 2.0) { [weak self] in
+                    self?.resultCountryLabel.transform = .identity
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "removeWheel"), object: nil)
@@ -315,8 +315,8 @@ class ViewControllerChoice: UIViewController {
         }
     }
     @objc func breakdown2(){
-        UIView.animate(withDuration: 3.75, animations: {
-            self.resultContinentLabel.transform = CGAffineTransform(translationX: -(UIScreen.main.bounds.width / 2 + self.resultContinentLabel.frame.width / 2), y: 0)
+        UIView.animate(withDuration: 3.75, animations: { [weak self] in 
+            self?.resultContinentLabel.transform = CGAffineTransform(translationX: -(UIScreen.main.bounds.width / 2 + (self?.resultContinentLabel.frame.width)! / 2), y: 0)
         }, completion: { done in
             self.resultContinentLabel.isHidden = true
             let appDel = UIApplication.shared.delegate as! AppDelegate
@@ -325,8 +325,8 @@ class ViewControllerChoice: UIViewController {
             appDel.window?.rootViewController = newVC
             appDel.window?.makeKeyAndVisible()
         })
-        UIView.animate(withDuration: 3.75, animations: {
-            self.resultCountryLabel.transform = CGAffineTransform(translationX: UIScreen.main.bounds.width / 2 + self.resultCountryLabel.frame.width / 2, y: 0)
+        UIView.animate(withDuration: 3.75, animations: { [weak self] in
+            self?.resultCountryLabel.transform = CGAffineTransform(translationX: UIScreen.main.bounds.width / 2 + (self?.resultCountryLabel.frame.width)! / 2, y: 0)
         }, completion: { done in
             self.resultCountryLabel.isHidden = true
         })
@@ -413,7 +413,7 @@ class ViewControllerChoice: UIViewController {
         self.labelRound.font = self.labelRound.font.withSize(self.fontSize3.dfz)
         self.isoLabel.font = self.isoLabel.font.withSize(self.fontSize2.dfz2)
         isoViewHeight = self.isoView.frame.height
-        print(isoViewHeight)
+//        print(isoViewHeight)
     }
 }
 

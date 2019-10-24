@@ -228,16 +228,16 @@ class ViewControllerMap: UIViewController {
             pointsTouchLabel.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         }
         pointsTouchLabel.isHidden = false
-        UIView.animate(withDuration: 1, animations: {
-            if self.arrow == "L" {
-                self.pointsTouchLabel.transform = scale2.concatenating(rotation2)
+        UIView.animate(withDuration: 1, animations: { [weak self] in
+            if self?.arrow == "L" {
+                self?.pointsTouchLabel.transform = scale2.concatenating(rotation2)
             } else {
-                self.pointsTouchLabel.transform = .identity
+                self?.pointsTouchLabel.transform = .identity
             }
         }, completion: { done in
             if self.arrow == "L" {
-                UIView.animate(withDuration: 1, animations: {
-                    self.pointsTouchLabel.transform = .identity
+                UIView.animate(withDuration: 1, animations: { [weak self] in
+                    self?.pointsTouchLabel.transform = .identity
                 }, completion: { done in
                     self.pointsLabelFunc()
                 })
@@ -256,8 +256,8 @@ class ViewControllerMap: UIViewController {
         let scale3 = CGAffineTransform(scaleX: 0.5, y: 0.5)
         let translation = CGAffineTransform(translationX: deltaX, y: deltaY)
         self.pointsLabelSupport.isHidden = false
-        UIView.animate(withDuration: 2, animations: {
-            self.pointsTouchLabel.transform = scale3.concatenating(translation)
+        UIView.animate(withDuration: 2, animations: { [weak self] in
+            self?.pointsTouchLabel.transform = scale3.concatenating(translation)
         }, completion: { done in
             self.pointsLabel.text = String(Int(self.pointsTouchLabel.text!)! + Int(self.pointsLabel.text!)!)
             self.pointsTouchLabel.isHidden = true
@@ -276,12 +276,12 @@ class ViewControllerMap: UIViewController {
                         self.topSupport.font = self.topSupport.font.withSize(self.bottomSupportFontSize)
                         self.homeImageSupport.isHidden = false
                         self.roundCitySupport.isHidden = false
-                        UIView.animate(withDuration: 0.5, animations: {
-                            self.bottomSupport.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-                            self.topSupport.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-                            self.pointsLabel.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-                            self.homeImage.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-                            self.roundCityLabel.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+                        UIView.animate(withDuration: 0.5, animations: { [weak self] in
+                            self?.bottomSupport.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+                            self?.topSupport.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+                            self?.pointsLabel.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+                            self?.homeImage.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+                            self?.roundCityLabel.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
                         }, completion: { done in
                             self.bottomSupport.isHidden = true
                             self.topSupport.isHidden = true
@@ -296,10 +296,10 @@ class ViewControllerMap: UIViewController {
                             self.topSupport.isHidden = false
                             self.catalogImage.isHidden = false
                             self.homeImage.isHidden = false
-                            UIView.animate(withDuration: 0.5, animations: {
-                                self.topSupport.transform = .identity
-                                self.catalogImage.transform = .identity
-                                self.homeImage.transform = .identity
+                            UIView.animate(withDuration: 0.5, animations: { [weak self] in
+                                self?.topSupport.transform = .identity
+                                self?.catalogImage.transform = .identity
+                                self?.homeImage.transform = .identity
                             }, completion: { done in
                                 self.catalogButtonOutlet.isEnabled = true
                                 self.catalogButtonOutlet.isHidden = false
@@ -341,14 +341,14 @@ class ViewControllerMap: UIViewController {
         pointsLabel.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         homeImage.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         checkArrow(direct: arrow).transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-        UIView.animate(withDuration: 0.5) {
-            self.roundCityLabel.transform = .identity
-            self.roundLabel.transform = .identity
-            self.pointsLabel.transform = .identity
-            self.homeImage.transform = .identity
-            self.topFlapLabel.transform = .identity
-            self.bottomFlapLabel.transform = .identity
-            self.checkArrow(direct: self.arrow).transform = .identity
+        UIView.animate(withDuration: 0.5) { [weak self] in
+            self?.roundCityLabel.transform = .identity
+            self?.roundLabel.transform = .identity
+            self?.pointsLabel.transform = .identity
+            self?.homeImage.transform = .identity
+            self?.topFlapLabel.transform = .identity
+            self?.bottomFlapLabel.transform = .identity
+            self?.checkArrow(direct: self!.arrow).transform = .identity
         }
         if enableButton {
             homeButtonOutlet.isHidden = false

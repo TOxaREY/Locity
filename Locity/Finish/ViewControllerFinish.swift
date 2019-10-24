@@ -171,9 +171,9 @@ class ViewControllerFinish: UIViewController, UITableViewDataSource, UITableView
         infoImageGG.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         finishHomeImage.isHidden = false
         infoImageGG.isHidden = false
-        UIView.animate(withDuration: 1.0, animations: {
-            self.finishHomeImage.transform = .identity
-            self.infoImageGG.transform = .identity
+        UIView.animate(withDuration: 1.0, animations: { [weak self] in
+            self?.finishHomeImage.transform = .identity
+            self?.infoImageGG.transform = .identity
         }, completion: { done in
             self.homeButton.isEnabled = true
             self.infoButton.isEnabled = true

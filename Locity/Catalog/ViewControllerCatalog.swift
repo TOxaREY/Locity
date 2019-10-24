@@ -151,8 +151,8 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
                     mapView.isHidden = false
                     checkArrow(direct: arrowCat).transform = CGAffineTransform(scaleX: 0.05, y: 0.05)
                     checkArrow(direct: arrowCat).isHidden = false
-                    UIView.animate(withDuration: 0.5) {
-                        self.checkArrow(direct: arrowCat).transform = .identity
+                    UIView.animate(withDuration: 0.5) { [weak self] in
+                        self?.checkArrow(direct: arrowCat).transform = .identity
                     }
                     idSelectCountry = 130
                     if sender.direction == .left {
@@ -171,8 +171,8 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
                             mapView.isHidden = false
                             checkArrow(direct: arrowCat).transform = CGAffineTransform(scaleX: 0.05, y: 0.05)
                             checkArrow(direct: arrowCat).isHidden = false
-                            UIView.animate(withDuration: 0.5) {
-                                self.checkArrow(direct: arrowCat).transform = .identity
+                            UIView.animate(withDuration: 0.5) { [weak self] in
+                                self?.checkArrow(direct: arrowCat).transform = .identity
                             }
                             i += 1
                             case .right: checkArrow(direct: arrowCat).isHidden = true; NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addContin"), object: nil); idSelectCountry = 189
@@ -187,8 +187,8 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
                             mapView.isHidden = false
                             checkArrow(direct: arrowCat).transform = CGAffineTransform(scaleX: 0.05, y: 0.05)
                             checkArrow(direct: arrowCat).isHidden = false
-                            UIView.animate(withDuration: 0.5) {
-                                self.checkArrow(direct: arrowCat).transform = .identity
+                            UIView.animate(withDuration: 0.5) { [weak self] in
+                                self?.checkArrow(direct: arrowCat).transform = .identity
                             }; idSelectCountry = 130; i = 0
                             default: break
                             }
@@ -202,8 +202,8 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
                             mapView.isHidden = false
                             checkArrow(direct: arrowCat).transform = CGAffineTransform(scaleX: 0.05, y: 0.05)
                             checkArrow(direct: arrowCat).isHidden = false
-                            UIView.animate(withDuration: 0.5) {
-                                self.checkArrow(direct: arrowCat).transform = .identity
+                            UIView.animate(withDuration: 0.5) { [weak self] in
+                                self?.checkArrow(direct: arrowCat).transform = .identity
                             }
                             i += 1
                             default: break
@@ -216,8 +216,8 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
                             mapView.isHidden = false
                             checkArrow(direct: arrowCat).transform = CGAffineTransform(scaleX: 0.05, y: 0.05)
                             checkArrow(direct: arrowCat).isHidden = false
-                            UIView.animate(withDuration: 0.5) {
-                                self.checkArrow(direct: arrowCat).transform = .identity
+                            UIView.animate(withDuration: 0.5) { [weak self] in
+                                self?.checkArrow(direct: arrowCat).transform = .identity
                             }; idSelectCountry = 130; i = 0
                             case .right: checkArrow(direct: arrowCat).isHidden = true; NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addContin"), object: nil); i = 0
                             default: break
@@ -232,8 +232,8 @@ class ViewControllerCatalog: UIViewController, UIPickerViewDataSource, UIPickerV
                 mapView.isHidden = false
                 checkArrow(direct: arrowCat).transform = CGAffineTransform(scaleX: 0.05, y: 0.05)
                 checkArrow(direct: arrowCat).isHidden = false
-                UIView.animate(withDuration: 0.5) {
-                    self.checkArrow(direct: arrowCat).transform = .identity
+                UIView.animate(withDuration: 0.5) { [weak self] in
+                    self?.checkArrow(direct: arrowCat).transform = .identity
                 }
                 i = 1
                 default: break
