@@ -188,19 +188,19 @@ class ViewControllerChoice: UIViewController {
         resultContinentLabel.backgroundColor = .white
         resultContinentLabel.layer.borderColor = UIColor.black.cgColor
         resultContinentLabel.layer.borderWidth = 2.0
-        var bounds = resultContinentLabel.bounds
+        var boundsContinentLabel = resultContinentLabel.bounds
         
         func checkSize(fS:CGFloat) {
             var fS = fS
             resultContinentLabel.font = resultContinentLabel.font.withSize(CGFloat(fS))
-            bounds.size = resultContinentLabel.intrinsicContentSize
-            bounds.size.width = bounds.size.width + 20
-            bounds.size.height = bounds.size.height + 5
-            if bounds.size.width > resultContinentLabel.frame.width {
+            boundsContinentLabel.size = resultContinentLabel.intrinsicContentSize
+            boundsContinentLabel.size.width = boundsContinentLabel.size.width + 20
+            boundsContinentLabel.size.height = boundsContinentLabel.size.height + 5
+            if boundsContinentLabel.size.width > resultContinentLabel.frame.width {
                 fS -= 1
                 checkSize(fS: fS)
             } else {
-                resultContinentLabel.bounds = bounds
+                resultContinentLabel.layer.bounds = boundsContinentLabel
                 resultContinentLabel.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
                 UIView.animate(withDuration: 2.0) { [weak self] in
                     self?.resultContinentLabel.transform = .identity
@@ -217,19 +217,19 @@ class ViewControllerChoice: UIViewController {
         resultCountryLabel.text = resultCountryName.uppercased()
         resultCountryLabel.layer.borderColor = UIColor.black.cgColor
         resultCountryLabel.layer.borderWidth = 2.0
-        var bounds = resultCountryLabel.bounds
+        var boundsCountryLabel = resultCountryLabel.bounds
         
         func checkSize(fS:CGFloat) {
             var fS = fS
             resultCountryLabel.font = resultCountryLabel.font.withSize(CGFloat(fS))
-            bounds.size = resultCountryLabel.intrinsicContentSize
-            bounds.size.width = bounds.size.width + 20
-            bounds.size.height = bounds.size.height + 5
-            if bounds.size.width > resultCountryLabel.frame.width {
+            boundsCountryLabel.size = resultCountryLabel.intrinsicContentSize
+            boundsCountryLabel.size.width = boundsCountryLabel.size.width + 20
+            boundsCountryLabel.size.height = boundsCountryLabel.size.height + 5
+            if boundsCountryLabel.size.width > resultCountryLabel.frame.width {
                 fS -= 1
                 checkSize(fS: fS)
             } else {
-                resultCountryLabel.bounds = bounds
+                resultCountryLabel.layer.bounds = boundsCountryLabel
                 resultCountryLabel.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
                 UIView.animate(withDuration: 2.0) { [weak self] in
                     self?.resultCountryLabel.transform = .identity
@@ -360,14 +360,6 @@ class ViewControllerChoice: UIViewController {
         disableButtonLabelStart()
         labelRound.text = "\(round)/5"
         
-        //Dispatch for loading orientation device
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//            self.topLabel.font = self.topLabel.font.withSize(self.fontSize.dfz)
-//            self.bottomLabel.font = self.bottomLabel.font.withSize(self.fontSize.dfz)
-//            self.labelRound.font = self.labelRound.font.withSize(self.fontSize3.dfz)
-//            self.isoLabel.font = self.isoLabel.font.withSize(self.fontSize2.dfz2)
-//            isoViewHeight = self.isoView.frame.height
-//        }
         NotificationCenter.default.addObserver(self, selector: #selector(self.enableButtonFlap), name: NSNotification.Name(rawValue: "enableButtonFlap"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.enableSpinButton), name: NSNotification.Name(rawValue: "enableSpinButton"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.resultContinent), name: NSNotification.Name(rawValue: "resultContinent"), object: nil)
@@ -413,7 +405,6 @@ class ViewControllerChoice: UIViewController {
         self.labelRound.font = self.labelRound.font.withSize(self.fontSize3.dfz)
         self.isoLabel.font = self.isoLabel.font.withSize(self.fontSize2.dfz2)
         isoViewHeight = self.isoView.frame.height
-//        print(isoViewHeight)
     }
 }
 
