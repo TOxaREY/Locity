@@ -315,7 +315,7 @@ class ViewControllerChoice: UIViewController {
         }
     }
     @objc func breakdown2(){
-        UIView.animate(withDuration: 3.75, animations: { [weak self] in 
+        UIView.animate(withDuration: 3.75, animations: { [weak self] in
             self?.resultContinentLabel.transform = CGAffineTransform(translationX: -(UIScreen.main.bounds.width / 2 + (self?.resultContinentLabel.frame.width)! / 2), y: 0)
         }, completion: { done in
             self.resultContinentLabel.isHidden = true
