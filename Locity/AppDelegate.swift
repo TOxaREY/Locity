@@ -39,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         //Check storyboard
+        print("screenHeight \(screenHeight)")
         switch screenHeight {
         case 568: nameStoryboard = "SE"
         case 667: nameStoryboard = "8"

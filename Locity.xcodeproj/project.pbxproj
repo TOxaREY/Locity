@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0E4E3F217F9FBFB241C776DF /* Pods_Locity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D41178CB4ACD674072CC7404 /* Pods_Locity.framework */; };
+		2F2DE2313ED6EFAF6CDB8604 /* Pods_Locity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2F878C9F585949D518A3853 /* Pods_Locity.framework */; };
 		F2032C3822592BEC001C4FD8 /* ArrowStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2032C3722592BEC001C4FD8 /* ArrowStart.swift */; };
 		F208AF882278A2B1006013AB /* ViewControllerCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F208AF872278A2B1006013AB /* ViewControllerCatalog.swift */; };
 		F219028C225B81B0001F1AE4 /* FlapTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = F219028B225B81B0001F1AE4 /* FlapTop.swift */; };
@@ -44,8 +44,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D41178CB4ACD674072CC7404 /* Pods_Locity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Locity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DB5A5AB80A9B04496A0092C4 /* Pods-Locity.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Locity.release.xcconfig"; path = "Target Support Files/Pods-Locity/Pods-Locity.release.xcconfig"; sourceTree = "<group>"; };
+		60754B48A046C255D471B270 /* Pods-Locity.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Locity.release.xcconfig"; path = "Target Support Files/Pods-Locity/Pods-Locity.release.xcconfig"; sourceTree = "<group>"; };
+		83A5C7F902E4A782EB1C2B3C /* Pods-Locity.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Locity.debug.xcconfig"; path = "Target Support Files/Pods-Locity/Pods-Locity.debug.xcconfig"; sourceTree = "<group>"; };
+		E2F878C9F585949D518A3853 /* Pods_Locity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Locity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2032C3722592BEC001C4FD8 /* ArrowStart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowStart.swift; sourceTree = "<group>"; };
 		F208AF872278A2B1006013AB /* ViewControllerCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerCatalog.swift; sourceTree = "<group>"; };
 		F219028B225B81B0001F1AE4 /* FlapTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlapTop.swift; sourceTree = "<group>"; };
@@ -81,7 +82,6 @@
 		F2EEB0E82361AF6A00A94741 /* Titania.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Titania.ttf; sourceTree = "<group>"; };
 		F2EF0AAC2278376200DF51FD /* CatalogStart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogStart.swift; sourceTree = "<group>"; };
 		F2FA6A2E2271EFCF00774002 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
-		F45610F7AE796C113D7A32C6 /* Pods-Locity.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Locity.debug.xcconfig"; path = "Target Support Files/Pods-Locity/Pods-Locity.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,17 +89,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E4E3F217F9FBFB241C776DF /* Pods_Locity.framework in Frameworks */,
+				2F2DE2313ED6EFAF6CDB8604 /* Pods_Locity.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		104191A86A37C6747BFABCBD /* Frameworks */ = {
+		21FB9607274F63649B536D55 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D41178CB4ACD674072CC7404 /* Pods_Locity.framework */,
+				E2F878C9F585949D518A3853 /* Pods_Locity.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -107,8 +107,8 @@
 		37C7139CB2D62EEF4ADDCA23 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				F45610F7AE796C113D7A32C6 /* Pods-Locity.debug.xcconfig */,
-				DB5A5AB80A9B04496A0092C4 /* Pods-Locity.release.xcconfig */,
+				83A5C7F902E4A782EB1C2B3C /* Pods-Locity.debug.xcconfig */,
+				60754B48A046C255D471B270 /* Pods-Locity.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -203,7 +203,7 @@
 				F2C837D82215F9D600C252AB /* Locity */,
 				F2C837D72215F9D600C252AB /* Products */,
 				37C7139CB2D62EEF4ADDCA23 /* Pods */,
-				104191A86A37C6747BFABCBD /* Frameworks */,
+				21FB9607274F63649B536D55 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -243,11 +243,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F2C837EB2215F9D700C252AB /* Build configuration list for PBXNativeTarget "Locity" */;
 			buildPhases = (
-				50249807F5F64388B17D192D /* [CP] Check Pods Manifest.lock */,
+				643F9D16A6F9B7D5D3236B86 /* [CP] Check Pods Manifest.lock */,
 				F2C837D22215F9D600C252AB /* Sources */,
 				F2C837D32215F9D600C252AB /* Frameworks */,
 				F2C837D42215F9D600C252AB /* Resources */,
-				B996FD634728D82B82E9B360 /* [CP] Embed Pods Frameworks */,
+				244006B251A9F8216DEE52F9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -315,7 +315,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		50249807F5F64388B17D192D /* [CP] Check Pods Manifest.lock */ = {
+		244006B251A9F8216DEE52F9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Locity/Pods-Locity-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Locity/Pods-Locity-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Locity/Pods-Locity-frameworks.sh\"\n\"${PODS_ROOT}/Fabric/run\"\n";
+			showEnvVarsInLog = 0;
+		};
+		643F9D16A6F9B7D5D3236B86 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -335,23 +352,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B996FD634728D82B82E9B360 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Locity/Pods-Locity-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Locity/Pods-Locity-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Locity/Pods-Locity-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -557,11 +557,12 @@
 		};
 		F2C837EC2215F9D700C252AB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F45610F7AE796C113D7A32C6 /* Pods-Locity.debug.xcconfig */;
+			baseConfigurationReference = 83A5C7F902E4A782EB1C2B3C /* Pods-Locity.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = EB6R5QS764;
 				INFOPLIST_FILE = Locity/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
@@ -580,7 +581,7 @@
 		};
 		F2C837ED2215F9D700C252AB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DB5A5AB80A9B04496A0092C4 /* Pods-Locity.release.xcconfig */;
+			baseConfigurationReference = 60754B48A046C255D471B270 /* Pods-Locity.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

@@ -29,6 +29,7 @@ class Wheel: SKView {
         self.presentScene(scene)
         self.allowsTransparency = true
         wheel.size = CGSize(width: 9 * (scene.frame.maxX - scene.frame.minX) / 10, height: 9 * (scene.frame.maxX - scene.frame.minX) / 10)
+        print("wheel size \(wheel.size)")
         wheelSize = wheel.size.height
         wheel.position = CGPoint(x: (scene.frame.maxX - scene.frame.minX) / 2, y: (scene.frame.maxY - scene.frame.minY) / 2)
         wheel.zRotation = 0
