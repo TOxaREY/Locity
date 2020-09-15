@@ -1,4 +1,4 @@
-framework module Pods_Locity {
+module Pods_Locity {
   umbrella header "Pods-Locity-umbrella.h"
 
   export *
