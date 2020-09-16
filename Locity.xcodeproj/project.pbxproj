@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		14757501717EA4BA8A427F1A /* libPods-Locity.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 813989CC64A70BCC6A34CB1C /* libPods-Locity.a */; };
+		22BDA5EF70D34B9522C959CB /* libPods-Locity.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52FC79DD53AA4818F733BCB0 /* libPods-Locity.a */; };
 		F2032C3822592BEC001C4FD8 /* ArrowStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2032C3722592BEC001C4FD8 /* ArrowStart.swift */; };
 		F208AF882278A2B1006013AB /* ViewControllerCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F208AF872278A2B1006013AB /* ViewControllerCatalog.swift */; };
 		F219028C225B81B0001F1AE4 /* FlapTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = F219028B225B81B0001F1AE4 /* FlapTop.swift */; };
@@ -44,8 +44,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0EDEB8D5AA1AFAB76CAF1972 /* Pods-Locity.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Locity.debug.xcconfig"; path = "Target Support Files/Pods-Locity/Pods-Locity.debug.xcconfig"; sourceTree = "<group>"; };
-		813989CC64A70BCC6A34CB1C /* libPods-Locity.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Locity.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		52FC79DD53AA4818F733BCB0 /* libPods-Locity.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Locity.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9500412EF0D7780CDCF29A56 /* Pods-Locity.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Locity.debug.xcconfig"; path = "Target Support Files/Pods-Locity/Pods-Locity.debug.xcconfig"; sourceTree = "<group>"; };
 		F2032C3722592BEC001C4FD8 /* ArrowStart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowStart.swift; sourceTree = "<group>"; };
 		F208AF872278A2B1006013AB /* ViewControllerCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerCatalog.swift; sourceTree = "<group>"; };
 		F219028B225B81B0001F1AE4 /* FlapTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlapTop.swift; sourceTree = "<group>"; };
@@ -88,7 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14757501717EA4BA8A427F1A /* libPods-Locity.a in Frameworks */,
+				22BDA5EF70D34B9522C959CB /* libPods-Locity.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,17 +98,9 @@
 		37C7139CB2D62EEF4ADDCA23 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				0EDEB8D5AA1AFAB76CAF1972 /* Pods-Locity.debug.xcconfig */,
+				9500412EF0D7780CDCF29A56 /* Pods-Locity.debug.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		75EB60D8439FE3DC69565149 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				813989CC64A70BCC6A34CB1C /* libPods-Locity.a */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		F224EC9B2361A3F50055B35F /* Fonts */ = {
@@ -201,7 +193,7 @@
 				F2C837D82215F9D600C252AB /* Locity */,
 				F2C837D72215F9D600C252AB /* Products */,
 				37C7139CB2D62EEF4ADDCA23 /* Pods */,
-				75EB60D8439FE3DC69565149 /* Frameworks */,
+				FD2D385947D839FCEED82602 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -234,6 +226,14 @@
 			path = Locity;
 			sourceTree = "<group>";
 		};
+		FD2D385947D839FCEED82602 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				52FC79DD53AA4818F733BCB0 /* libPods-Locity.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -241,12 +241,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F2C837EB2215F9D700C252AB /* Build configuration list for PBXNativeTarget "Locity" */;
 			buildPhases = (
-				B5B2D60577D451128E5D0F99 /* [CP] Check Pods Manifest.lock */,
+				171C409878EFC76579935833 /* [CP] Check Pods Manifest.lock */,
 				F2C837D22215F9D600C252AB /* Sources */,
 				F2C837D32215F9D600C252AB /* Frameworks */,
 				F2C837D42215F9D600C252AB /* Resources */,
 				F2D3E75D2510CED4003ACCD9 /* ShellScript */,
-				E59426B8199B055D9421DA76 /* [CP] Embed Pods Frameworks */,
+				C0CEBA361B49A6F0F28118B0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -314,7 +314,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		B5B2D60577D451128E5D0F99 /* [CP] Check Pods Manifest.lock */ = {
+		171C409878EFC76579935833 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -336,7 +336,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E59426B8199B055D9421DA76 /* [CP] Embed Pods Frameworks */ = {
+		C0CEBA361B49A6F0F28118B0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -519,7 +519,7 @@
 		};
 		F2C837EC2215F9D700C252AB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0EDEB8D5AA1AFAB76CAF1972 /* Pods-Locity.debug.xcconfig */;
+			baseConfigurationReference = 9500412EF0D7780CDCF29A56 /* Pods-Locity.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
