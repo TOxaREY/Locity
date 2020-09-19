@@ -197,6 +197,7 @@ if [ -r "${ARTIFACT_LIST_FILE}" ]; then
 fi
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework"
   install_framework "${PODS_ROOT}/YandexMobileMetrica/dynamic/YandexMobileMetrica.framework"
   install_framework "${PODS_ROOT}/YandexMobileMetrica/dynamic/YandexMobileMetricaCrashes.framework"
 fi
